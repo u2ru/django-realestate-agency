@@ -1,0 +1,108 @@
+{% load static %} {% block content %}
+<div class="property-detail">
+  <h1 class="property-title">{{ property.name }}</h1>
+
+  <div class="property-media">
+    {% if property.images.all %}
+    <div class="property-gallery">
+      {% for image in property.images.all %}
+      <img
+        src="{{ image.image.url }}"
+        alt="{{ property.name }} {% if image.is_main %}(Main){% endif %}"
+        class="{% if image.is_main %}main-image{% endif %}"
+      />
+      {% endfor %}
+    </div>
+    {% endif %} {% if property.youtube_url %}
+    <div class="property-video">
+      <iframe
+        width="560"
+        height="315"
+        src="{{ property.youtube_url }}"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="property-info">
+    <div class="property-price">
+      <h2>{{ property.price }} {{ property.currency }}</h2>
+      <span class="property-deal-type"
+        >{{ property.get_deal_type_display }}</span
+      >
+    </div>
+
+    <div class="property-specs">
+      <div class="property-location">
+        <h3>Location</h3>
+        <p>{{ property.location }}</p>
+        <p>{{ property.city }}, {{ property.region }}</p>
+      </div>
+
+      <div class="property-details">
+        <h3>Details</h3>
+        <ul>
+          <li>
+            <strong>Type:</strong> {{ property.get_property_type_display }}
+          </li>
+          <li><strong>Area:</strong> {{ property.area }} sqm</li>
+          {% if property.rooms %}
+          <li><strong>Rooms:</strong> {{ property.rooms }}</li>
+          {% endif %} {% if property.floor %}
+          <li>
+            <strong>Floor:</strong> {{ property.floor }} / {{ property.total_floors }}
+          </li>
+          {% endif %} {% if property.state %}
+          <li><strong>State:</strong> {{ property.get_state_display }}</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="property-features">
+        <h3>Features</h3>
+        <ul>
+          {% if property.has_balcony %}
+          <li>Balcony</li>
+          {% endif %} {% if property.has_parking %}
+          <li>Parking</li>
+          {% endif %} {% if property.has_elevator %}
+          <li>Elevator</li>
+          {% endif %} {% if property.has_furniture %}
+          <li>Furnished</li>
+          {% endif %} {% if property.has_central_heating %}
+          <li>Central Heating</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="property-description">
+      <h3>Description</h3>
+      <p>{{ property.description }}</p>
+
+      {% if property.translations.all %}
+      <div class="property-translations">
+        <h4>Translations</h4>
+        {% for translation in property.translations.all %}
+        <div class="translation {{ translation.language }}">
+          <h5>{{ translation.get_language_display }}</h5>
+          <h6>{{ translation.name }}</h6>
+          <p>{{ translation.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="property-meta">
+      <p><small>Listed: {{ property.created_at|date:"F j, Y" }}</small></p>
+      <p>
+        <small>Last updated: {{ property.updated_at|date:"F j, Y" }}</small>
+      </p>
+      <p><small>Views: {{ property.views }}</small></p>
+    </div>
+  </div>
+</div>
+{% endblock %}
