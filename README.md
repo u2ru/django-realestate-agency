@@ -12,6 +12,12 @@ For Windows:
 .\venv\Scripts\activate
 ```
 
+Install Requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
 # Run server
 
 ```bash
