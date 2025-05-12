@@ -20,6 +20,9 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_title = "Real Estate Admin"
+admin.site.site_header = "Real Estate Admin"
+
 urlpatterns = [
     path("property/", include("property.urls")),
     #
