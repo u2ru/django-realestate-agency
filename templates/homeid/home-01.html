@@ -17,6 +17,8 @@
         </h2>
         <form
           class="property-search py-lg-0 z-index-2 position-relative d-none d-lg-block"
+          action="{% url 'property:index' %}"
+          method="get"
         >
           <div class="row no-gutters">
             <div class="col-md-5 col-lg-4 col-xl-3">
@@ -76,10 +78,9 @@
                   data-style="p-0 h-24 lh-17 text-dark"
                   name="type"
                 >
-                  <option>Condominium</option>
-                  <option>Single-Family Home</option>
-                  <option>Townhouse</option>
-                  <option>Multi-Family Home</option>
+                  {% for home_type in filter_properties.home_types %}
+                    <option value="{{ home_type.0 }}">{{ home_type.1 }}</option>
+                  {% endfor %}
                 </select>
               </div>
               <div class="col-md-6 col-lg-4 col-xl-5 pt-6 pt-lg-0 order-2">
@@ -87,12 +88,11 @@
                   >{% trans "Search" %}</label
                 >
                 <div class="position-relative">
-                  <input
-                    type="text"
-                    name="search"
-                    class="form-control bg-transparent shadow-none border-top-0 border-right-0 border-left-0 border-bottom rounded-0 h-24 lh-17 pl-0 pr-4 font-weight-600 border-color-input placeholder-muted"
-                    placeholder="{% trans "Find something..." %}"
-                  />
+                  <input type="text" name="search" class="form-control
+                  bg-transparent shadow-none border-top-0 border-right-0
+                  border-left-0 border-bottom rounded-0 h-24 lh-17 pl-0 pr-4
+                  font-weight-600 border-color-input placeholder-muted"
+                  placeholder="{% trans "Find something..." %}" />
                   <i
                     class="far fa-search position-absolute pos-fixed-right-center pr-0 fs-18 mt-n3"
                   ></i>
@@ -101,13 +101,14 @@
               <div class="col-sm pr-lg-0 pt-6 pt-lg-0 order-3">
                 <a
                   href="#advanced-search-filters-4"
-                  class="btn advanced-search btn-accent h-lg-100 w-100 shadow-none text-secondary rounded-0 fs-14 fs-sm-16 font-weight-600 text-left d-flex align-items-center collapsed"
+                  class="btn advanced-search btn-accent h-lg-100 shadow-none text-secondary rounded-0 fs-14 fs-sm-16 font-weight-600 text-left d-flex align-items-center collapsed"
                   data-toggle="collapse"
                   data-target="#advanced-search-filters-4"
                   aria-expanded="true"
                   aria-controls="advanced-search-filters-4"
+                  style="white-space: nowrap; width: 180px;"
                 >
-                  {% trans "Advanced Search" %}
+                  {% trans "More Filters" %}
                 </a>
               </div>
               <div class="col-sm pt-6 pt-lg-0 order-sm-4 order-5">
@@ -135,41 +136,10 @@
                       title="All Bedrooms"
                       data-style="p-0 h-24 lh-17 text-dark"
                     >
-                      <option>All Bedrooms</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-6 col-lg-3 pt-6">
-                    <label
-                      class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >{% trans "Bathrooms" %}</label
-                    >
-                    <select
-                      class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
-                      title="All Bathrooms"
-                      data-style="p-0 h-24 lh-17 text-dark"
-                      name="bathroom"
-                    >
-                      <option>All Bathrooms</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
+                      <option value="">{% trans "All Bedrooms" %}</option>
+                      {% for bedroom in filter_properties.bedroom_list %}
+                        <option value="{{ bedroom.0 }}">{{ bedroom.1 }}</option>
+                      {% endfor %}
                     </select>
                   </div>
                   <div class="col-sm-6 col-lg-3 pt-6">
@@ -180,39 +150,13 @@
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
                       name="city"
-                      title="All Cities"
+                      title="{% trans "All Cities" %}"
                       data-style="p-0 h-24 lh-17 text-dark"
                     >
-                      <option>All Cities</option>
-                      <option>New York</option>
-                      <option>Los Angeles</option>
-                      <option>Chicago</option>
-                      <option>Houston</option>
-                      <option>San Diego</option>
-                      <option>Las Vegas</option>
-                      <option>Las Vegas</option>
-                      <option>Atlanta</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-6 col-lg-3 pt-6">
-                    <label
-                      class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >{% trans "All Areas" %}</label
-                    >
-                    <select
-                      class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
-                      name="areas"
-                      title="All Areas"
-                      data-style="p-0 h-24 lh-17 text-dark"
-                    >
-                      <option>All Areas</option>
-                      <option>Albany Park</option>
-                      <option>Altgeld Gardens</option>
-                      <option>Andersonville</option>
-                      <option>Beverly</option>
-                      <option>Brickel</option>
-                      <option>Central City</option>
-                      <option>Coconut Grove</option>
+                      <option value="">{% trans "All Cities" %}</option>
+                      {% for city in filter_properties.city_list %}
+                        <option value="{{ city.0 }}">{{ city.1 }}</option>
+                      {% endfor %}
                     </select>
                   </div>
                 </div>
@@ -225,7 +169,7 @@
                     >
                     <div
                       data-slider="true"
-                      data-slider-options='{"min":0,"max":1000000,"values":[100000,700000],"type":"currency"}'
+                      data-slider-options='{"min":0,"max":{{ filter_properties.price_range_max }},"values":[0,{{ filter_properties.price_range_max }}],"type":"currency"}'
                     ></div>
                     <div class="text-center mt-2">
                       <input
@@ -245,7 +189,7 @@
                     >
                     <div
                       data-slider="true"
-                      data-slider-options='{"min":0,"max":15000,"values":[0,13000],"type":"currency"}'
+                      data-slider-options='{"min":0,"max":{{ filter_properties.area_range_max }},"values":[0,{{ filter_properties.area_range_max }}],"type":"sqmt"}'
                     ></div>
                     <div class="text-center mt-2">
                       <input
@@ -264,12 +208,12 @@
                     >
                     <input
                       type="text"
-                      name="search"
+                      name="property_id"
                       class="form-control bg-transparent shadow-none border-top-0 border-right-0 border-left-0 border-bottom rounded-0 h-24 lh-17 p-0 font-weight-600 border-color-input"
                       placeholder="Enter ID..."
                     />
                   </div>
-                  <div class="col-12 pt-6 pb-2">
+                  {% comment %} <div class="col-12 pt-6 pb-2">
                     <a
                       class="lh-17 d-inline-block other-feature collapsed"
                       data-toggle="collapse"
@@ -283,7 +227,7 @@
                         >{% trans "Other Features" %}</span
                       >
                     </a>
-                  </div>
+                  </div> {% endcomment %}
                   <div class="collapse row mx-0 w-100" id="other-feature-4">
                     <div class="col-sm-6 col-md-4 col-lg-3 py-2">
                       <div class="custom-control custom-checkbox">
@@ -488,6 +432,8 @@
         </form>
         <form
           class="property-search property-search-mobile d-lg-none z-index-2 position-relative bg-white rounded mx-md-10"
+          action="{% url 'property:index' %}"
+          method="get"
         >
           <div class="row align-items-lg-center" id="accordion-4-mobile">
             <div class="col-12">
@@ -540,10 +486,9 @@
                     data-style="btn-lg py-2 h-52 bg-transparent"
                     name="type"
                   >
-                    <option>Condominium</option>
-                    <option>Single-Family Home</option>
-                    <option>Townhouse</option>
-                    <option>Multi-Family Home</option>
+                  {% for home_type in filter_properties.home_types %}
+                    <option value="{{ home_type.0 }}">{{ home_type.1 }}</option>
+                  {% endfor %}
                   </select>
                 </div>
                 <div class="col-sm-6 pt-4 px-2">
@@ -553,37 +498,10 @@
                     title="Bedrooms"
                     data-style="btn-lg py-2 h-52 bg-transparent"
                   >
-                    <option>All Bedrooms</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                  </select>
-                </div>
-                <div class="col-sm-6 pt-4 px-2">
-                  <select
-                    class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
-                    name="bathrooms"
-                    title="Bathrooms"
-                    data-style="btn-lg py-2 h-52 bg-transparent"
-                  >
-                    <option>All Bathrooms</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                    <option value="">{% trans "All Bedrooms" %}</option>
+                    {% for bedroom in filter_properties.bedroom_list %}
+                    <option value="{{ bedroom.0 }}">{{ bedroom.1 }}</option>
+                    {% endfor %}
                   </select>
                 </div>
                 <div class="col-sm-6 pt-4 px-2">
@@ -593,43 +511,20 @@
                     data-style="btn-lg py-2 h-52 bg-transparent"
                     name="city"
                   >
-                    <option>All Cities</option>
-                    <option>New York</option>
-                    <option>Los Angeles</option>
-                    <option>Chicago</option>
-                    <option>Houston</option>
-                    <option>San Diego</option>
-                    <option>Las Vegas</option>
-                    <option>Las Vegas</option>
-                    <option>Atlanta</option>
-                  </select>
-                </div>
-                <div class="col-sm-6 pt-4 px-2">
-                  <select
-                    class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
-                    name="areas"
-                    title="All Areas"
-                    data-style="btn-lg py-2 h-52 bg-transparent"
-                  >
-                    <option>All Areas</option>
-                    <option>Albany Park</option>
-                    <option>Altgeld Gardens</option>
-                    <option>Andersonville</option>
-                    <option>Beverly</option>
-                    <option>Brickel</option>
-                    <option>Central City</option>
-                    <option>Coconut Grove</option>
+                    {% for city in filter_properties.city_list %}
+                    <option value="{{ city.0 }}">{{ city.1 }}</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 pt-6 slider-range slider-range-secondary">
-                  <label for="price-4-mobile" class="mb-4 text-white"
-                    >Price Range</label
+                  <label for="price-4-mobile" class="mb-4"
+                    >{% trans "Price Range" %}</label
                   >
                   <div
                     data-slider="true"
-                    data-slider-options='{"min":0,"max":1000000,"values":[100000,700000],"type":"currency"}'
+                    data-slider-options='{"min":0,"max":{{ filter_properties.price_range_max }},"values":[0,{{ filter_properties.price_range_max }}],"type":"currency"}'
                   ></div>
                   <div class="text-center mt-2">
                     <input
@@ -642,10 +537,12 @@
                   </div>
                 </div>
                 <div class="col-md-6 pt-6 slider-range slider-range-secondary">
-                  <label for="area-size-4-mobile" class="mb-4">Area Size</label>
+                  <label for="area-size-4-mobile" class="mb-4"
+                    >{% trans "Area Size" %}</label
+                  >
                   <div
                     data-slider="true"
-                    data-slider-options='{"min":0,"max":15000,"values":[0,12000],"type":"sqrt"}'
+                    data-slider-options='{"min":0,"max":{{ filter_properties.area_range_max }},"values":[0,{{ filter_properties.area_range_max }}],"type":"sqmt"}'
                   ></div>
                   <div class="text-center mt-2">
                     <input
@@ -657,7 +554,8 @@
                     />
                   </div>
                 </div>
-                <div class="col-12 pt-4 pb-2">
+                <div class="col-12 pb-6"></div>
+                {% comment %} <div class="col-12 pt-4 pb-2">
                   <a
                     class="lh-17 d-inline-block other-feature collapsed"
                     data-toggle="collapse"
@@ -670,7 +568,7 @@
                       >Other Features</span
                     >
                   </a>
-                </div>
+                </div> {% endcomment %}
                 <div
                   class="collapse row mx-0 w-100"
                   id="other-feature-4-mobile"
@@ -878,6 +776,7 @@
       </div>
     </div>
   </section>
+  {% if featured_properties_for_sale.count > 0 %}
   <section class="pt-lg-12 pb-lg-10 py-11">
     <div class="container container-xxl">
       <div class="row">
@@ -891,7 +790,7 @@
         </div>
         <div class="col-md-6 text-md-right">
           <a
-            href="listing-grid-with-left-filter.html"
+            href="{% url 'property:index' %}"
             class="btn fs-14 text-secondary btn-accent py-3 lh-15 px-7 mb-6 mb-lg-0"
             >See all properties
             <i class="far fa-long-arrow-right ml-1"></i>
@@ -902,24 +801,15 @@
         class="slick-slider slick-dots-mt-0 custom-arrow-spacing-30"
         data-slick-options='{"slidesToShow": 4, "autoplay":true,"dots":true,"responsive":[{"breakpoint": 1600,"settings": {"slidesToShow":3,"arrows":false}},{"breakpoint": 992,"settings": {"slidesToShow":2,"arrows":false}},{"breakpoint": 768,"settings": {"slidesToShow": 2,"arrows":false,"dots":true,"autoplay":true}},{"breakpoint": 576,"settings": {"slidesToShow": 1,"arrows":false,"dots":true,"autoplay":true}}]}'
       >
+        {% for item in featured_properties_for_sale %}
         <div class="box pb-7 pt-2">
           {% include "homeid/components/home-listing-box.html" %}
         </div>
-        <div class="box pb-7 pt-2">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
-        <div class="box pb-7 pt-2">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
-        <div class="box pb-7 pt-2">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
-        <div class="box pb-7 pt-2">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
+  {% endif %}
   <section>
     <div class="bg-gray-02 py-lg-13 pt-11 pb-6">
       <div class="container container-xxl">
@@ -935,7 +825,7 @@
               suscipit
             </p>
             <a
-              href="listing-grid-with-left-filter.html"
+              href="{% url 'property:index' %}"
               class="btn btn-lg text-secondary btn-accent"
               >+2300 Available Properties
               <i class="far fa-long-arrow-right ml-1"></i>
@@ -948,11 +838,11 @@
             >
               <div class="box px-0 py-6">
                 <a
-                  href="listing-grid-with-left-filter.html"
+                  href="{% url 'property:index' %}"
                   class="card border-0 align-items-center justify-content-center pt-7 pb-5 px-3 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none"
                 >
                   <img
-                    src="images/verified.png"
+                    src="{% static 'images/verified.png' %}"
                     class="card-img-top"
                     alt="Apartment"
                   />
@@ -965,10 +855,14 @@
               </div>
               <div class="box px-0 py-6">
                 <a
-                  href="listing-grid-with-left-filter.html"
+                  href="{% url 'property:index' %}"
                   class="card border-0 align-items-center justify-content-center pt-7 pb-5 px-3 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none"
                 >
-                  <img src="images/sofa.png" class="card-img-top" alt="House" />
+                  <img
+                    src="{% static 'images/sofa.png' %}"
+                    class="card-img-top"
+                    alt="House"
+                  />
                   <div class="card-body px-0 pt-5 pb-0">
                     <h4 class="card-title fs-16 lh-2 text-dark mb-0">House</h4>
                   </div>
@@ -976,11 +870,11 @@
               </div>
               <div class="box px-0 py-6">
                 <a
-                  href="listing-grid-with-left-filter.html"
+                  href="{% url 'property:index' %}"
                   class="card border-0 align-items-center justify-content-center pt-7 pb-5 px-3 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none"
                 >
                   <img
-                    src="images/architecture-and-city.png"
+                    src="{% static 'images/architecture-and-city.png' %}"
                     class="card-img-top"
                     alt="Office"
                   />
@@ -991,11 +885,11 @@
               </div>
               <div class="box px-0 py-6">
                 <a
-                  href="listing-grid-with-left-filter.html"
+                  href="{% url 'property:index' %}"
                   class="card border-0 align-items-center justify-content-center pt-7 pb-5 px-3 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none"
                 >
                   <img
-                    src="images/eco-house.png"
+                    src="{% static 'images/eco-house.png' %}"
                     class="card-img-top"
                     alt="Villa"
                   />
@@ -1006,11 +900,11 @@
               </div>
               <div class="box px-0 py-6">
                 <a
-                  href="listing-grid-with-left-filter.html"
+                  href="{% url 'property:index' %}"
                   class="card border-0 align-items-center justify-content-center pt-7 pb-5 px-3 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none"
                 >
                   <img
-                    src="images/verified.png"
+                    src="{% static 'images/verified.png' %}"
                     class="card-img-top"
                     alt="Apartment"
                   />
@@ -1027,6 +921,7 @@
       </div>
     </div>
   </section>
+  {% if featured_properties_for_rent.count > 0 %}
   <section class="pt-lg-12 pb-lg-11 py-11">
     <div class="container container-xxl">
       <div class="row">
@@ -1040,7 +935,7 @@
         </div>
         <div class="col-md-6 text-md-right">
           <a
-            href="listing-grid-with-left-filter.html"
+            href="{% url 'property:index' %}"
             class="btn fs-14 text-secondary btn-accent py-3 lh-15 px-7 mb-6 mb-lg-0"
             >See all properties
             <i class="far fa-long-arrow-right ml-1"></i>
@@ -1051,24 +946,15 @@
         class="slick-slider slick-dots-mt-0 custom-arrow-spacing-30"
         data-slick-options='{"slidesToShow": 4,"dots":true,"arrows":false,"responsive":[{"breakpoint": 1600,"settings": {"slidesToShow":3}},{"breakpoint": 992,"settings": {"slidesToShow":2,"arrows":false}},{"breakpoint": 768,"settings": {"slidesToShow": 2,"arrows":false,"dots":true,"autoplay":true}},{"breakpoint": 576,"settings": {"slidesToShow": 1,"arrows":false,"dots":true,"autoplay":true}}]}'
       >
+        {% for item in featured_properties_for_rent %}
         <div class="box box pb-7 pt-2" data-animate="fadeInUp">
           {% include "homeid/components/home-listing-box.html" %}
         </div>
-        <div class="box box pb-7 pt-2" data-animate="fadeInUp">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
-        <div class="box box pb-7 pt-2" data-animate="fadeInUp">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
-        <div class="box box pb-7 pt-2" data-animate="fadeInUp">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
-        <div class="box box pb-7 pt-2" data-animate="fadeInUp">
-          {% include "homeid/components/home-listing-box.html" %}
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
+  {% endif %}
   <section>
     <div class="bg-single-image pt-lg-13 pb-lg-12 py-11 bg-secondary">
       <div class="container container-xxl">
@@ -1076,7 +962,7 @@
           <div class="col-lg-6 pr-xl-8 pb-lg-0 pb-6" data-animate="fadeInLeft">
             <a href="#" class="hover-shine d-block">
               <img
-                src="images/single-image-01.jpg"
+                src="{% static 'images/single-image-01.jpg' %}"
                 class="rounded-lg w-100"
                 alt="Find your neighborhood"
               />
@@ -1110,6 +996,7 @@
       </div>
     </div>
   </section>
+  <!-- Partners -->
   <section>
     <div class="container container-xxl">
       <div class="py-lg-8 py-6 border-top">
@@ -1123,11 +1010,15 @@
           >
             <a href="#" class="item position-relative hover-change-image">
               <img
-                src="images/partner-hover-1.png"
+                src="{% static 'images/partner-hover-1.png' %}"
                 class="hover-image position-absolute pos-fixed-top"
                 alt="Partner 1"
               />
-              <img src="images/partner-1.png" alt="Partner 1" class="image" />
+              <img
+                src="{% static 'images/partner-1.png' %}"
+                alt="Partner 1"
+                class="image"
+              />
             </a>
           </div>
           <div
@@ -1136,11 +1027,15 @@
           >
             <a href="#" class="item position-relative hover-change-image">
               <img
-                src="images/partner-hover-2.png"
+                src="{% static 'images/partner-hover-2.png' %}"
                 class="hover-image position-absolute pos-fixed-top"
                 alt="Partner 2"
               />
-              <img src="images/partner-2.png" alt="Partner 2" class="image" />
+              <img
+                src="{% static 'images/partner-2.png' %}"
+                alt="Partner 2"
+                class="image"
+              />
             </a>
           </div>
           <div
@@ -1149,11 +1044,15 @@
           >
             <a href="#" class="item position-relative hover-change-image">
               <img
-                src="images/partner-hover-3.png"
+                src="{% static 'images/partner-hover-3.png' %}"
                 class="hover-image position-absolute pos-fixed-top"
                 alt="Partner 3"
               />
-              <img src="images/partner-3.png" alt="Partner 3" class="image" />
+              <img
+                src="{% static 'images/partner-3.png' %}"
+                alt="Partner 3"
+                class="image"
+              />
             </a>
           </div>
           <div
@@ -1161,7 +1060,11 @@
             data-animate="fadeInUp"
           >
             <a href="#" class="item">
-              <img src="images/partner-4.png" alt="" class="image" />
+              <img
+                src="{% static 'images/partner-4.png' %}"
+                alt=""
+                class="image"
+              />
             </a>
           </div>
           <div
@@ -1170,11 +1073,15 @@
           >
             <a href="#" class="item position-relative hover-change-image">
               <img
-                src="images/partner-hover-5.png"
+                src="{% static 'images/partner-hover-5.png' %}"
                 class="hover-image position-absolute pos-fixed-top"
                 alt="Partner 5"
               />
-              <img src="images/partner-5.png" alt="Partner 5" class="image" />
+              <img
+                src="{% static 'images/partner-5.png' %}"
+                alt="Partner 5"
+                class="image"
+              />
             </a>
           </div>
           <div
@@ -1182,7 +1089,11 @@
             data-animate="fadeInUp"
           >
             <a href="#" class="item">
-              <img src="images/partner-6.png" alt="" class="image" />
+              <img
+                src="{% static 'images/partner-6.png' %}"
+                alt=""
+                class="image"
+              />
             </a>
           </div>
         </div>

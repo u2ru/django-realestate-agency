@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.forms import ModelForm, TextInput, Textarea
 from django.utils.html import format_html
+from django import forms
 
 from .models import (
     Property,
@@ -103,8 +104,23 @@ language_inlines = [
 ]
 
 
+class PropertyAdminForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set initial value for rent_period if not set
+        if not self.instance.pk and not self.initial.get("rent_period"):
+            self.initial["rent_period"] = "month"
+        if self.instance and self.instance.deal_type != "RENT":
+            self.fields["rent_period"].widget = forms.HiddenInput()
+
+
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
+    form = PropertyAdminForm
     list_display = (
         "name",
         "price",
@@ -134,10 +150,11 @@ class PropertyAdmin(admin.ModelAdmin):
                 "fields": (
                     "property_type",
                     "deal_type",
-                    "rooms",
+                    "rent_period",
+                    "bedrooms",
+                    "total_rooms",
                     "area",
                     "floor",
-                    "total_floors",
                     "state",
                 )
             },
@@ -238,3 +255,11 @@ class PropertyAdmin(admin.ModelAdmin):
             filters.append("city")
 
         return filters
+
+    def save_model(self, request, obj, form, change):
+        if obj.deal_type == "RENT" and not obj.rent_period:
+            obj.rent_period = "month"
+        super().save_model(request, obj, form, change)
+
+    class Media:
+        js = ("admin/js/property_rent_period.js",)

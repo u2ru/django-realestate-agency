@@ -216,7 +216,7 @@
   --accent: #D9C791;
   --orange: #ff6935;
   --white: #fff;
-  --indigo: #6969eb;
+  --indigo: #D9BB62;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -3074,14 +3074,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0ca5b1;
-  border-color: #0b9aa5
+  background-color: #736334;
+  border-color: #736334
 }
 
 .btn-primary.focus, .btn-primary:focus {
   color: #fff;
-  background-color: #0ca5b1;
-  border-color: #0b9aa5;
+  background-color: #736334;
+  border-color: #736334;
   box-shadow: 0 0 0 .2rem rgba(50, 207, 219, .5)
 }
 
@@ -3093,7 +3093,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #0b9aa5;
+  background-color: #736334;
   border-color: #0a8e99
 }
 
@@ -3363,13 +3363,13 @@ a.btn.disabled, fieldset:disabled a.btn {
 .btn-accent:hover {
   color: #212529;
   background-color: #d9cca6;
-  border-color: #cde3e6
+  border-color: #D9C791
 }
 
 .btn-accent.focus, .btn-accent:focus {
   color: #212529;
   background-color: #d9cca6;
-  border-color: #cde3e6;
+  border-color: #D9C791;
   box-shadow: 0 0 0 .2rem rgba(208, 215, 216, .5)
 }
 
@@ -3381,7 +3381,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-accent:not(:disabled):not(.disabled).active, .btn-accent:not(:disabled):not(.disabled):active, .show>.btn-accent.dropdown-toggle {
   color: #212529;
-  background-color: #cde3e6;
+  background-color: #D9C791;
   border-color: #c5dee2
 }
 
@@ -3463,8 +3463,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-indigo {
   color: #fff;
-  background-color: #6969eb;
-  border-color: #6969eb;
+  background-color: #D9BB62;
+  border-color: #D9BB62;
   box-shadow: none
 }
 
@@ -3483,8 +3483,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-indigo.disabled, .btn-indigo:disabled {
   color: #fff;
-  background-color: #6969eb;
-  border-color: #6969eb
+  background-color: #D9BB62;
+  border-color: #D9BB62
 }
 
 .btn-indigo:not(:disabled):not(.disabled).active, .btn-indigo:not(:disabled):not(.disabled):active, .show>.btn-indigo.dropdown-toggle {
@@ -3828,14 +3828,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-indigo {
-  color: #6969eb;
-  border-color: #6969eb
+  color: #D9BB62;
+  border-color: #D9BB62
 }
 
 .btn-outline-indigo:hover {
   color: #fff;
-  background-color: #6969eb;
-  border-color: #6969eb
+  background-color: #D9BB62;
+  border-color: #D9BB62
 }
 
 .btn-outline-indigo.focus, .btn-outline-indigo:focus {
@@ -3843,14 +3843,14 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-indigo.disabled, .btn-outline-indigo:disabled {
-  color: #6969eb;
+  color: #D9BB62;
   background-color: transparent
 }
 
 .btn-outline-indigo:not(:disabled):not(.disabled).active, .btn-outline-indigo:not(:disabled):not(.disabled):active, .show>.btn-outline-indigo.dropdown-toggle {
   color: #fff;
-  background-color: #6969eb;
-  border-color: #6969eb
+  background-color: #D9BB62;
+  border-color: #D9BB62
 }
 
 .btn-outline-indigo:not(:disabled):not(.disabled).active:focus, .btn-outline-indigo:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-indigo.dropdown-toggle:focus {
@@ -5771,7 +5771,7 @@ a.badge:focus, a.badge:hover {
 
 a.badge-primary:focus, a.badge-primary:hover {
   color: #fff;
-  background-color: #0b9aa5
+  background-color: #736334
 }
 
 a.badge-primary.focus, a.badge-primary:focus {
@@ -5891,7 +5891,7 @@ a.badge-dark.focus, a.badge-dark:focus {
 
 a.badge-accent:focus, a.badge-accent:hover {
   color: #212529;
-  background-color: #cde3e6
+  background-color: #D9C791
 }
 
 a.badge-accent.focus, a.badge-accent:focus {
@@ -5931,7 +5931,7 @@ a.badge-white.focus, a.badge-white:focus {
 
 .badge-indigo {
   color: #fff;
-  background-color: #6969eb
+  background-color: #D9BB62
 }
 
 a.badge-indigo:focus, a.badge-indigo:hover {
@@ -7517,7 +7517,7 @@ a.close.disabled {
 }
 
 a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover {
-  background-color: #0b9aa5 !important
+  background-color: #736334 !important
 }
 
 .bg-secondary {
@@ -7581,7 +7581,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
 }
 
 a.bg-accent:focus, a.bg-accent:hover, button.bg-accent:focus, button.bg-accent:hover {
-  background-color: #cde3e6 !important
+  background-color: #D9C791 !important
 }
 
 .bg-orange {
@@ -7597,7 +7597,7 @@ a.bg-white:focus, a.bg-white:hover, button.bg-white:focus, button.bg-white:hover
 }
 
 .bg-indigo {
-  background-color: #6969eb !important
+  background-color: #D9BB62 !important
 }
 
 a.bg-indigo:focus, a.bg-indigo:hover, button.bg-indigo:focus, button.bg-indigo:hover {
@@ -16271,7 +16271,7 @@ a.text-primary:focus, a.text-primary:hover {
 }
 
 a.text-secondary:focus, a.text-secondary:hover {
-  color: #100f46 !important
+  color: #0D1826 !important
 }
 
 .text-success {
@@ -16347,7 +16347,7 @@ a.text-white:focus, a.text-white:hover {
 }
 
 .text-indigo {
-  color: #6969eb !important
+  color: #D9BB62 !important
 }
 
 a.text-indigo:focus, a.text-indigo:hover {
@@ -18268,7 +18268,7 @@ a.text-indigo:focus, a.text-indigo:hover {
 }
 
 .slider-range-secondary .ui-slider-range {
-  background-color: #6969eb
+  background-color: #D9BB62
 }
 
 .slider-range-primary .ui-slider {
@@ -21171,7 +21171,7 @@ a.text-indigo:focus, a.text-indigo:hover {
 }
 
 .hover-indigo:hover {
-  color: #6969eb !important
+  color: #D9BB62 !important
 }
 
 a.hover-primary:focus {
@@ -21259,11 +21259,11 @@ a.hover-white:focus {
 }
 
 a.hover-indigo:hover {
-  color: #6969eb !important
+  color: #D9BB62 !important
 }
 
 a.hover-indigo:focus {
-  color: #6969eb !important
+  color: #D9BB62 !important
 }
 
 .bg-hover-primary:hover, a.bg-hover-primary:hover {
@@ -21311,7 +21311,7 @@ a.hover-indigo:focus {
 }
 
 .bg-hover-indigo:hover {
-  background-color: #6969eb !important
+  background-color: #D9BB62 !important
 }
 
 a.bg-hover-primary:focus {
@@ -21399,11 +21399,11 @@ a.bg-hover-white:focus {
 }
 
 a.bg-hover-indigo:hover {
-  background-color: #6969eb !important
+  background-color: #D9BB62 !important
 }
 
 a.bg-hover-indigo:focus {
-  background-color: #6969eb !important
+  background-color: #D9BB62 !important
 }
 
 .border-hover-primary:hover, .border-primary {
@@ -21451,7 +21451,7 @@ a.bg-hover-indigo:focus {
 }
 
 .border-hover-indigo:hover, .border-indigo {
-  border-color: #6969eb !important
+  border-color: #D9BB62 !important
 }
 
 @media screen and (max-width:1366px) and (min-width:1200px) {

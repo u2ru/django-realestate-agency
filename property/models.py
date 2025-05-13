@@ -6,6 +6,15 @@ import os
 from .constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE, CITY_CHOICES
 
 
+# Property specifications
+PROPERTY_TYPE_CHOICES = [
+    ("APARTMENT", "Apartment"),
+    ("HOUSE", "House"),
+    ("COMMERCIAL", "Commercial"),
+    ("LAND", "Land"),
+]
+
+
 # Create your models here.
 class Property(models.Model):
     name = models.CharField(
@@ -38,13 +47,6 @@ class Property(models.Model):
         help_text="YouTube video URL for property showcase",
     )
 
-    # Property specifications
-    PROPERTY_TYPE_CHOICES = [
-        ("APARTMENT", "Apartment"),
-        ("HOUSE", "House"),
-        ("COMMERCIAL", "Commercial"),
-        ("LAND", "Land"),
-    ]
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
 
     DEAL_TYPE_CHOICES = [
@@ -53,12 +55,26 @@ class Property(models.Model):
     ]
     deal_type = models.CharField(max_length=10, choices=DEAL_TYPE_CHOICES)
 
-    rooms = models.PositiveIntegerField(null=True, blank=True)
+    RENT_PERIOD_CHOICES = [
+        ("month", "Month"),
+        ("week", "Week"),
+        ("day", "Day"),
+    ]
+    rent_period = models.CharField(
+        max_length=10,
+        choices=RENT_PERIOD_CHOICES,
+        blank=True,
+        null=True,
+        default="month",
+        help_text="Applicable only if deal type is RENT",
+    )
+
+    bedrooms = models.PositiveIntegerField(null=True, blank=True)
+    total_rooms = models.PositiveIntegerField(null=True, blank=True)
     area = models.DecimalField(
         max_digits=8, decimal_places=2, help_text="Area in square meters"
     )
     floor = models.PositiveIntegerField(null=True, blank=True)
-    total_floors = models.PositiveIntegerField(null=True, blank=True)
 
     STATE_CHOICES = [
         ("NEW", "New"),
@@ -91,6 +107,15 @@ class Property(models.Model):
     published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_main_image(self):
+        """Returns the main image URL or None if no images exist"""
+        main_image = self.images.filter(is_main=True).first()
+        if main_image:
+            return main_image.image.url
+        # If no main image is set, return the first image
+        first_image = self.images.first()
+        return first_image.image.url if first_image else None
 
     def __str__(self):
         return self.name

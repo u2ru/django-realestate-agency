@@ -86,6 +86,9 @@
 					if (options.type === 'sqrt') {
 						$this.parents('.slider-range').find(".amount").val(ui.values[0] + " sqft to " + ui.values[1] + " sqft");
 					}
+					if (options.type === 'sqmt') {
+						$this.parents('.slider-range').find(".amount").val(ui.values[0] + " m2 to " + ui.values[1] + " m2");
+					}
 				};
 				$this.slider(options);
 				if (options.type === 'currency') {
@@ -94,6 +97,9 @@
 				}
 				if (options.type === 'sqrt') {
 					$this.parents('.slider-range').find(".amount").val($this.slider("values", 0) + " sqft to " + $this.slider("values", 1) + " sqft");
+				}
+				if (options.type === 'sqmt') {
+					$this.parents('.slider-range').find(".amount").val($this.slider("values", 0) + " m2 to " + $this.slider("values", 1) + " m2");
 				}
 
 			});

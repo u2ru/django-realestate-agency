@@ -2090,7 +2090,7 @@
       }
 
       this.$menu.css({
-        'max-height': maxHeight + 'px',
+        'max-height': Math.min(maxHeight, 300) + 'px',
         'overflow': 'hidden',
         'min-height': minHeight + 'px'
       });
