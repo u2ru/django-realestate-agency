@@ -1,6 +1,6 @@
 {% extends 'homeid/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
     <main id="content">
       <section class="bg-secondary py-6 py-lg-0">
@@ -148,13 +148,13 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb py-3">
               <li class="breadcrumb-item letter-spacing-1">
-                <a href=".">Home</a>
+                <a href="{% url 'home' %}">{% trans "Home" %}</a>
               </li>
               <li class="breadcrumb-item letter-spacing-1">
-                <a href="listing-grid-with-left-filter.html">Listing</a>
+                <a href="{% url 'property:index' %}">{% trans "Listings" %}</a>
               </li>
               <li class="breadcrumb-item letter-spacing-1 active">
-                Villa on Hollywood Boulevard
+                {{ property.name }}
               </li>
             </ol>
           </nav>
@@ -166,246 +166,54 @@
             <article class="col-lg-8">
               <section>
                 <div class="galleries position-relative">
-                  <div class="position-absolute pos-fixed-top-right z-index-3">
-                    <ul class="list-inline pt-4 pr-5">
-                      <li class="list-inline-item mr-2">
-                        <a
-                          href="#"
-                          data-toggle="tooltip"
-                          title="Favourite"
-                          class="d-flex align-items-center justify-content-center w-40px h-40 bg-white text-heading bg-hover-primary hover-white rounded-circle"
-                        >
-                          <i class="far fa-heart"></i
-                        ></a>
-                      </li>
-                      <li class="list-inline-item mr-2">
-                        <button
-                          type="button"
-                          class="btn btn-white p-0 d-flex align-items-center justify-content-center w-40px h-40 text-heading bg-hover-primary hover-white rounded-circle border-0 shadow-none"
-                          data-container="body"
-                          data-toggle="popover"
-                          data-placement="top"
-                          data-html="true"
-                          data-content=' <ul class="list-inline mb-0">
-                          <li class="list-inline-item">
-                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
-	                                                        class="fab fa-twitter"></i></a>
-                          </li>
-                          <li class="list-inline-item ">
-                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
-	                                                        class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
-	                                                        class="fab fa-instagram"></i></a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
-	                                                        class="fab fa-youtube"></i></a>
-                          </li>
-                        </ul>
-                        '
-                        >
-                          <i class="far fa-share-alt"></i>
-                        </button>
-                      </li>
-                      <li class="list-inline-item">
-                        <a
-                          href="#"
-                          data-toggle="tooltip"
-                          title="Print"
-                          class="d-flex align-items-center justify-content-center w-40px h-40 bg-white text-heading bg-hover-primary hover-white rounded-circle"
-                        >
-                          <i class="far fa-print"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
                   <div
                     class="slick-slider slider-for-01 arrow-haft-inner mx-0"
                     data-slick-options='{"slidesToShow": 1, "autoplay":false,"dots":false,"arrows":false,"asNavFor": ".slider-nav-01"}'
                   >
+                    {% for image in property.get_images %}
                     <div class="box px-0">
                       <div class="item item-size-3-2">
                         <div class="card p-0 hover-change-image">
                           <a
-                            href="{% static 'images/single-property-lg-1.jpg' %}"
+                            href="{{ image.image.url }}"
                             class="card-img"
                             data-gtf-mfp="true"
                             data-gallery-id="04"
                             style="
-                              background-image: url('{% static 'images/single-property-lg-1.jpg' %}');
+                              background-image: url('{{ image.image.url }}');
                             "
                           >
                           </a>
                         </div>
                       </div>
                     </div>
-                    <div class="box px-0">
-                      <div class="item item-size-3-2">
-                        <div class="card p-0 hover-change-image">
-                          <a
-                            href="{% static 'images/single-property-lg-4.jpg' %}"
-                            class="card-img"
-                            data-gtf-mfp="true"
-                            data-gallery-id="04"
-                            style="
-                              background-image: url('{% static 'images/single-property-lg-4.jpg' %}');
-                            "
-                          >
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="box px-0">
-                      <div class="item item-size-3-2">
-                        <div class="card p-0 hover-change-image">
-                          <a
-                            href="{% static 'images/single-property-lg-3.jpg' %}"
-                            class="card-img"
-                            data-gtf-mfp="true"
-                            data-gallery-id="04"
-                            style="
-                              background-image: url('{% static 'images/single-property-lg-3.jpg' %}');
-                            "
-                          >
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="box px-0">
-                      <div class="item item-size-3-2">
-                        <div class="card p-0 hover-change-image">
-                          <a
-                            href="{% static 'images/single-property-lg-2.jpg' %}"
-                            class="card-img"
-                            data-gtf-mfp="true"
-                            data-gallery-id="04"
-                            style="
-                              background-image: url('{% static 'images/single-property-lg-2.jpg' %}');
-                            "
-                          >
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="box px-0">
-                      <div class="item item-size-3-2">
-                        <div class="card p-0 hover-change-image">
-                          <a
-                            href="{% static 'images/single-property-lg-9.jpg' %}"
-                            class="card-img"
-                            data-gtf-mfp="true"
-                            data-gallery-id="04"
-                            style="
-                              background-image: url('{% static 'images/single-property-lg-9.jpg' %}');
-                            "
-                          >
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="box px-0">
-                      <div class="item item-size-3-2">
-                        <div class="card p-0 hover-change-image">
-                          <a
-                            href="{% static 'images/single-property-lg-10.jpg' %}"
-                            class="card-img"
-                            data-gtf-mfp="true"
-                            data-gallery-id="04"
-                            style="
-                              background-image: url('{% static 'images/single-property-lg-10.jpg' %}');
-                            "
-                          >
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+                    {% endfor %}
                   </div>
                   <div
                     class="slick-slider slider-nav-01 mt-4 mx-n1 arrow-haft-inner"
                     data-slick-options='{"slidesToShow": 5, "autoplay":false,"dots":false,"arrows":false,"asNavFor": ".slider-for-01","focusOnSelect": true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 4}},{"breakpoint": 576,"settings": {"slidesToShow": 2}}]}'
                   >
+                    {% for image in property.get_images %}
                     <div class="box pb-6 px-0">
                       <div
                         class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
                       >
                         <img
-                          src="{% static 'images/single-property-sm-7.jpg' %}"
+                          src="{{ image.image.url }}"
                           alt="Gallery 01"
                           class="h-100 w-100 rounded-lg"
+                          style="aspect-ratio: 16/9; object-fit: cover;"
                         />
                       </div>
                     </div>
-                    <div class="box pb-6 px-0">
-                      <div
-                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
-                      >
-                        <img
-                          src="{% static 'images/single-property-sm-2.jpg' %}"
-                          alt="Gallery 02"
-                          class="h-100 w-100 rounded-lg"
-                        />
-                      </div>
-                    </div>
-                    <div class="box pb-6 px-0">
-                      <div
-                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
-                      >
-                        <img
-                          src="{% static 'images/single-property-sm-4.jpg' %}"
-                          alt="Gallery 03"
-                          class="h-100 w-100 rounded-lg"
-                        />
-                      </div>
-                    </div>
-                    <div class="box pb-6 px-0">
-                      <div
-                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
-                      >
-                        <img
-                          src="{% static 'images/single-property-sm-1.jpg' %}"
-                          alt="Gallery 04"
-                          class="h-100 w-100 rounded-lg"
-                        />
-                      </div>
-                    </div>
-                    <div class="box pb-6 px-0">
-                      <div
-                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
-                      >
-                        <img
-                          src="{% static 'images/single-property-9.jpg' %}"
-                          alt="Gallery 05"
-                          class="h-100 w-100 rounded-lg"
-                        />
-                      </div>
-                    </div>
-                    <div class="box pb-6 px-0">
-                      <div
-                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
-                      >
-                        <img
-                          src="{% static 'images/single-property-1.jpg' %}"
-                          alt="Gallery 06"
-                          class="h-100 w-100 rounded-lg"
-                        />
-                      </div>
-                    </div>
+                    {% endfor %}
                   </div>
                 </div>
               </section>
               <section class="pb-8 px-6 pt-5 bg-white rounded-lg">
-                <h4 class="fs-22 text-heading mb-3">Description</h4>
+                <h4 class="fs-22 text-heading mb-3">{% trans "Description" %}</h4>
                 <p class="mb-0 lh-214">
-                  Massa tempor nec feugiat nisl pretium. Egestas fringilla
-                  phasellus faucibus scelerisque eleifend donec. Porta nibh
-                  venenatis cras sed felis eget velit aliquet. Neque volutpat ac
-                  tincidunt vitae semper quis lectus. Turpis in eu mi bibendum
-                  neque egestas congue quisque. Sed elementum tempus egestas sed
-                  sed risus pretium quam. Dignissim sodales ut eu sem. Nibh
-                  mauris cursus mattis molestie a iaculis at erat pellentesque.
-                  Id interdum velit laoreet id donec ultrices tincidunt.
+                  {{ property.description }}
                 </p>
               </section>
               <section class="mt-2 pb-3 px-6 pt-5 bg-white rounded-lg">
@@ -651,42 +459,11 @@
               <section class="mt-2 pb-7 px-6 pt-5 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-4">Offices Amenities</h4>
                 <ul class="list-unstyled mb-0 row no-gutters">
+                  {% for item in property.features %}
                   <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Balcony
+                    <i class="far fa-check mr-2 text-primary"></i>{{ item|title }}
                   </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Fireplace
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Balcony
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Fireplace
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Basement
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Cooling
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Basement
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Cooling
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Dining room
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Dishwasher
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Dining room
-                  </li>
-                  <li class="col-sm-3 col-6 mb-2">
-                    <i class="far fa-check mr-2 text-primary"></i>Dishwasher
-                  </li>
+                  {% endfor %}
                 </ul>
               </section>
               <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
@@ -713,12 +490,13 @@
                     <p
                       class="mb-0 p-3 bg-white shadow rounded-lg position-absolute pos-fixed-bottom mb-4 ml-4 lh-17 z-index-2"
                     >
-                      62 Gresham St, Victoria Park <br />
-                      WA 6100, Australia
+                      {{ property.city }} <br />
+                      {{ property.address }}
                     </p>
                   </div>
                 </div>
               </section>
+              {% if similar_properties|length > 0 %}
               <section class="mt-2 pb-7 px-6 pt-6 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-6">
                   Similar Homes You May Like
@@ -727,339 +505,14 @@
                   class="slick-slider"
                   data-slick-options='{"slidesToShow": 2, "dots":false,"responsive":[{"breakpoint": 1200,"settings": {"slidesToShow":2,"arrows":false}},{"breakpoint": 992,"settings": {"slidesToShow":2}},{"breakpoint": 768,"settings": {"slidesToShow": 1}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'
                 >
+                  {% for item in similar_properties %}
                   <div class="box">
-                    <div class="card shadow-hover-2 =">
-                      <div
-                        class="hover-change-image bg-hover-overlay rounded-lg card-img-top"
-                      >
-                        <img
-                          src="{% static 'images/properties-grid-38.jpg' %}"
-                          alt="Home in Metric Way"
-                        />
-                        <div class="card-img-overlay p-2 d-flex flex-column">
-                          <div>
-                            <span class="badge mr-2 badge-primary"
-                              >for Sale</span
-                            >
-                          </div>
-                          <ul class="list-inline mb-0 mt-auto hover-image">
-                            <li
-                              class="list-inline-item mr-2"
-                              data-toggle="tooltip"
-                              title="9 Images"
-                            >
-                              <a href="#" class="text-white hover-primary">
-                                <i class="far fa-images"></i
-                                ><span class="pl-1">9</span>
-                              </a>
-                            </li>
-                            <li
-                              class="list-inline-item"
-                              data-toggle="tooltip"
-                              title="2 Video"
-                            >
-                              <a href="#" class="text-white hover-primary">
-                                <i class="far fa-play-circle"></i
-                                ><span class="pl-1">2</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card-body pt-3">
-                        <h2 class="card-title fs-16 lh-2 mb-0">
-                          <a
-                            href="single-property-1.html"
-                            class="text-dark hover-primary"
-                            >Home in Metric Way</a
-                          >
-                        </h2>
-                        <p
-                          class="card-text font-weight-500 text-gray-light mb-2"
-                        >
-                          1421 San Pedro St, Los Angeles
-                        </p>
-                        <ul class="list-inline d-flex mb-0 flex-wrap mr-n4">
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="3 Bedroom"
-                          >
-                            <svg
-                              class="icon icon-bedroom fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-bedroom"></use></svg
-                            >3 Br
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="3 Bathrooms"
-                          >
-                            <svg
-                              class="icon icon-shower fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-shower"></use></svg
-                            >3 Ba
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="Size"
-                          >
-                            <svg
-                              class="icon icon-square fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-square"></use></svg
-                            >2300 Sq.Ft
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="1 Garage"
-                          >
-                            <svg
-                              class="icon icon-Garage fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-Garage"></use></svg
-                            >1 Gr
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3"
-                      >
-                        <p class="fs-17 font-weight-bold text-heading mb-0">
-                          $1.250.000
-                        </p>
-                      </div>
-                    </div>
+                    {% include "homeid/components/home-listing-box.html" %}
                   </div>
-                  <div class="box">
-                    <div class="card shadow-hover-2 =">
-                      <div
-                        class="hover-change-image bg-hover-overlay rounded-lg card-img-top"
-                      >
-                        <img
-                          src="{% static 'images/properties-grid-01.jpg' %}"
-                          alt="Garden Gingerbread House"
-                        />
-                        <div class="card-img-overlay p-2 d-flex flex-column">
-                          <div>
-                            <span class="badge mr-2 badge-orange"
-                              >featured</span
-                            >
-                            <span class="badge mr-2 badge-indigo"
-                              >for Sale</span
-                            >
-                          </div>
-                          <ul class="list-inline mb-0 mt-auto hover-image">
-                            <li
-                              class="list-inline-item mr-2"
-                              data-toggle="tooltip"
-                              title="9 Images"
-                            >
-                              <a href="#" class="text-white hover-primary">
-                                <i class="far fa-images"></i
-                                ><span class="pl-1">9</span>
-                              </a>
-                            </li>
-                            <li
-                              class="list-inline-item"
-                              data-toggle="tooltip"
-                              title="2 Video"
-                            >
-                              <a href="#" class="text-white hover-primary">
-                                <i class="far fa-play-circle"></i
-                                ><span class="pl-1">2</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card-body pt-3">
-                        <h2 class="card-title fs-16 lh-2 mb-0">
-                          <a
-                            href="single-property-1.html"
-                            class="text-dark hover-primary"
-                            >Garden Gingerbread House</a
-                          >
-                        </h2>
-                        <p
-                          class="card-text font-weight-500 text-gray-light mb-2"
-                        >
-                          1421 San Pedro St, Los Angeles
-                        </p>
-                        <ul class="list-inline d-flex mb-0 flex-wrap mr-n4">
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="3 Bedroom"
-                          >
-                            <svg
-                              class="icon icon-bedroom fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-bedroom"></use></svg
-                            >3 Br
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="3 Bathrooms"
-                          >
-                            <svg
-                              class="icon icon-shower fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-shower"></use></svg
-                            >3 Ba
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="Size"
-                          >
-                            <svg
-                              class="icon icon-square fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-square"></use></svg
-                            >2300 Sq.Ft
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="1 Garage"
-                          >
-                            <svg
-                              class="icon icon-Garage fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-Garage"></use></svg
-                            >1 Gr
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3"
-                      >
-                        <p class="fs-17 font-weight-bold text-heading mb-0">
-                          $550<span
-                            class="text-gray-light font-weight-500 fs-14"
-                          >
-                            / month</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="box">
-                    <div class="card shadow-hover-2 =">
-                      <div
-                        class="hover-change-image bg-hover-overlay rounded-lg card-img-top"
-                      >
-                        <img
-                          src="{% static 'images/properties-grid-02.jpg' %}"
-                          alt="Affordable Urban House"
-                        />
-                        <div class="card-img-overlay p-2 d-flex flex-column">
-                          <div>
-                            <span class="badge mr-2 badge-primary"
-                              >for Sale</span
-                            >
-                          </div>
-                          <ul class="list-inline mb-0 mt-auto hover-image">
-                            <li
-                              class="list-inline-item mr-2"
-                              data-toggle="tooltip"
-                              title="9 Images"
-                            >
-                              <a href="#" class="text-white hover-primary">
-                                <i class="far fa-images"></i
-                                ><span class="pl-1">9</span>
-                              </a>
-                            </li>
-                            <li
-                              class="list-inline-item"
-                              data-toggle="tooltip"
-                              title="2 Video"
-                            >
-                              <a href="#" class="text-white hover-primary">
-                                <i class="far fa-play-circle"></i
-                                ><span class="pl-1">2</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card-body pt-3">
-                        <h2 class="card-title fs-16 lh-2 mb-0">
-                          <a
-                            href="single-property-1.html"
-                            class="text-dark hover-primary"
-                            >Affordable Urban House</a
-                          >
-                        </h2>
-                        <p
-                          class="card-text font-weight-500 text-gray-light mb-2"
-                        >
-                          1421 San Pedro St, Los Angeles
-                        </p>
-                        <ul class="list-inline d-flex mb-0 flex-wrap mr-n4">
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="3 Bedroom"
-                          >
-                            <svg
-                              class="icon icon-bedroom fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-bedroom"></use></svg
-                            >3 Br
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="3 Bathrooms"
-                          >
-                            <svg
-                              class="icon icon-shower fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-shower"></use></svg
-                            >3 Ba
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="Size"
-                          >
-                            <svg
-                              class="icon icon-square fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-square"></use></svg
-                            >2300 Sq.Ft
-                          </li>
-                          <li
-                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
-                            data-toggle="tooltip"
-                            title="1 Garage"
-                          >
-                            <svg
-                              class="icon icon-Garage fs-18 text-primary mr-1"
-                            >
-                              <use xlink:href="#icon-Garage"></use></svg
-                            >1 Gr
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3"
-                      >
-                        <p class="fs-17 font-weight-bold text-heading mb-0">
-                          $1.250.000
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  {% endfor %}
                 </div>
               </section>
+              {% endif %}
             </article>
             <aside
               class="col-lg-4 pl-xl-4 primary-sidebar sidebar-sticky"
@@ -1068,27 +521,48 @@
               <div class="primary-sidebar-inner">
                 <div class="bg-white rounded-lg py-lg-6 pl-lg-6 pr-lg-3 p-4">
                   <ul class="list-inline d-sm-flex align-items-sm-center mb-2">
+                    {% if property.featured %}
                     <li class="list-inline-item badge badge-orange mr-2">
                       Featured
                     </li>
+                    {% endif %}
+                    {% if property.deal_type == "SALE" %}
                     <li class="list-inline-item badge badge-primary mr-3">
                       For Sale
                     </li>
+                    {% endif %}
+                    {% if property.deal_type == "RENT" %}
+                    <li class="list-inline-item badge badge-primary mr-3">
+                      For Rent
+                    </li>
+                    {% endif %}
                   </ul>
                   <h2 class="fs-22 text-heading pt-2">
-                    Villa Called Archangel
+                    {{ property.name }}
                   </h2>
                   <p class="mb-2">
-                    <i class="fal fa-map-marker-alt mr-1"></i>398 Pete Pascale
-                    Pl, New York
+                    <i class="fal fa-map-marker-alt mr-1"></i>{{ property.city|title }}, {{ property.address }}
                   </p>
                   <div class="d-flex align-items-center">
                     <p class="fs-22 text-heading font-weight-bold mb-0 mr-6">
-                      $1.250.000
+                      {{ property.price }}
+                      {% if property.currency %}
+                        {{ property.currency }}
+                      {% else %}
+                        USD
+                      {% endif %}
                     </p>
-                    <p class="mb-0">$9350/SqFt</p>
+                    <p class="mb-0">
+                      {{ property.price_per_sqm }}
+                      {% if property.currency %}
+                        {{ property.price_per_area }}
+                      {% else %}
+                        USD
+                      {% endif %}
+                    </p>
                   </div>
                   <div class="row mt-5">
+                    {% if property.bedrooms %}
                     <div class="col-6 mb-3">
                       <div class="media">
                         <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
@@ -1098,12 +572,16 @@
                         </div>
                         <div class="media-body">
                           <h5 class="fs-13 font-weight-normal mb-0">
-                            Bedrooms
+                            {% trans "Bedrooms" %}
                           </h5>
-                          <p class="mb-0 fs-13 font-weight-bold text-dark">3</p>
+                          <p class="mb-0 fs-13 font-weight-bold text-dark">
+                            {{ property.bedrooms }}
+                          </p>
                         </div>
                       </div>
                     </div>
+                    {% endif %}
+                    {% if property.total_rooms %}
                     <div class="col-6 mb-3">
                       <div class="media">
                         <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
@@ -1113,12 +591,15 @@
                         </div>
                         <div class="media-body">
                           <h5 class="fs-13 font-weight-normal mb-0">
-                            Bathrooms
+                            {% trans "Rooms" %}
                           </h5>
-                          <p class="mb-0 fs-13 font-weight-bold text-dark">2</p>
+                          <p class="mb-0 fs-13 font-weight-bold text-dark">
+                            {{ property.total_rooms }}
+                          </p>
                         </div>
                       </div>
                     </div>
+                    {% endif %}
                     <div class="col-6 mb-3">
                       <div class="media">
                         <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
@@ -1129,39 +610,21 @@
                         <div class="media-body">
                           <h5 class="fs-13 font-weight-normal mb-0">Area</h5>
                           <p class="mb-0 fs-13 font-weight-bold text-dark">
-                            3.6k SqFt
+                            {{ property.area }} m<sup>2</sup>
                           </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-6 mb-3">
-                      <div class="media">
-                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
-                          <svg class="icon icon-Garage fs-18 text-primary">
-                            <use xlink:href="#icon-Garage"></use>
-                          </svg>
-                        </div>
-                        <div class="media-body">
-                          <h5 class="fs-13 font-weight-normal mb-0">Garage</h5>
-                          <p class="mb-0 fs-13 font-weight-bold text-dark">1</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <p class="mb-6 mt-1">
-                    Villa Called Archangel is now available to buy off plan in
-                    New Islington in Australia.
+                    {{ property.property_type|title }} {{ property.name }} is now available to buy off plan in
+                    {{ property.city|title }}, {{ property.address }}
                   </p>
                   <div class="mr-xl-2">
                     <a
-                      href="#"
-                      class="btn btn-outline-primary btn-lg btn-block rounded border text-body border-hover-primary hover-white"
-                      >Schedule a Tour</a
-                    >
-                    <a
-                      href="#"
-                      class="btn btn-outline-primary btn-lg btn-block rounded border text-body border-hover-primary hover-white mt-4"
-                      >Request Info</a
+                      href="tel:{{ property.agent_phone }}"
+                      class="btn btn-primary btn-lg btn-block"
+                      >Get Sellers Number</a
                     >
                   </div>
                 </div>

@@ -129,4 +129,11 @@ def index(request):
 
 def property_detail(request, pk):
     property = Property.objects.get(pk=pk)
-    return render(request, "homeid/single-property-6.html", {"property": property})
+    similar_properties = Property.objects.filter(property_type=property.property_type)[
+        :4
+    ]
+    return render(
+        request,
+        "homeid/single-property-6.html",
+        {"property": property, "similar_properties": similar_properties},
+    )

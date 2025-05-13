@@ -146,8 +146,17 @@ class Property(models.Model):
         first_image = self.images.first()
         return first_image.image.url if first_image else None
 
+    def get_images(self):
+        return self.images.all()
+
     def __str__(self):
         return self.name
+
+    @property
+    def price_per_area(self):
+        if self.area:
+            return f"{round(self.price / self.area, 2)} {self.currency}/m²"
+        return None
 
 
 class PropertyImage(models.Model):
