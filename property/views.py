@@ -23,10 +23,16 @@ def index(request):
         bedrooms = int(bedrooms)
     city = request.GET.get("city", "")
     price_type = request.GET.get("price_type", "")
-    price = request.GET.get("price", "")
-    area = request.GET.get("area", "")
+    # price = request.GET.get("price", "")
+    # area = request.GET.get("area", "")
     property_id = request.GET.get("property_id", "")
-    features = request.GET.getlist("features", [])
+    features = set(request.GET.getlist("features"))
+
+    if features:
+        all_properties = list(properties)
+        properties = [
+            p for p in all_properties if features.intersection(set(p.features))
+        ]
 
     # Apply filters based on provided parameters
     if search:

@@ -777,7 +777,7 @@
       </div>
     </div>
   </section>
-  {% if featured_properties_for_sale.count > 0 %}
+  {% if featured_properties_for_sale|length > 0 %}
   <section class="pt-lg-12 pb-lg-10 py-11">
     <div class="container container-xxl">
       <div class="row">
@@ -922,7 +922,7 @@
       </div>
     </div>
   </section>
-  {% if featured_properties_for_rent.count > 0 %}
+  {% if featured_properties_for_rent|length > 0 %}
   <section class="pt-lg-12 pb-lg-11 py-11">
     <div class="container container-xxl">
       <div class="row">
@@ -961,7 +961,7 @@
       <div class="container container-xxl">
         <div class="row align-items-center">
           <div class="col-lg-6 pr-xl-8 pb-lg-0 pb-6" data-animate="fadeInLeft">
-            <a href="#" class="hover-shine d-block">
+            <a href="{% url 'property:index' %}" class="hover-shine d-block">
               <img
                 src="{% static 'images/single-image-01.jpg' %}"
                 class="rounded-lg w-100"
@@ -997,109 +997,6 @@
       </div>
     </div>
   </section>
-  <!-- Partners -->
-  <section>
-    <div class="container container-xxl">
-      <div class="py-lg-8 py-6 border-top">
-        <div
-          class="slick-slider mx-0 partners"
-          data-slick-options='{"slidesToShow": 6, "autoplay":true,"dots":false,"arrows":false,"responsive":[{"breakpoint": 1200,"settings": {"slidesToShow":4}},{"breakpoint": 992,"settings": {"slidesToShow":3}},{"breakpoint": 768,"settings": {"slidesToShow": 3}},{"breakpoint": 576,"settings": {"slidesToShow": 2}}]}'
-        >
-          <div
-            class="box d-flex align-items-center justify-content-center"
-            data-animate="fadeInUp"
-          >
-            <a href="#" class="item position-relative hover-change-image">
-              <img
-                src="{% static 'images/partner-hover-1.png' %}"
-                class="hover-image position-absolute pos-fixed-top"
-                alt="Partner 1"
-              />
-              <img
-                src="{% static 'images/partner-1.png' %}"
-                alt="Partner 1"
-                class="image"
-              />
-            </a>
-          </div>
-          <div
-            class="box d-flex align-items-center justify-content-center"
-            data-animate="fadeInUp"
-          >
-            <a href="#" class="item position-relative hover-change-image">
-              <img
-                src="{% static 'images/partner-hover-2.png' %}"
-                class="hover-image position-absolute pos-fixed-top"
-                alt="Partner 2"
-              />
-              <img
-                src="{% static 'images/partner-2.png' %}"
-                alt="Partner 2"
-                class="image"
-              />
-            </a>
-          </div>
-          <div
-            class="box d-flex align-items-center justify-content-center"
-            data-animate="fadeInUp"
-          >
-            <a href="#" class="item position-relative hover-change-image">
-              <img
-                src="{% static 'images/partner-hover-3.png' %}"
-                class="hover-image position-absolute pos-fixed-top"
-                alt="Partner 3"
-              />
-              <img
-                src="{% static 'images/partner-3.png' %}"
-                alt="Partner 3"
-                class="image"
-              />
-            </a>
-          </div>
-          <div
-            class="box d-flex align-items-center justify-content-center"
-            data-animate="fadeInUp"
-          >
-            <a href="#" class="item">
-              <img
-                src="{% static 'images/partner-4.png' %}"
-                alt=""
-                class="image"
-              />
-            </a>
-          </div>
-          <div
-            class="box d-flex align-items-center justify-content-center"
-            data-animate="fadeInUp"
-          >
-            <a href="#" class="item position-relative hover-change-image">
-              <img
-                src="{% static 'images/partner-hover-5.png' %}"
-                class="hover-image position-absolute pos-fixed-top"
-                alt="Partner 5"
-              />
-              <img
-                src="{% static 'images/partner-5.png' %}"
-                alt="Partner 5"
-                class="image"
-              />
-            </a>
-          </div>
-          <div
-            class="box d-flex align-items-center justify-content-center"
-            data-animate="fadeInUp"
-          >
-            <a href="#" class="item">
-              <img
-                src="{% static 'images/partner-6.png' %}"
-                alt=""
-                class="image"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% comment %} {% include "homeid/components/partners-section.html" %} {% endcomment %}
 </main>
 {% endblock %}

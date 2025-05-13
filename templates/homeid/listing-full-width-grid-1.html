@@ -9,7 +9,7 @@
         </ol>
         {% if search_params.deal_type or search_params.type or search_params.city or search_params.price_type or search_params.bedrooms %}
         <h1 class="fs-30 lh-1 mb-0 text-heading font-weight-600">
-          {{ properties.count }} {{ properties.count|pluralize:"property,properties" }} found
+          {{ properties|length }} {{ properties|length|pluralize:"property,properties" }} found
         </h1>
         {% else %}
         <h1 class="fs-30 lh-1 mb-0 text-heading font-weight-600">
@@ -99,7 +99,7 @@
               <label for="room" class="sr-only">{% trans "Bedrooms" %}</label>
               <select
                 class="form-control border-0 shadow-xxs-1 bg-transparent font-weight-600 selectpicker"
-                title="bedrooms"
+                title="Bedrooms"
                 data-style="bg-white"
                 id="bedrooms"
                 name="bedrooms"
@@ -134,22 +134,22 @@
               class="row pt-2 collapse p-1 w-100"
               data-parent="#accordion-5"
             >
-              {% for feature in filter_properties.features_list %}
+              {% for value, label in filter_properties.features_list %}
                 <div class="col-sm-6 col-md-4 col-lg-3 py-2">
                   <div class="custom-control custom-checkbox">
                     <input
                       type="checkbox"
                       class="custom-control-input"
-                      name="features[]"
-                      id="check1-{{ feature.0 }}"
-                      {% if feature.0 in values_from_search.features %}
-                      checked
-                      {% endif %}
+                      name="features"
+                      value="{{ value }}"
+                      id="check1-{{ value }}"
+                      onchange="toggleFeature(this)"
+                      {% if value in values_from_search.features %}checked{% endif %}
                     />
                     <label
                       class="custom-control-label justify-content-start"
-                      for="check1-{{ feature.0 }}"
-                      >{{ feature.1 }}</label
+                      for="check1-{{ value }}"
+                      >{{ label }}</label
                     >
                   </div>
                 </div>
@@ -167,7 +167,8 @@
         <div class="col-lg-4 col-md-6 pb-6">
           {% include "homeid/components/home-listing-box.html" %}
         </div>
-        {% endfor %} {% if properties.count == 0 %}
+        {% endfor %}
+        {% if properties|length == 0 %}
         <div class="col-12">
           <p>{% trans "No properties found" %}</p>
         </div>
@@ -210,6 +211,28 @@
         params.append(key, value);
       }
     }
+
+    const newUrl = window.location.pathname + "?" + params.toString();
+    window.history.pushState({}, "", newUrl);
+    form.submit();
+  }
+
+  function toggleFeature(checkbox) {
+    const form = document.getElementById("accordion-5");
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+
+    // Add all non-feature fields
+    for (let [key, value] of formData.entries()) {
+      if (key !== "features" && value) {
+        params.append(key, value);
+      }
+    }
+
+    // Add all checked features
+    const checkedFeatures = Array.from(form.querySelectorAll('input[name="features"]:checked'))
+      .map(cb => cb.value);
+    checkedFeatures.forEach(f => params.append("features", f));
 
     const newUrl = window.location.pathname + "?" + params.toString();
     window.history.pushState({}, "", newUrl);
