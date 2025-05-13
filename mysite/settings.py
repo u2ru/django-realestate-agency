@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "property.apps.PropertyConfig",
+    "website.apps.WebsiteConfig",
     #
     "django.contrib.admin",
     "django.contrib.auth",

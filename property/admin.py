@@ -8,6 +8,7 @@ from .models import (
     PropertyTranslation,
     SUPPORTED_LANGUAGES,
     PRIMARY_LANGUAGE,
+    CITY_CHOICES,
 )
 
 # Get language codes from constant
@@ -79,6 +80,7 @@ def create_translation_inline_class(language_code):
         verbose_name_plural = f"{language_name} Translation"
         extra = 1
         max_num = 1
+        min_num = 1
         can_delete = False  # Prevent translation deletion
 
         def get_queryset(self, request):
@@ -109,12 +111,12 @@ class PropertyAdmin(admin.ModelAdmin):
         "currency",
         "property_type",
         "deal_type",
+        "agent_name",
         "featured",
         "published",
         "image_preview",
     )
-    list_filter = ("property_type", "deal_type", "featured", "published", "state")
-    search_fields = ("name", "description", "location", "city", "region")
+    search_fields = ("name", "description", "address", "property_id", "agent_name")
     inlines = [PropertyImageInline] + language_inlines
     readonly_fields = ("image_gallery",)
 
@@ -124,7 +126,7 @@ class PropertyAdmin(admin.ModelAdmin):
             {"fields": ("name", "description", "featured", "published")},
         ),
         ("Price Information", {"fields": ("price", "currency")}),
-        ("Location", {"fields": ("location", "city", "region")}),
+        ("Location", {"fields": ("address", "city", "property_id")}),
         ("Media", {"fields": ("youtube_url",)}),
         (
             "Property Details",
@@ -149,6 +151,15 @@ class PropertyAdmin(admin.ModelAdmin):
                     "has_elevator",
                     "has_furniture",
                     "has_central_heating",
+                ),
+            },
+        ),
+        (
+            "Agent Information",
+            {
+                "fields": (
+                    "agent_name",
+                    "agent_phone",
                 ),
             },
         ),
@@ -207,3 +218,23 @@ class PropertyAdmin(admin.ModelAdmin):
                         instance.language = lang_code
             instance.save()
         formset.save_m2m()
+
+    def get_list_filter(self, request):
+        """Customize list filters based on user permissions"""
+        filters = [
+            "property_type",
+            "deal_type",
+            "featured",
+            "published",
+            "state",
+            "agent_name",
+        ]
+
+        # Add city filter with reasonable choices
+        if len(CITY_CHOICES) > 20:
+            # Create a custom filter with major cities when we have many options
+            filters.append(("city", admin.AllValuesFieldListFilter))
+        else:
+            filters.append("city")
+
+        return filters

@@ -12,6 +12,41 @@ SUPPORTED_LANGUAGES = {
 }
 PRIMARY_LANGUAGE = "KA"
 
+CITY_CHOICES = [
+    ("TBILISI", "Tbilisi"),
+    ("BATUMI", "Batumi"),
+    ("KUTAISI", "Kutaisi"),
+    ("RUSTAVI", "Rustavi"),
+    ("GORI", "Gori"),
+    ("ZUGDIDI", "Zugdidi"),
+    ("POTI", "Poti"),
+    ("TELAVI", "Telavi"),
+    ("AKHALTSIKHE", "Akhaltsikhe"),
+    ("BORJOMI", "Borjomi"),
+    ("MTSKHETA", "Mtskheta"),
+    ("SIGNAGI", "Signagi"),
+    ("KOBULETI", "Kobuleti"),
+    ("KHASHURI", "Khashuri"),
+    ("SAMTREDIA", "Samtredia"),
+    ("SENAKI", "Senaki"),
+    ("AKHALKALAKI", "Akhalkalaki"),
+    ("KASPI", "Kaspi"),
+    ("TSKALTUBO", "Tskaltubo"),
+    ("OZURGETI", "Ozurgeti"),
+    ("KVARELI", "Kvareli"),
+    ("CHIATURA", "Chiatura"),
+    ("MARNEULI", "Marneuli"),
+    ("GURJAANI", "Gurjaani"),
+    ("DUSHETI", "Dusheti"),
+    ("LAGODEKHI", "Lagodekhi"),
+    ("SACHKHERE", "Sachkhere"),
+    ("DEDOPLISTSKARO", "Dedoplistskaro"),
+    ("NINOTSMINDA", "Ninotsminda"),
+    ("LANCHKHUTI", "Lanchkhuti"),
+    ("AMBROLAURI", "Ambrolauri"),
+    ("KATSKEBI", "Katskebi"),
+]
+
 
 # Create your models here.
 class Property(models.Model):
@@ -33,9 +68,9 @@ class Property(models.Model):
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default="USD")
 
     # Location details
-    location = models.CharField(max_length=255)
-    city = models.CharField(max_length=100)
-    region = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=20, choices=CITY_CHOICES)
+    property_id = models.CharField(max_length=100)
 
     # Media
     youtube_url = models.CharField(
@@ -83,6 +118,14 @@ class Property(models.Model):
     has_elevator = models.BooleanField(default=False)
     has_furniture = models.BooleanField(default=False)
     has_central_heating = models.BooleanField(default=False)
+
+    # Agent information
+    agent_name = models.CharField(
+        max_length=100, blank=True, null=True, help_text="Name of the responsible agent"
+    )
+    agent_phone = models.CharField(
+        max_length=50, blank=True, null=True, help_text="Contact number of the agent"
+    )
 
     # Display and status fields
     featured = models.BooleanField(default=False)
