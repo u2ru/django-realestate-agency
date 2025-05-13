@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-13 14:30+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+#: templates/homeid/home-01.html:43
+msgid "for sale"
+msgstr ""
+
+#: templates/homeid/home-01.html:58
+msgid "for rent"
+msgstr ""
+
+#: templates/homeid/home-01.html:71
+msgid "Home Type"
+msgstr ""
+
+#: templates/homeid/home-01.html:87 templates/homeid/home-01.html:118
+msgid "Search"
+msgstr ""
+
+#: templates/homeid/home-01.html:94
+msgid "Find something..."
+msgstr ""
+
+#: templates/homeid/home-01.html:110
+msgid "Advanced Search"
+msgstr ""
+
+#: templates/homeid/home-01.html:130
+msgid "Bedrooms"
+msgstr ""
+
+#: templates/homeid/home-01.html:154
+msgid "Bathrooms"
+msgstr ""
+
+#: templates/homeid/home-01.html:178
+msgid "All Cities"
+msgstr ""
+
+#: templates/homeid/home-01.html:200
+msgid "All Areas"
+msgstr ""
+
+#: templates/homeid/home-01.html:224
+msgid "Price Range"
+msgstr ""
+
+#: templates/homeid/home-01.html:244
+msgid "Area Size"
+msgstr ""
+
+#: templates/homeid/home-01.html:263
+msgid "Property ID"
+msgstr ""
+
+#: templates/homeid/home-01.html:283
+msgid "Other Features"
+msgstr ""
+
+#: templates/homeid/home-01.html:297
+msgid "Air Conditioning"
+msgstr ""
+
+#: templates/homeid/home-01.html:310
+msgid "Laundry"
+msgstr ""
+
+#: templates/homeid/home-01.html:323
+msgid "Washer"
+msgstr ""
+
+#: templates/homeid/home-01.html:336
+msgid "Barbeque"
+msgstr ""
+
+#: templates/homeid/home-01.html:349
+msgid "Lawn"
+msgstr ""
+
+#: templates/homeid/home-01.html:362
+msgid "Sauna"
+msgstr ""
+
+#: templates/homeid/home-01.html:375
+msgid "WiFi"
+msgstr ""
+
+#: templates/homeid/home-01.html:388
+msgid "Dryer"
+msgstr ""
+
+#: templates/homeid/home-01.html:401
+msgid "Microwave"
+msgstr ""
+
+#: templates/homeid/home-01.html:414
+msgid "Swimming Pool"
+msgstr ""
+
+#: templates/homeid/home-01.html:427
+msgid "Window Coverings"
+msgstr ""
+
+#: templates/homeid/home-01.html:440
+msgid "Gym"
+msgstr ""
+
+#: templates/homeid/home-01.html:453
+msgid "Outdoor Shower"
+msgstr ""
+
+#: templates/homeid/home-01.html:466
+msgid "TV Cable"
+msgstr ""
+
+#: templates/homeid/home-01.html:479
+msgid "Refrigerator"
+msgstr ""

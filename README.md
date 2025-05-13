@@ -47,3 +47,16 @@ python manage.py migrate
 ```bash
 python manage.py createsuperuser
 ```
+
+# generating po files
+
+```bash
+python manage.py makemessages -l ka --extension=html --ignore="venv/*"
+python manage.py makemessages -l ru --extension=html --ignore="venv/*"
+```
+
+# compile po files
+
+```bash
+python manage.py compilemessages
+```

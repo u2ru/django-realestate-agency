@@ -26,11 +26,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LANGUAGE_CODE = "ka"
+LANGUAGE_CODE = "ka-ge"
 LANGUAGES = [
     ("ka", "Georgian"),
     ("ru", "Russian"),
     ("en", "English"),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
 ]
 
 # Application definition
@@ -112,8 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
-
-LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
 

@@ -1,10 +1,10 @@
 # Constants
 SUPPORTED_LANGUAGES = {
-    "KA": "Georgian",
-    "RU": "Russian",
-    "EN": "English",
+    "ka": "Georgian",
+    "ru": "Russian",
+    "en": "English",
 }
-PRIMARY_LANGUAGE = "KA"
+PRIMARY_LANGUAGE = "ka"
 
 CITY_CHOICES = [
     ("TBILISI", "Tbilisi"),

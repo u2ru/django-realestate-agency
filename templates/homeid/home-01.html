@@ -1,9 +1,9 @@
-{% extends 'homeid/layout.html' %} {% load static %} {% block content %}
+{% extends 'homeid/layout.html' %} {% load static %} {% load i18n %}
+{% block content %}
 <main id="content">
   <section class="d-flex flex-column">
-    {% with bg_image="images/bg-home-01.jpg" %}
     <div
-      style="background-image: url('{% static bg_image %}')"
+      style="background-image: url('{{ home_page_content.hero_image.url }}')"
       class="bg-cover d-flex align-items-center custom-vh-100"
     >
       <div class="container pt-lg-15 py-8" data-animate="zoomIn">
@@ -40,7 +40,7 @@
                     data-toggle="pill"
                     data-value="for-sale"
                   >
-                    for sale
+                    {% trans "for sale" %}
                   </a>
                 </li>
                 <li
@@ -55,7 +55,7 @@
                     data-toggle="pill"
                     data-value="for-rent"
                   >
-                    for rent
+                    {% trans "for rent" %}
                   </a>
                 </li>
               </ul>
@@ -68,7 +68,7 @@
               <div class="col-md-6 col-lg-3 col-xl-3 pt-6 pt-lg-0 order-1">
                 <label
                   class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                  >Home Type</label
+                  >{% trans "Home Type" %}</label
                 >
                 <select
                   class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
@@ -84,14 +84,14 @@
               </div>
               <div class="col-md-6 col-lg-4 col-xl-5 pt-6 pt-lg-0 order-2">
                 <label class="text-uppercase font-weight-500 letter-spacing-093"
-                  >Search</label
+                  >{% trans "Search" %}</label
                 >
                 <div class="position-relative">
                   <input
                     type="text"
                     name="search"
                     class="form-control bg-transparent shadow-none border-top-0 border-right-0 border-left-0 border-bottom rounded-0 h-24 lh-17 pl-0 pr-4 font-weight-600 border-color-input placeholder-muted"
-                    placeholder="Find something..."
+                    placeholder="{% trans "Find something..." %}"
                   />
                   <i
                     class="far fa-search position-absolute pos-fixed-right-center pr-0 fs-18 mt-n3"
@@ -107,7 +107,7 @@
                   aria-expanded="true"
                   aria-controls="advanced-search-filters-4"
                 >
-                  Advanced Search
+                  {% trans "Advanced Search" %}
                 </a>
               </div>
               <div class="col-sm pt-6 pt-lg-0 order-sm-4 order-5">
@@ -115,7 +115,7 @@
                   type="submit"
                   class="btn btn-primary shadow-none fs-16 font-weight-600 w-100 py-lg-2 lh-213"
                 >
-                  Search
+                  {% trans "Search" %}
                 </button>
               </div>
               <div
@@ -127,7 +127,7 @@
                   <div class="col-sm-6 col-lg-3 pt-6">
                     <label
                       class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >Bedrooms</label
+                      >{% trans "Bedrooms" %}</label
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
@@ -151,7 +151,7 @@
                   <div class="col-sm-6 col-lg-3 pt-6">
                     <label
                       class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >Bathrooms</label
+                      >{% trans "Bathrooms" %}</label
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
@@ -175,7 +175,7 @@
                   <div class="col-sm-6 col-lg-3 pt-6">
                     <label
                       class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >All Cities</label
+                      >{% trans "All Cities" %}</label
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
@@ -197,7 +197,7 @@
                   <div class="col-sm-6 col-lg-3 pt-6">
                     <label
                       class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >All Areas</label
+                      >{% trans "All Areas" %}</label
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
@@ -221,7 +221,7 @@
                     class="col-md-6 col-lg-4 pt-6 slider-range slider-range-secondary"
                   >
                     <label for="price-1-4" class="mb-4 text-gray-light"
-                      >Price Range</label
+                      >{% trans "Price Range" %}</label
                     >
                     <div
                       data-slider="true"
@@ -241,7 +241,7 @@
                     class="col-md-6 col-lg-4 pt-6 slider-range slider-range-secondary"
                   >
                     <label for="area-size-4" class="mb-4 text-gray-light"
-                      >Area Size</label
+                      >{% trans "Area Size" %}</label
                     >
                     <div
                       data-slider="true"
@@ -260,7 +260,7 @@
                   <div class="col-sm-6 col-lg-3 pt-6">
                     <label
                       class="text-uppercase font-weight-500 letter-spacing-093 mb-1"
-                      >Property ID</label
+                      >{% trans "Property ID" %}</label
                     >
                     <input
                       type="text"
@@ -280,7 +280,7 @@
                     >
                       <span
                         class="fs-15 text-heading font-weight-500 hover-primary"
-                        >Other Features</span
+                        >{% trans "Other Features" %}</span
                       >
                     </a>
                   </div>
@@ -294,7 +294,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check1-4"
-                          >Air Conditioning</label
+                          >{% trans "Air Conditioning" %}</label
                         >
                       </div>
                     </div>
@@ -307,7 +307,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check2-4"
-                          >Laundry</label
+                          >{% trans "Laundry" %}</label
                         >
                       </div>
                     </div>
@@ -320,7 +320,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check4-4"
-                          >Washer</label
+                          >{% trans "Washer" %}</label
                         >
                       </div>
                     </div>
@@ -333,7 +333,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check5-4"
-                          >Barbeque</label
+                          >{% trans "Barbeque" %}</label
                         >
                       </div>
                     </div>
@@ -346,7 +346,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check6-4"
-                          >Lawn</label
+                          >{% trans "Lawn" %}</label
                         >
                       </div>
                     </div>
@@ -359,7 +359,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check7-4"
-                          >Sauna</label
+                          >{% trans "Sauna" %}</label
                         >
                       </div>
                     </div>
@@ -372,7 +372,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check8-4"
-                          >WiFi</label
+                          >{% trans "WiFi" %}</label
                         >
                       </div>
                     </div>
@@ -385,7 +385,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check9-4"
-                          >Dryer</label
+                          >{% trans "Dryer" %}</label
                         >
                       </div>
                     </div>
@@ -398,7 +398,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check10-4"
-                          >Microwave</label
+                          >{% trans "Microwave" %}</label
                         >
                       </div>
                     </div>
@@ -411,7 +411,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check11-4"
-                          >Swimming Pool</label
+                          >{% trans "Swimming Pool" %}</label
                         >
                       </div>
                     </div>
@@ -424,7 +424,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check12-4"
-                          >Window Coverings</label
+                          >{% trans "Window Coverings" %}</label
                         >
                       </div>
                     </div>
@@ -437,7 +437,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check13-4"
-                          >Gym</label
+                          >{% trans "Gym" %}</label
                         >
                       </div>
                     </div>
@@ -450,7 +450,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check14-4"
-                          >Outdoor Shower</label
+                          >{% trans "Outdoor Shower" %}</label
                         >
                       </div>
                     </div>
@@ -463,7 +463,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check15-4"
-                          >TV Cable</label
+                          >{% trans "TV Cable" %}</label
                         >
                       </div>
                     </div>
@@ -476,7 +476,7 @@
                           name="features[]"
                         />
                         <label class="custom-control-label" for="check16-4"
-                          >Refrigerator</label
+                          >{% trans "Refrigerator" %}</label
                         >
                       </div>
                     </div>
@@ -1190,4 +1190,4 @@
     </div>
   </section>
 </main>
-{% endwith %} {% endblock %}
+{% endblock %}

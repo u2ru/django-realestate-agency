@@ -1,5 +1,6 @@
 from django.db import models
 from property.constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
+from django.utils import translation
 
 
 # Create your models here.
@@ -70,6 +71,20 @@ class HomePageContent(models.Model):
             # If you try to create a second instance, get the first one
             return HomePageContent.objects.first()
         return super().save(*args, **kwargs)
+
+    def get_translation(self, field, language=None):
+        if language is None:
+            language = translation.get_language()
+        try:
+            translation_obj = self.translations.get(language=language)
+            return getattr(translation_obj, field)
+        except HomePageContentTranslation.DoesNotExist:
+            # fallback to default language
+            try:
+                translation_obj = self.translations.get(language=PRIMARY_LANGUAGE)
+                return getattr(translation_obj, field)
+            except HomePageContentTranslation.DoesNotExist:
+                return getattr(self, field, "")
 
 
 class HomePageContentTranslation(models.Model):
