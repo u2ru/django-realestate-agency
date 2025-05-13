@@ -19,15 +19,28 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
+from django.shortcuts import redirect
 
 admin.site.site_title = "Real Estate Admin"
 admin.site.site_header = "Real Estate Admin"
 
+
+def redirect_root(request):
+    return redirect(f"/{settings.LANGUAGE_CODE}/")
+
+
 urlpatterns = [
-    path("property/", include("property.urls")),
-    #
-    path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),  # for set_language
+    path("", redirect_root),  # Redirect / to /en/ or your default language
 ]
+
+urlpatterns += i18n_patterns(
+    path("", include("website.urls")),
+    path("property/", include("property.urls", namespace="property")),
+    path("admin/", admin.site.urls),
+    prefix_default_language=False,
+)
 
 # Serve media files during development
 if settings.DEBUG:

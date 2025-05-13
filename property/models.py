@@ -3,49 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 import os
-
-# Constants
-SUPPORTED_LANGUAGES = {
-    "KA": "Georgian",
-    "RU": "Russian",
-    "EN": "English",
-}
-PRIMARY_LANGUAGE = "KA"
-
-CITY_CHOICES = [
-    ("TBILISI", "Tbilisi"),
-    ("BATUMI", "Batumi"),
-    ("KUTAISI", "Kutaisi"),
-    ("RUSTAVI", "Rustavi"),
-    ("GORI", "Gori"),
-    ("ZUGDIDI", "Zugdidi"),
-    ("POTI", "Poti"),
-    ("TELAVI", "Telavi"),
-    ("AKHALTSIKHE", "Akhaltsikhe"),
-    ("BORJOMI", "Borjomi"),
-    ("MTSKHETA", "Mtskheta"),
-    ("SIGNAGI", "Signagi"),
-    ("KOBULETI", "Kobuleti"),
-    ("KHASHURI", "Khashuri"),
-    ("SAMTREDIA", "Samtredia"),
-    ("SENAKI", "Senaki"),
-    ("AKHALKALAKI", "Akhalkalaki"),
-    ("KASPI", "Kaspi"),
-    ("TSKALTUBO", "Tskaltubo"),
-    ("OZURGETI", "Ozurgeti"),
-    ("KVARELI", "Kvareli"),
-    ("CHIATURA", "Chiatura"),
-    ("MARNEULI", "Marneuli"),
-    ("GURJAANI", "Gurjaani"),
-    ("DUSHETI", "Dusheti"),
-    ("LAGODEKHI", "Lagodekhi"),
-    ("SACHKHERE", "Sachkhere"),
-    ("DEDOPLISTSKARO", "Dedoplistskaro"),
-    ("NINOTSMINDA", "Ninotsminda"),
-    ("LANCHKHUTI", "Lanchkhuti"),
-    ("AMBROLAURI", "Ambrolauri"),
-    ("KATSKEBI", "Katskebi"),
-]
+from .constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE, CITY_CHOICES
 
 
 # Create your models here.

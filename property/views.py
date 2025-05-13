@@ -71,9 +71,9 @@ def index(request):
         },
     }
 
-    return render(request, "index.html", context)
+    return render(request, "homeid/listing-full-width-grid-1.html", context)
 
 
 def property_detail(request, pk):
     property = Property.objects.get(pk=pk)
-    return render(request, "property_detail.html", {"property": property})
+    return render(request, "homeid/single-property-6.html", {"property": property})

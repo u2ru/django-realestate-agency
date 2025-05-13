@@ -5,7 +5,7 @@ from .models import (
     HomePageContent,
     HomePageContentTranslation,
 )
-from property.models import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
+from property.constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
 
 # Get language codes from constant
 SECONDARY_LANGUAGES = [
@@ -96,12 +96,8 @@ homepage_translation_inlines = [
         [
             "hero_title",
             "hero_subtitle",
-            "hero_cta_text",
             "about_title",
             "about_content",
-            "meta_title",
-            "meta_description",
-            "meta_keywords",
         ],
     )
     for lang in SECONDARY_LANGUAGES
@@ -118,8 +114,6 @@ class HomePageContentAdmin(admin.ModelAdmin):
                     "hero_title",
                     "hero_subtitle",
                     "hero_image",
-                    "hero_cta_text",
-                    "hero_cta_link",
                 ),
             },
         ),
@@ -139,13 +133,6 @@ class HomePageContentAdmin(admin.ModelAdmin):
             "Social Media",
             {
                 "fields": ("facebook_url", "instagram_url", "twitter_url"),
-            },
-        ),
-        (
-            f"SEO Settings ({SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]})",
-            {
-                "fields": ("meta_title", "meta_description", "meta_keywords"),
-                "classes": ("collapse",),
             },
         ),
         (

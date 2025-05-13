@@ -1,5 +1,5 @@
 from django.db import models
-from property.models import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
+from property.constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
 
 
 # Create your models here.
@@ -16,14 +16,6 @@ class HomePageContent(models.Model):
         help_text=f"Subtitle text in {SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]}",
     )
     hero_image = models.ImageField(upload_to="homepage/", help_text="Main banner image")
-    hero_cta_text = models.CharField(
-        max_length=50,
-        default="Explore Properties",
-        help_text=f"Call to action button text in {SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]}",
-    )
-    hero_cta_link = models.CharField(
-        max_length=200, default="/properties/", help_text="Call to action button link"
-    )
 
     # About section
     about_title = models.CharField(
@@ -50,22 +42,6 @@ class HomePageContent(models.Model):
     facebook_url = models.URLField(blank=True, help_text="Facebook page URL")
     instagram_url = models.URLField(blank=True, help_text="Instagram profile URL")
     twitter_url = models.URLField(blank=True, help_text="Twitter profile URL")
-
-    # SEO fields
-    meta_title = models.CharField(
-        max_length=100,
-        blank=True,
-        help_text=f"SEO meta title in {SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]}",
-    )
-    meta_description = models.TextField(
-        blank=True,
-        help_text=f"SEO meta description in {SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]}",
-    )
-    meta_keywords = models.CharField(
-        max_length=255,
-        blank=True,
-        help_text=f"SEO meta keywords in {SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]}, comma separated",
-    )
 
     # Statistics to display
     properties_count = models.PositiveIntegerField(
@@ -109,16 +85,10 @@ class HomePageContentTranslation(models.Model):
     # Hero section translations
     hero_title = models.CharField(max_length=200)
     hero_subtitle = models.TextField(blank=True)
-    hero_cta_text = models.CharField(max_length=50, blank=True)
 
     # About section translations
     about_title = models.CharField(max_length=200, blank=True)
     about_content = models.TextField(blank=True)
-
-    # SEO fields translations
-    meta_title = models.CharField(max_length=100, blank=True)
-    meta_description = models.TextField(blank=True)
-    meta_keywords = models.CharField(max_length=255, blank=True)
 
     class Meta:
         unique_together = ("home_page", "language")

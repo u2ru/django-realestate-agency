@@ -1,0 +1,1261 @@
+{% extends 'homeid/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <main id="content">
+      <section class="bg-secondary py-6 py-lg-0">
+        <div class="container">
+          <form class="search-form d-none d-lg-block">
+            <div class="row align-items-center">
+              <div class="col-lg-5">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label
+                      class="text-uppercase font-weight-500 opacity-7 text-white letter-spacing-093 mb-1"
+                      >Home Type</label
+                    >
+                    <select
+                      class="form-control selectpicker bg-transparent border-bottom rounded-0 border-input-opacity-02"
+                      name="type"
+                      title="Select"
+                      data-style="p-0 h-24 lh-17 text-white"
+                    >
+                      <option>Condominium</option>
+                      <option>Single-Family Home</option>
+                      <option>Townhouse</option>
+                      <option>Multi-Family Home</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 pl-md-3 pt-md-0 pt-6">
+                    <label
+                      class="text-uppercase font-weight-500 opacity-7 text-white letter-spacing-093 mb-1"
+                      >Location</label
+                    >
+                    <select
+                      class="form-control selectpicker bg-transparent border-bottom rounded-0 border-input-opacity-02"
+                      name="location"
+                      title="Select"
+                      data-style="p-0 h-24 lh-17 text-white"
+                    >
+                      <option>Austin</option>
+                      <option>Boston</option>
+                      <option>Chicago</option>
+                      <option>Denver</option>
+                      <option>Los Angeles</option>
+                      <option>New York</option>
+                      <option>San Francisco</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-5 pt-lg-0 pt-6">
+                <label
+                  class="text-uppercase font-weight-500 opacity-7 text-white letter-spacing-093"
+                  >Search</label
+                >
+                <div class="position-relative">
+                  <input
+                    type="text"
+                    name="search"
+                    class="form-control bg-transparent shadow-none border-top-0 border-right-0 border-left-0 border-bottom rounded-0 h-24 lh-17 p-0 pr-md-5 text-white placeholder-light font-weight-500 border-input-opacity-02"
+                    placeholder="Enter an address, neighbourhood..."
+                  />
+                  <i
+                    class="far fa-search position-absolute pos-fixed-right-center pr-0 fs-18 text-white pb-2 d-none d-md-block"
+                  ></i>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 pt-lg-0 pt-7">
+                <button
+                  type="submit"
+                  class="btn bg-white-opacity-01 bg-white-hover-opacity-03 h-lg-100 w-100 shadow-none text-white rounded-0 fs-16 font-weight-600"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
+          <form class="property-search property-search-mobile d-lg-none">
+            <div class="row align-items-lg-center" id="accordion-mobile">
+              <div class="col-12">
+                <div class="form-group mb-0 position-relative">
+                  <a
+                    href="#advanced-search-filters-mobile"
+                    class="icon-primary btn advanced-search shadow-none pr-3 pl-0 d-flex align-items-center position-absolute pos-fixed-left-center py-0 h-100 border-right collapsed"
+                    data-toggle="collapse"
+                    data-target="#advanced-search-filters-mobile"
+                    aria-expanded="true"
+                    aria-controls="advanced-search-filters-mobile"
+                  >
+                  </a>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg border-0 shadow-none pr-9 pl-11 bg-white placeholder-muted"
+                    name="key-word"
+                    placeholder="Search..."
+                  />
+                  <button
+                    type="submit"
+                    class="btn position-absolute pos-fixed-right-center p-0 text-heading fs-20 px-3 shadow-none h-100 border-left bg-white"
+                  >
+                    <i class="far fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              <div
+                id="advanced-search-filters-mobile"
+                class="col-12 pt-2 collapse"
+                data-parent="#accordion-mobile"
+              >
+                <div class="row mx-n2">
+                  <div class="col-sm-6 pt-4 px-2">
+                    <select
+                      class="form-control border-0 shadow-none form-control-lg selectpicker bg-white"
+                      title="Home Types"
+                      data-style="btn-lg py-2 h-52 bg-white"
+                      name="type"
+                    >
+                      <option>Condominium</option>
+                      <option>Single-Family Home</option>
+                      <option>Townhouse</option>
+                      <option>Multi-Family Home</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6 pt-4 px-2">
+                    <select
+                      class="form-control border-0 shadow-none form-control-lg selectpicker bg-white"
+                      name="bedroom"
+                      title="Location"
+                      data-style="btn-lg py-2 h-52 bg-white"
+                    >
+                      <option>Austin</option>
+                      <option>Boston</option>
+                      <option>Chicago</option>
+                      <option>Denver</option>
+                      <option>Los Angeles</option>
+                      <option>New York</option>
+                      <option>San Francisco</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section class="bg-gray-01 py-8 py-lg-0">
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-3">
+              <li class="breadcrumb-item letter-spacing-1">
+                <a href=".">Home</a>
+              </li>
+              <li class="breadcrumb-item letter-spacing-1">
+                <a href="listing-grid-with-left-filter.html">Listing</a>
+              </li>
+              <li class="breadcrumb-item letter-spacing-1 active">
+                Villa on Hollywood Boulevard
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+      <div class="primary-content bg-gray-01 pb-12">
+        <div class="container">
+          <div class="row">
+            <article class="col-lg-8">
+              <section>
+                <div class="galleries position-relative">
+                  <div class="position-absolute pos-fixed-top-right z-index-3">
+                    <ul class="list-inline pt-4 pr-5">
+                      <li class="list-inline-item mr-2">
+                        <a
+                          href="#"
+                          data-toggle="tooltip"
+                          title="Favourite"
+                          class="d-flex align-items-center justify-content-center w-40px h-40 bg-white text-heading bg-hover-primary hover-white rounded-circle"
+                        >
+                          <i class="far fa-heart"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item mr-2">
+                        <button
+                          type="button"
+                          class="btn btn-white p-0 d-flex align-items-center justify-content-center w-40px h-40 text-heading bg-hover-primary hover-white rounded-circle border-0 shadow-none"
+                          data-container="body"
+                          data-toggle="popover"
+                          data-placement="top"
+                          data-html="true"
+                          data-content=' <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
+	                                                        class="fab fa-twitter"></i></a>
+                          </li>
+                          <li class="list-inline-item ">
+                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
+	                                                        class="fab fa-facebook-f"></i></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
+	                                                        class="fab fa-instagram"></i></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="#" class="text-muted fs-15 hover-dark lh-1 px-2"><i
+	                                                        class="fab fa-youtube"></i></a>
+                          </li>
+                        </ul>
+                        '
+                        >
+                          <i class="far fa-share-alt"></i>
+                        </button>
+                      </li>
+                      <li class="list-inline-item">
+                        <a
+                          href="#"
+                          data-toggle="tooltip"
+                          title="Print"
+                          class="d-flex align-items-center justify-content-center w-40px h-40 bg-white text-heading bg-hover-primary hover-white rounded-circle"
+                        >
+                          <i class="far fa-print"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="slick-slider slider-for-01 arrow-haft-inner mx-0"
+                    data-slick-options='{"slidesToShow": 1, "autoplay":false,"dots":false,"arrows":false,"asNavFor": ".slider-nav-01"}'
+                  >
+                    <div class="box px-0">
+                      <div class="item item-size-3-2">
+                        <div class="card p-0 hover-change-image">
+                          <a
+                            href="{% static 'images/single-property-lg-1.jpg' %}"
+                            class="card-img"
+                            data-gtf-mfp="true"
+                            data-gallery-id="04"
+                            style="
+                              background-image: url('{% static 'images/single-property-lg-1.jpg' %}');
+                            "
+                          >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box px-0">
+                      <div class="item item-size-3-2">
+                        <div class="card p-0 hover-change-image">
+                          <a
+                            href="{% static 'images/single-property-lg-4.jpg' %}"
+                            class="card-img"
+                            data-gtf-mfp="true"
+                            data-gallery-id="04"
+                            style="
+                              background-image: url('{% static 'images/single-property-lg-4.jpg' %}');
+                            "
+                          >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box px-0">
+                      <div class="item item-size-3-2">
+                        <div class="card p-0 hover-change-image">
+                          <a
+                            href="{% static 'images/single-property-lg-3.jpg' %}"
+                            class="card-img"
+                            data-gtf-mfp="true"
+                            data-gallery-id="04"
+                            style="
+                              background-image: url('{% static 'images/single-property-lg-3.jpg' %}');
+                            "
+                          >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box px-0">
+                      <div class="item item-size-3-2">
+                        <div class="card p-0 hover-change-image">
+                          <a
+                            href="{% static 'images/single-property-lg-2.jpg' %}"
+                            class="card-img"
+                            data-gtf-mfp="true"
+                            data-gallery-id="04"
+                            style="
+                              background-image: url('{% static 'images/single-property-lg-2.jpg' %}');
+                            "
+                          >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box px-0">
+                      <div class="item item-size-3-2">
+                        <div class="card p-0 hover-change-image">
+                          <a
+                            href="{% static 'images/single-property-lg-9.jpg' %}"
+                            class="card-img"
+                            data-gtf-mfp="true"
+                            data-gallery-id="04"
+                            style="
+                              background-image: url('{% static 'images/single-property-lg-9.jpg' %}');
+                            "
+                          >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="box px-0">
+                      <div class="item item-size-3-2">
+                        <div class="card p-0 hover-change-image">
+                          <a
+                            href="{% static 'images/single-property-lg-10.jpg' %}"
+                            class="card-img"
+                            data-gtf-mfp="true"
+                            data-gallery-id="04"
+                            style="
+                              background-image: url('{% static 'images/single-property-lg-10.jpg' %}');
+                            "
+                          >
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="slick-slider slider-nav-01 mt-4 mx-n1 arrow-haft-inner"
+                    data-slick-options='{"slidesToShow": 5, "autoplay":false,"dots":false,"arrows":false,"asNavFor": ".slider-for-01","focusOnSelect": true,"responsive":[{"breakpoint": 768,"settings": {"slidesToShow": 4}},{"breakpoint": 576,"settings": {"slidesToShow": 2}}]}'
+                  >
+                    <div class="box pb-6 px-0">
+                      <div
+                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
+                      >
+                        <img
+                          src="{% static 'images/single-property-sm-7.jpg' %}"
+                          alt="Gallery 01"
+                          class="h-100 w-100 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="box pb-6 px-0">
+                      <div
+                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
+                      >
+                        <img
+                          src="{% static 'images/single-property-sm-2.jpg' %}"
+                          alt="Gallery 02"
+                          class="h-100 w-100 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="box pb-6 px-0">
+                      <div
+                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
+                      >
+                        <img
+                          src="{% static 'images/single-property-sm-4.jpg' %}"
+                          alt="Gallery 03"
+                          class="h-100 w-100 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="box pb-6 px-0">
+                      <div
+                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
+                      >
+                        <img
+                          src="{% static 'images/single-property-sm-1.jpg' %}"
+                          alt="Gallery 04"
+                          class="h-100 w-100 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="box pb-6 px-0">
+                      <div
+                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
+                      >
+                        <img
+                          src="{% static 'images/single-property-9.jpg' %}"
+                          alt="Gallery 05"
+                          class="h-100 w-100 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="box pb-6 px-0">
+                      <div
+                        class="bg-hover-white p-1 shadow-hover-xs-3 h-100 rounded-lg"
+                      >
+                        <img
+                          src="{% static 'images/single-property-1.jpg' %}"
+                          alt="Gallery 06"
+                          class="h-100 w-100 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="pb-8 px-6 pt-5 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-3">Description</h4>
+                <p class="mb-0 lh-214">
+                  Massa tempor nec feugiat nisl pretium. Egestas fringilla
+                  phasellus faucibus scelerisque eleifend donec. Porta nibh
+                  venenatis cras sed felis eget velit aliquet. Neque volutpat ac
+                  tincidunt vitae semper quis lectus. Turpis in eu mi bibendum
+                  neque egestas congue quisque. Sed elementum tempus egestas sed
+                  sed risus pretium quam. Dignissim sodales ut eu sem. Nibh
+                  mauris cursus mattis molestie a iaculis at erat pellentesque.
+                  Id interdum velit laoreet id donec ultrices tincidunt.
+                </p>
+              </section>
+              <section class="mt-2 pb-3 px-6 pt-5 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-6">Facts and Features</h4>
+                <div class="row">
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-family fs-32 text-primary">
+                          <use xlink:href="#icon-family"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          Type
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          Single Family
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-year fs-32 text-primary">
+                          <use xlink:href="#icon-year"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          year built
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          2020
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-heating fs-32 text-primary">
+                          <use xlink:href="#icon-heating"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          heating
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          Radiant
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-price fs-32 text-primary">
+                          <use xlink:href="#icon-price"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          SQFT
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          979.0
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-bedroom fs-32 text-primary">
+                          <use xlink:href="#icon-bedroom"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          Bedrooms
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          3
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-sofa fs-32 text-primary">
+                          <use xlink:href="#icon-sofa"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          bathrooms
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          2
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-Garage fs-32 text-primary">
+                          <use xlink:href="#icon-Garage"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          GARAGE
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          1
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-4 mb-6">
+                    <div class="media">
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
+                        <svg class="icon icon-status fs-32 text-primary">
+                          <use xlink:href="#icon-status"></use>
+                        </svg>
+                      </div>
+                      <div class="media-body">
+                        <h5
+                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
+                        >
+                          Status
+                        </h5>
+                        <p class="mb-0 fs-13 font-weight-bold text-heading">
+                          Active
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="mt-2 pb-6 px-6 pt-5 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-4">Additional Details</h4>
+                <div class="row">
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Property ID
+                    </dt>
+                    <dd>AD-2910</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Price
+                    </dt>
+                    <dd>$890.000</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Property type
+                    </dt>
+                    <dd>Apartment, bar, cafe, villa</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Property status
+                    </dt>
+                    <dd>For Sale</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Rooms
+                    </dt>
+                    <dd>4</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Bedrooms
+                    </dt>
+                    <dd>3</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Size
+                    </dt>
+                    <dd>900SqFt</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Bathrooms
+                    </dt>
+                    <dd>2</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Garage
+                    </dt>
+                    <dd>1</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Bathrooms
+                    </dt>
+                    <dd>2000 SqFt</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Garage size
+                    </dt>
+                    <dd>50 SqFt</dd>
+                  </dl>
+                  <dl class="col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Year build
+                    </dt>
+                    <dd>2020</dd>
+                  </dl>
+                  <dl class="offset-sm-6 col-sm-6 mb-0 d-flex">
+                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
+                      Label
+                    </dt>
+                    <dd>Bestseller</dd>
+                  </dl>
+                </div>
+              </section>
+              <section class="mt-2 pb-7 px-6 pt-5 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-4">Offices Amenities</h4>
+                <ul class="list-unstyled mb-0 row no-gutters">
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Balcony
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Fireplace
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Balcony
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Fireplace
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Basement
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Cooling
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Basement
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Cooling
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Dining room
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Dishwasher
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Dining room
+                  </li>
+                  <li class="col-sm-3 col-6 mb-2">
+                    <i class="far fa-check mr-2 text-primary"></i>Dishwasher
+                  </li>
+                </ul>
+              </section>
+              <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-6">Virtual Tour</h4>
+                <iframe
+                  height="430"
+                  src="https://www.youtube.com/embed/KNUcUBdYT58?autoplay=1&mute=1"
+                  allowfullscreen=""
+                  class="w-100"
+                >
+                </iframe>
+              </section>
+              <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-6">Location</h4>
+                <div class="position-relative">
+                  <div class="position-relative">
+                    <div
+                      id="map"
+                      class="mapbox-gl map-point-animate"
+                      data-mapbox-access-token="pk.eyJ1IjoibHVrYWRhdGFjeSIsImEiOiJjbWFtZWs5c3EwZzV5MnBzNGVzdXk0cXNiIn0.tfUSq0hYimUnpRBZCHvJKg"
+                      data-mapbox-options='{"center":[-73.9927227, 40.6741035],"setLngLat":[-73.9927227, 40.6741035]}'
+                      data-mapbox-marker='[{"position":[-73.9927227, 40.6741035],"className":"marker","backgroundImage":"{% static 'images/googlle-market-01.png' %}","backgroundRepeat":"no-repeat","width":"30px","height":"40px"}]'
+                    ></div>
+                    <p
+                      class="mb-0 p-3 bg-white shadow rounded-lg position-absolute pos-fixed-bottom mb-4 ml-4 lh-17 z-index-2"
+                    >
+                      62 Gresham St, Victoria Park <br />
+                      WA 6100, Australia
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <section class="mt-2 pb-7 px-6 pt-6 bg-white rounded-lg">
+                <h4 class="fs-22 text-heading mb-6">
+                  Similar Homes You May Like
+                </h4>
+                <div
+                  class="slick-slider"
+                  data-slick-options='{"slidesToShow": 2, "dots":false,"responsive":[{"breakpoint": 1200,"settings": {"slidesToShow":2,"arrows":false}},{"breakpoint": 992,"settings": {"slidesToShow":2}},{"breakpoint": 768,"settings": {"slidesToShow": 1}},{"breakpoint": 576,"settings": {"slidesToShow": 1}}]}'
+                >
+                  <div class="box">
+                    <div class="card shadow-hover-2 =">
+                      <div
+                        class="hover-change-image bg-hover-overlay rounded-lg card-img-top"
+                      >
+                        <img
+                          src="{% static 'images/properties-grid-38.jpg' %}"
+                          alt="Home in Metric Way"
+                        />
+                        <div class="card-img-overlay p-2 d-flex flex-column">
+                          <div>
+                            <span class="badge mr-2 badge-primary"
+                              >for Sale</span
+                            >
+                          </div>
+                          <ul class="list-inline mb-0 mt-auto hover-image">
+                            <li
+                              class="list-inline-item mr-2"
+                              data-toggle="tooltip"
+                              title="9 Images"
+                            >
+                              <a href="#" class="text-white hover-primary">
+                                <i class="far fa-images"></i
+                                ><span class="pl-1">9</span>
+                              </a>
+                            </li>
+                            <li
+                              class="list-inline-item"
+                              data-toggle="tooltip"
+                              title="2 Video"
+                            >
+                              <a href="#" class="text-white hover-primary">
+                                <i class="far fa-play-circle"></i
+                                ><span class="pl-1">2</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card-body pt-3">
+                        <h2 class="card-title fs-16 lh-2 mb-0">
+                          <a
+                            href="single-property-1.html"
+                            class="text-dark hover-primary"
+                            >Home in Metric Way</a
+                          >
+                        </h2>
+                        <p
+                          class="card-text font-weight-500 text-gray-light mb-2"
+                        >
+                          1421 San Pedro St, Los Angeles
+                        </p>
+                        <ul class="list-inline d-flex mb-0 flex-wrap mr-n4">
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="3 Bedroom"
+                          >
+                            <svg
+                              class="icon icon-bedroom fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-bedroom"></use></svg
+                            >3 Br
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="3 Bathrooms"
+                          >
+                            <svg
+                              class="icon icon-shower fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-shower"></use></svg
+                            >3 Ba
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="Size"
+                          >
+                            <svg
+                              class="icon icon-square fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-square"></use></svg
+                            >2300 Sq.Ft
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="1 Garage"
+                          >
+                            <svg
+                              class="icon icon-Garage fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-Garage"></use></svg
+                            >1 Gr
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3"
+                      >
+                        <p class="fs-17 font-weight-bold text-heading mb-0">
+                          $1.250.000
+                        </p>
+                        <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                            <a
+                              href="#"
+                              class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-secondary bg-accent border-accent"
+                              data-toggle="tooltip"
+                              title="Wishlist"
+                              ><i class="fas fa-heart"></i
+                            ></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a
+                              href="#"
+                              class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-body hover-secondary bg-hover-accent border-hover-accent"
+                              data-toggle="tooltip"
+                              title="Compare"
+                              ><i class="fas fa-exchange-alt"></i
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box">
+                    <div class="card shadow-hover-2 =">
+                      <div
+                        class="hover-change-image bg-hover-overlay rounded-lg card-img-top"
+                      >
+                        <img
+                          src="{% static 'images/properties-grid-01.jpg' %}"
+                          alt="Garden Gingerbread House"
+                        />
+                        <div class="card-img-overlay p-2 d-flex flex-column">
+                          <div>
+                            <span class="badge mr-2 badge-orange"
+                              >featured</span
+                            >
+                            <span class="badge mr-2 badge-indigo"
+                              >for Sale</span
+                            >
+                          </div>
+                          <ul class="list-inline mb-0 mt-auto hover-image">
+                            <li
+                              class="list-inline-item mr-2"
+                              data-toggle="tooltip"
+                              title="9 Images"
+                            >
+                              <a href="#" class="text-white hover-primary">
+                                <i class="far fa-images"></i
+                                ><span class="pl-1">9</span>
+                              </a>
+                            </li>
+                            <li
+                              class="list-inline-item"
+                              data-toggle="tooltip"
+                              title="2 Video"
+                            >
+                              <a href="#" class="text-white hover-primary">
+                                <i class="far fa-play-circle"></i
+                                ><span class="pl-1">2</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card-body pt-3">
+                        <h2 class="card-title fs-16 lh-2 mb-0">
+                          <a
+                            href="single-property-1.html"
+                            class="text-dark hover-primary"
+                            >Garden Gingerbread House</a
+                          >
+                        </h2>
+                        <p
+                          class="card-text font-weight-500 text-gray-light mb-2"
+                        >
+                          1421 San Pedro St, Los Angeles
+                        </p>
+                        <ul class="list-inline d-flex mb-0 flex-wrap mr-n4">
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="3 Bedroom"
+                          >
+                            <svg
+                              class="icon icon-bedroom fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-bedroom"></use></svg
+                            >3 Br
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="3 Bathrooms"
+                          >
+                            <svg
+                              class="icon icon-shower fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-shower"></use></svg
+                            >3 Ba
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="Size"
+                          >
+                            <svg
+                              class="icon icon-square fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-square"></use></svg
+                            >2300 Sq.Ft
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="1 Garage"
+                          >
+                            <svg
+                              class="icon icon-Garage fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-Garage"></use></svg
+                            >1 Gr
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3"
+                      >
+                        <p class="fs-17 font-weight-bold text-heading mb-0">
+                          $550<span
+                            class="text-gray-light font-weight-500 fs-14"
+                          >
+                            / month</span
+                          >
+                        </p>
+                        <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                            <a
+                              href="#"
+                              class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-body hover-secondary bg-hover-accent border-hover-accent"
+                              data-toggle="tooltip"
+                              title="Wishlist"
+                              ><i class="far fa-heart"></i
+                            ></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a
+                              href="#"
+                              class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-body hover-secondary bg-hover-accent border-hover-accent"
+                              data-toggle="tooltip"
+                              title="Compare"
+                              ><i class="fas fa-exchange-alt"></i
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box">
+                    <div class="card shadow-hover-2 =">
+                      <div
+                        class="hover-change-image bg-hover-overlay rounded-lg card-img-top"
+                      >
+                        <img
+                          src="{% static 'images/properties-grid-02.jpg' %}"
+                          alt="Affordable Urban House"
+                        />
+                        <div class="card-img-overlay p-2 d-flex flex-column">
+                          <div>
+                            <span class="badge mr-2 badge-primary"
+                              >for Sale</span
+                            >
+                          </div>
+                          <ul class="list-inline mb-0 mt-auto hover-image">
+                            <li
+                              class="list-inline-item mr-2"
+                              data-toggle="tooltip"
+                              title="9 Images"
+                            >
+                              <a href="#" class="text-white hover-primary">
+                                <i class="far fa-images"></i
+                                ><span class="pl-1">9</span>
+                              </a>
+                            </li>
+                            <li
+                              class="list-inline-item"
+                              data-toggle="tooltip"
+                              title="2 Video"
+                            >
+                              <a href="#" class="text-white hover-primary">
+                                <i class="far fa-play-circle"></i
+                                ><span class="pl-1">2</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card-body pt-3">
+                        <h2 class="card-title fs-16 lh-2 mb-0">
+                          <a
+                            href="single-property-1.html"
+                            class="text-dark hover-primary"
+                            >Affordable Urban House</a
+                          >
+                        </h2>
+                        <p
+                          class="card-text font-weight-500 text-gray-light mb-2"
+                        >
+                          1421 San Pedro St, Los Angeles
+                        </p>
+                        <ul class="list-inline d-flex mb-0 flex-wrap mr-n4">
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="3 Bedroom"
+                          >
+                            <svg
+                              class="icon icon-bedroom fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-bedroom"></use></svg
+                            >3 Br
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="3 Bathrooms"
+                          >
+                            <svg
+                              class="icon icon-shower fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-shower"></use></svg
+                            >3 Ba
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="Size"
+                          >
+                            <svg
+                              class="icon icon-square fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-square"></use></svg
+                            >2300 Sq.Ft
+                          </li>
+                          <li
+                            class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-4"
+                            data-toggle="tooltip"
+                            title="1 Garage"
+                          >
+                            <svg
+                              class="icon icon-Garage fs-18 text-primary mr-1"
+                            >
+                              <use xlink:href="#icon-Garage"></use></svg
+                            >1 Gr
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        class="card-footer bg-transparent d-flex justify-content-between align-items-center py-3"
+                      >
+                        <p class="fs-17 font-weight-bold text-heading mb-0">
+                          $1.250.000
+                        </p>
+                        <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                            <a
+                              href="#"
+                              class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-body hover-secondary bg-hover-accent border-hover-accent"
+                              data-toggle="tooltip"
+                              title="Wishlist"
+                              ><i class="far fa-heart"></i
+                            ></a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a
+                              href="#"
+                              class="w-40px h-40 border rounded-circle d-inline-flex align-items-center justify-content-center text-body hover-secondary bg-hover-accent border-hover-accent"
+                              data-toggle="tooltip"
+                              title="Compare"
+                              ><i class="fas fa-exchange-alt"></i
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </article>
+            <aside
+              class="col-lg-4 pl-xl-4 primary-sidebar sidebar-sticky"
+              id="sidebar"
+            >
+              <div class="primary-sidebar-inner">
+                <div class="bg-white rounded-lg py-lg-6 pl-lg-6 pr-lg-3 p-4">
+                  <ul class="list-inline d-sm-flex align-items-sm-center mb-2">
+                    <li class="list-inline-item badge badge-orange mr-2">
+                      Featured
+                    </li>
+                    <li class="list-inline-item badge badge-primary mr-3">
+                      For Sale
+                    </li>
+                  </ul>
+                  <h2 class="fs-22 text-heading pt-2">
+                    Villa Called Archangel
+                  </h2>
+                  <p class="mb-2">
+                    <i class="fal fa-map-marker-alt mr-1"></i>398 Pete Pascale
+                    Pl, New York
+                  </p>
+                  <div class="d-flex align-items-center">
+                    <p class="fs-22 text-heading font-weight-bold mb-0 mr-6">
+                      $1.250.000
+                    </p>
+                    <p class="mb-0">$9350/SqFt</p>
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col-6 mb-3">
+                      <div class="media">
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
+                          <svg class="icon icon-bedroom fs-18 text-primary">
+                            <use xlink:href="#icon-bedroom"></use>
+                          </svg>
+                        </div>
+                        <div class="media-body">
+                          <h5 class="fs-13 font-weight-normal mb-0">
+                            Bedrooms
+                          </h5>
+                          <p class="mb-0 fs-13 font-weight-bold text-dark">3</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <div class="media">
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
+                          <svg class="icon icon-shower fs-18 text-primary">
+                            <use xlink:href="#icon-shower"></use>
+                          </svg>
+                        </div>
+                        <div class="media-body">
+                          <h5 class="fs-13 font-weight-normal mb-0">
+                            Bathrooms
+                          </h5>
+                          <p class="mb-0 fs-13 font-weight-bold text-dark">2</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <div class="media">
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
+                          <svg class="icon icon-square fs-18 text-primary">
+                            <use xlink:href="#icon-square"></use>
+                          </svg>
+                        </div>
+                        <div class="media-body">
+                          <h5 class="fs-13 font-weight-normal mb-0">Area</h5>
+                          <p class="mb-0 fs-13 font-weight-bold text-dark">
+                            3.6k SqFt
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <div class="media">
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
+                          <svg class="icon icon-Garage fs-18 text-primary">
+                            <use xlink:href="#icon-Garage"></use>
+                          </svg>
+                        </div>
+                        <div class="media-body">
+                          <h5 class="fs-13 font-weight-normal mb-0">Garage</h5>
+                          <p class="mb-0 fs-13 font-weight-bold text-dark">1</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mb-6 mt-1">
+                    Villa Called Archangel is now available to buy off plan in
+                    New Islington in Australia.
+                  </p>
+                  <div class="mr-xl-2">
+                    <a
+                      href="#"
+                      class="btn btn-outline-primary btn-lg btn-block rounded border text-body border-hover-primary hover-white"
+                      >Schedule a Tour</a
+                    >
+                    <a
+                      href="#"
+                      class="btn btn-outline-primary btn-lg btn-block rounded border text-body border-hover-primary hover-white mt-4"
+                      >Request Info</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+      <section>
+        <div
+          class="d-flex bottom-bar-action bottom-bar-action-01 py-2 px-4 bg-gray-01 align-items-center position-fixed fixed-bottom d-sm-none"
+        >
+          <div class="media align-items-center">
+            <img
+              src="{% static 'images/irene-wallace.png' %}"
+              alt="Irene Wallace"
+              class="mr-4 rounded-circle"
+            />
+            <div class="media-body">
+              <a href="#" class="d-block text-dark fs-15 font-weight-500 lh-15"
+                >Irene Wallace</a
+              >
+              <span class="fs-13 lh-2">Sales Excutive</span>
+            </div>
+          </div>
+          <div class="ml-auto">
+            <a
+              href="tel:(+84)2388-969-888"
+              class="btn btn-primary fs-18 p-2 lh-1 mb-1 shadow-none"
+              target="_blank"
+              ><i class="fal fa-phone"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+{% endblock %}
