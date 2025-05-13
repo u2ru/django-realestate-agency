@@ -4,7 +4,7 @@
     <img
       src="{{ item.get_main_image }}"
       alt="{{ item.name }}"
-      style="aspect-ratio: 16/9"
+      style="aspect-ratio: 16/9; object-fit: cover;"
     />
     <div class="card-img-overlay p-2 d-flex flex-column">
       <div>
@@ -52,17 +52,13 @@
       {{ item.city|title }}, {{ item.address }}
     </p>
     <ul class="list-inline d-flex mb-0 flex-wrap mr-n5">
-      {% if item.rooms %}
+      {% if item.bedrooms %}
       <li
         class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-5"
         data-toggle="tooltip"
         title="Bedrooms"
       >
-        {% comment %}
-        <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-          <use xlink:href="#icon-bedroom"></use>
-        </svg>
-        {% endcomment %} {{ item.bedrooms }} bedrooms
+        {{ item.bedrooms }} bedrooms
       </li>
       {% endif %}
       {% if item.floor %}
@@ -71,7 +67,7 @@
         data-toggle="tooltip"
         title="floors"
       >
-        {{ item.floor }} }} floor
+        {{ item.floor }} floor
       </li>
       {% endif %}
       {% if item.area %}

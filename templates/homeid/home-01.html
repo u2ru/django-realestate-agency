@@ -25,8 +25,8 @@
               <input
                 class="search-field"
                 type="hidden"
-                name="status"
-                value="for-sale"
+                name="deal_type"
+                value="SALE"
                 data-default-value=""
               />
               <ul class="nav nav-pills property-search-status-tab">
@@ -40,7 +40,7 @@
                     aria-selected="true"
                     class="nav-link btn shadow-none rounded-bottom-0 text-white text-btn-focus-secondary text-uppercase d-flex align-items-center fs-13 rounded-bottom-0 bg-active-white text-active-secondary letter-spacing-087 flex-md-1 px-4 py-2 active"
                     data-toggle="pill"
-                    data-value="for-sale"
+                    data-value="SALE"
                   >
                     {% trans "for sale" %}
                   </a>
@@ -55,7 +55,7 @@
                     aria-selected="true"
                     class="nav-link btn shadow-none rounded-bottom-0 text-white text-btn-focus-secondary text-uppercase d-flex align-items-center fs-13 rounded-bottom-0 bg-active-white text-active-secondary letter-spacing-087 flex-md-1 px-4 py-2"
                     data-toggle="pill"
-                    data-value="for-rent"
+                    data-value="RENT"
                   >
                     {% trans "for rent" %}
                   </a>
@@ -132,7 +132,7 @@
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
-                      name="bedroom"
+                      name="bedrooms"
                       title="All Bedrooms"
                       data-style="p-0 h-24 lh-17 text-dark"
                     >
@@ -474,9 +474,10 @@
                     data-style="btn-lg py-2 h-52 bg-transparent"
                     name="type"
                   >
-                    <option>All status</option>
-                    <option>For Rent</option>
-                    <option>For Sale</option>
+                    <option value="">{% trans "All Status" %}</option>
+                    {% for status in filter_properties.status_list %}
+                    <option value="{{ status.0 }}">{{ status.1 }}</option>
+                    {% endfor %}
                   </select>
                 </div>
                 <div class="col-sm-6 pt-4 px-2">
@@ -494,7 +495,7 @@
                 <div class="col-sm-6 pt-4 px-2">
                   <select
                     class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
-                    name="bedroom"
+                    name="bedrooms"
                     title="Bedrooms"
                     data-style="btn-lg py-2 h-52 bg-transparent"
                   >

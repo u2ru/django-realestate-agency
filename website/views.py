@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import HomePageContent
-from property.models import Property, PROPERTY_TYPE_CHOICES
+from property.models import Property, PROPERTY_TYPE_CHOICES, DEAL_TYPE_CHOICES
 from property.constants import CITY_CHOICES
 from django.db.models import Max
 
@@ -21,8 +21,8 @@ def index(request):
     bedroom_list = [(i, str(i)) for i in range(1, max_bedrooms + 1)]
     area_range_max = Property.objects.aggregate(Max("area"))["area__max"]
     price_range_max = Property.objects.aggregate(Max("price"))["price__max"]
-    print("area_range_max", area_range_max)
-    print("price_range_max", price_range_max)
+    status_list = DEAL_TYPE_CHOICES
+
     return render(
         request,
         "homeid/home-01.html",
@@ -40,6 +40,7 @@ def index(request):
                 "bedroom_list": bedroom_list,
                 "area_range_max": area_range_max,
                 "price_range_max": price_range_max,
+                "status_list": status_list,
             },
         },
     )

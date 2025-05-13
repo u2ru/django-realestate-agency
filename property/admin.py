@@ -10,6 +10,7 @@ from .models import (
     SUPPORTED_LANGUAGES,
     PRIMARY_LANGUAGE,
     CITY_CHOICES,
+    FEATURE_CHOICES,
 )
 
 # Get language codes from constant
@@ -105,6 +106,12 @@ language_inlines = [
 
 
 class PropertyAdminForm(forms.ModelForm):
+    features = forms.MultipleChoiceField(
+        choices=FEATURE_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = Property
         fields = "__all__"
@@ -116,6 +123,19 @@ class PropertyAdminForm(forms.ModelForm):
             self.initial["rent_period"] = "month"
         if self.instance and self.instance.deal_type != "RENT":
             self.fields["rent_period"].widget = forms.HiddenInput()
+        # Set initial for features from JSONField
+        if self.instance and self.instance.features:
+            self.initial["features"] = self.instance.features
+
+    def clean_features(self):
+        return self.cleaned_data["features"]
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.features = self.cleaned_data.get("features", [])
+        if commit:
+            instance.save()
+        return instance
 
 
 @admin.register(Property)
@@ -124,6 +144,7 @@ class PropertyAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "price",
+        "price_type",
         "currency",
         "property_type",
         "deal_type",
@@ -141,7 +162,7 @@ class PropertyAdmin(admin.ModelAdmin):
             f"Basic Information ({SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]})",
             {"fields": ("name", "description", "featured", "published")},
         ),
-        ("Price Information", {"fields": ("price", "currency")}),
+        ("Price Information", {"fields": ("price", "price_type", "currency")}),
         ("Location", {"fields": ("address", "city", "property_id")}),
         ("Media", {"fields": ("youtube_url",)}),
         (
@@ -162,13 +183,7 @@ class PropertyAdmin(admin.ModelAdmin):
         (
             "Additional Features",
             {
-                "fields": (
-                    "has_balcony",
-                    "has_parking",
-                    "has_elevator",
-                    "has_furniture",
-                    "has_central_heating",
-                ),
+                "fields": ("features",),
             },
         ),
         (

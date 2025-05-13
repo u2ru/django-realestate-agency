@@ -1,73 +1,120 @@
 from django.shortcuts import render
 from django.db.models import Q
-
-from .models import Property
+from django.db.models import Max
+from .models import (
+    Property,
+    PROPERTY_TYPE_CHOICES,
+    PRICE_TYPE_CHOICES,
+    DEAL_TYPE_CHOICES,
+    FEATURE_CHOICES,
+)
+from .constants import CITY_CHOICES
 
 
 def index(request):
     properties = Property.objects.all()
 
     # Get search parameters from request
-    search_query = request.GET.get("q", "")
-    property_type = request.GET.get("property_type", "")
     deal_type = request.GET.get("deal_type", "")
-    min_price = request.GET.get("min_price")
-    max_price = request.GET.get("max_price")
+    type = request.GET.get("type", "")
+    search = request.GET.get("search", "")
+    bedrooms = request.GET.get("bedrooms", "")
+    if bedrooms:
+        bedrooms = int(bedrooms)
     city = request.GET.get("city", "")
-    region = request.GET.get("region", "")
-    min_area = request.GET.get("min_area")
-    max_area = request.GET.get("max_area")
-    rooms = request.GET.get("rooms")
+    price_type = request.GET.get("price_type", "")
+    price = request.GET.get("price", "")
+    area = request.GET.get("area", "")
+    property_id = request.GET.get("property_id", "")
+    features = request.GET.getlist("features", [])
 
     # Apply filters based on provided parameters
-    if search_query:
-        properties = properties.filter(
-            Q(name__icontains=search_query)
-            | Q(description__icontains=search_query)
-            | Q(location__icontains=search_query)
+    if search:
+        filtered_properties = properties.filter(
+            Q(name__icontains=search)
+            | Q(description__icontains=search)
+            | Q(address__icontains=search)
         )
-
-    if property_type:
-        properties = properties.filter(property_type=property_type)
+        if filtered_properties.count() != 0:
+            properties = filtered_properties
 
     if deal_type:
-        properties = properties.filter(deal_type=deal_type)
+        deal_type_formatted = [
+            choice[0]
+            for choice in DEAL_TYPE_CHOICES
+            if choice[1].lower().replace(" ", "-") == deal_type
+        ]
+        if deal_type_formatted:
+            properties = properties.filter(deal_type=deal_type_formatted[0])
 
-    if min_price:
-        properties = properties.filter(price__gte=min_price)
+    if type:
+        properties = properties.filter(property_type=type)
 
-    if max_price:
-        properties = properties.filter(price__lte=max_price)
+    if bedrooms:
+        properties = properties.filter(bedrooms=bedrooms)
 
     if city:
-        properties = properties.filter(city__icontains=city)
+        properties = properties.filter(city=city)
 
-    if region:
-        properties = properties.filter(region__icontains=region)
+    # if price:
+    #     properties = properties.filter(price__range=price)
 
-    if min_area:
-        properties = properties.filter(area__gte=min_area)
+    if price_type:
+        properties = properties.filter(price_type=price_type)
 
-    if max_area:
-        properties = properties.filter(area__lte=max_area)
+    # if area:
+    #     properties = properties.filter(area__range=area)
 
-    if rooms:
-        properties = properties.filter(rooms=rooms)
+    if property_id:
+        properties = properties.filter(property_id=property_id)
+
+    # filter properties
+    city_list = CITY_CHOICES
+    home_types = PROPERTY_TYPE_CHOICES
+    max_bedrooms = (
+        Property.objects.aggregate(Max("bedrooms"))["bedrooms__max"]
+        if Property.objects.aggregate(Max("bedrooms"))["bedrooms__max"] > 6
+        else 6
+    )
+    bedroom_list = [(i, str(i)) for i in range(1, max_bedrooms + 1)]
+    area_range_max = Property.objects.aggregate(Max("area"))["area__max"]
+    price_range_max = Property.objects.aggregate(Max("price"))["price__max"]
+    status_list = DEAL_TYPE_CHOICES
+    features_list = FEATURE_CHOICES
 
     # Add search parameters to context to maintain them in the form
     context = {
         "properties": properties,
         "search_params": {
-            "q": search_query,
-            "property_type": property_type,
             "deal_type": deal_type,
-            "min_price": min_price,
-            "max_price": max_price,
+            "type": type,
+            "search": search,
+            "bedrooms": bedrooms,
             "city": city,
-            "region": region,
-            "min_area": min_area,
-            "max_area": max_area,
-            "rooms": rooms,
+            "price_type": price_type,
+            # "price": price,
+            # "area": area,
+            "property_id": property_id,
+        },
+        "filter_properties": {
+            "city_list": city_list,
+            "home_types": home_types,
+            "bedroom_list": bedroom_list,
+            "area_range_max": area_range_max,
+            "price_range_max": price_range_max,
+            "price_type_list": PRICE_TYPE_CHOICES,
+            "status_list": status_list,
+            "features_list": features_list,
+        },
+        "values_from_search": {
+            "city": city,
+            "price_type": price_type,
+            "type": type,
+            "deal_type": [
+                choice[0] for choice in DEAL_TYPE_CHOICES if choice[0] == deal_type
+            ],
+            "bedrooms": bedrooms,
+            "features": features,
         },
     }
 

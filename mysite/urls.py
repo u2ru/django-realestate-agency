@@ -36,7 +36,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path("", include("website.urls")),
+    path("", include("website.urls"), name="home"),
     path("property/", include("property.urls", namespace="property")),
     path("admin/", admin.site.urls),
     prefix_default_language=False,

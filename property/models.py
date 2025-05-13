@@ -14,8 +14,38 @@ PROPERTY_TYPE_CHOICES = [
     ("LAND", "Land"),
 ]
 
+PRICE_TYPE_CHOICES = [
+    ("HIGH", "High"),
+    ("LOW", "Low"),
+    ("MEDIUM", "Medium"),
+]
+
+DEAL_TYPE_CHOICES = [
+    ("SALE", "For Sale"),
+    ("RENT", "For Rent"),
+]
+
+FEATURE_CHOICES = [
+    ("balcony", "Balcony"),
+    ("parking", "Parking"),
+    ("elevator", "Elevator"),
+    ("furniture", "Furniture"),
+    ("central_heating", "Central Heating"),
+]
+
 
 # Create your models here.
+class PropertyFeature(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    display_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.display_name
+
+    class Meta:
+        ordering = ["display_name"]
+
+
 class Property(models.Model):
     name = models.CharField(
         max_length=200,
@@ -32,6 +62,9 @@ class Property(models.Model):
         ("GEL", "Georgian Lari"),
     ]
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    price_type = models.CharField(
+        max_length=10, choices=PRICE_TYPE_CHOICES, default="LOW"
+    )
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default="USD")
 
     # Location details
@@ -49,10 +82,6 @@ class Property(models.Model):
 
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
 
-    DEAL_TYPE_CHOICES = [
-        ("SALE", "For Sale"),
-        ("RENT", "For Rent"),
-    ]
     deal_type = models.CharField(max_length=10, choices=DEAL_TYPE_CHOICES)
 
     RENT_PERIOD_CHOICES = [
@@ -87,11 +116,11 @@ class Property(models.Model):
     )
 
     # Additional features as checkboxes
-    has_balcony = models.BooleanField(default=False)
-    has_parking = models.BooleanField(default=False)
-    has_elevator = models.BooleanField(default=False)
-    has_furniture = models.BooleanField(default=False)
-    has_central_heating = models.BooleanField(default=False)
+    features = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="List of features that apply to the property (e.g., ['balcony', 'parking', 'elevator'])",
+    )
 
     # Agent information
     agent_name = models.CharField(
