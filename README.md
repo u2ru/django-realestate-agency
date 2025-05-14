@@ -66,3 +66,9 @@ python manage.py compilemessages
 ```bash
 python manage.py collectstatic
 ```
+
+# venv creation on pythonanywhere
+
+```bash
+mkvirtualenv --python=/usr/bin/python3.12 venv
+```
