@@ -93,13 +93,13 @@
           <nav class="navbar navbar-expand-lg px-0">
             <a class="navbar-brand" href="{% url 'home' %}">
               <img
-                src="{% static 'images/logo.png' %}"
+                src="{{ logo }}"
                 alt="HomeID"
                 class="d-none d-lg-inline-block"
                 style="max-height: 60px"
               />
               <img
-                src="{% static 'images/logo-white.png' %}"
+                src="{{ logo_white }}"
                 alt="HomeID"
                 class="d-inline-block d-lg-none"
                 style="max-height: 40px"
@@ -245,7 +245,7 @@
           <div class="col-md-6 col-lg-4 mb-6 mb-md-0">
             <a class="d-block mb-2" href="{% url 'home' %}" style="max-width: fit-content">
               <img
-                src="{% static 'images/logo-white.png' %}"
+                src="{{ logo_white }}"
                 alt="HomeID"
                 style="max-height: 100px"
               />

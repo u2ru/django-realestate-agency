@@ -127,8 +127,16 @@ homepage_translation_inlines = [
 @admin.register(HomePageContent)
 class HomePageContentAdmin(admin.ModelAdmin):
     inlines = homepage_translation_inlines
+    readonly_fields = ("logo_preview", "logo_white_preview")
     fieldsets = (
         ("Company Information", {"fields": ("company_name",)}),
+        (
+            "Logo",
+            {
+                "fields": ("logo", "logo_preview", "logo_white", "logo_white_preview"),
+                "classes": ("wide",),
+            },
+        ),
         ("Hero Section", {"fields": ("hero_title", "hero_subtitle", "hero_image")}),
         (
             "Properties for Sale Section",
@@ -152,6 +160,26 @@ class HomePageContentAdmin(admin.ModelAdmin):
             {"fields": ("properties_count", "years_experience", "happy_customers")},
         ),
     )
+
+    def logo_preview(self, obj):
+        if obj.logo:
+            return format_html(
+                '<img src="{}" style="max-height: 100px; max-width: 200px;"/>',
+                obj.logo.url,
+            )
+        return "No logo uploaded"
+
+    logo_preview.short_description = "Logo Preview"
+
+    def logo_white_preview(self, obj):
+        if obj.logo_white:
+            return format_html(
+                '<img src="{}" style="max-height: 100px; max-width: 200px;"/>',
+                obj.logo_white.url,
+            )
+        return "No white logo uploaded"
+
+    logo_white_preview.short_description = "White Logo Preview"
 
     def has_add_permission(self, request):
         # Only allow one instance
@@ -227,3 +255,23 @@ class AboutUsContentAdmin(admin.ModelAdmin):
             {"fields": ("bottom_section_title", "bottom_section_content")},
         ),
     )
+
+    def has_add_permission(self, request):
+        # Only allow one instance
+        return not HomePageContent.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion of the single instance
+        return False
+
+    def save_formset(self, request, form, formset, change):
+        """Ensure translations have language set before saving"""
+        instances = formset.save(commit=False)
+        for instance in instances:
+            if isinstance(instance, HomePageContentTranslation):
+                # Force set language based on formset prefix
+                for lang_code in SECONDARY_LANGUAGES:
+                    if lang_code.lower() in formset.prefix.lower():
+                        instance.language = lang_code
+            instance.save()
+        formset.save_m2m()

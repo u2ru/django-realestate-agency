@@ -48,7 +48,6 @@ def index(request):
 
 def about(request):
     about_us_content = AboutUsContent.objects.first()
-    contact_phone = HomePageContent.objects.first().contact_phone
     return render(
         request,
         "homeid/about-us.html",
@@ -80,7 +79,6 @@ def about(request):
                 "bottom_section_content": about_us_content.get_translation(
                     "bottom_section_content"
                 ),
-                "contact_phone": contact_phone,
             }
         },
     )

@@ -9,6 +9,11 @@ class HomePageContent(models.Model):
 
     company_name = models.CharField(max_length=200, help_text="Company name")
 
+    logo = models.ImageField(upload_to="homepage/", help_text="Logo image")
+    logo_white = models.ImageField(
+        upload_to="homepage/", help_text="Logo image in white"
+    )
+
     # Hero section
     hero_title = models.CharField(
         max_length=200,
@@ -140,6 +145,13 @@ class HomePageContentTranslation(models.Model):
 
     def __str__(self):
         return f"Home Page Content - {self.get_language_display()}"
+
+    def save(self, *args, **kwargs):
+        # Only allow one instance
+        if not self.pk and HomePageContent.objects.exists():
+            # If you try to create a second instance, get the first one
+            return HomePageContent.objects.first()
+        return super().save(*args, **kwargs)
 
 
 class AboutUsContent(models.Model):
