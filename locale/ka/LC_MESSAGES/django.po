@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-13 14:30+0000\n"
+"POT-Creation-Date: 2025-05-14 21:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,118 +17,352 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-#: templates/homeid/home-01.html:43
+
+#: property/templates/admin/coordinates_widget.html:4
+msgid "Clear"
+msgstr ""
+
+#: templates/homeid/404.html:9
+msgid "Oops! That page can't be found."
+msgstr ""
+
+#: templates/homeid/404.html:12
+msgid "It looks like nothing was found at this location"
+msgstr ""
+
+#: templates/homeid/404.html:15 templates/homeid/layout.html:132
+#: templates/homeid/layout.html:314
+#: templates/homeid/listing-full-width-grid-1.html:7
+#: templates/homeid/single-property-6.html:157
+msgid "Home Page"
+msgstr ""
+
+#: templates/homeid/about-us.html:98
+msgid "Visit our office at"
+msgstr ""
+
+#: templates/homeid/about-us.html:125
+msgid "Call Us At"
+msgstr ""
+
+#: templates/homeid/components/home-listing-box.html:23
+msgid "Images"
+msgstr ""
+
+#: templates/homeid/components/home-listing-box.html:30
+msgid "Views"
+msgstr ""
+
+#: templates/homeid/components/home-listing-box.html:102
+msgid "View Details"
+msgstr ""
+
+#: templates/homeid/home-01.html:45
 msgid "for sale"
 msgstr ""
 
-#: templates/homeid/home-01.html:58
+#: templates/homeid/home-01.html:60
 msgid "for rent"
 msgstr ""
 
-#: templates/homeid/home-01.html:71
+#: templates/homeid/home-01.html:73
 msgid "Home Type"
 msgstr ""
 
-#: templates/homeid/home-01.html:87 templates/homeid/home-01.html:118
+#: templates/homeid/home-01.html:88 templates/homeid/home-01.html:119
+#: templates/homeid/single-property-6.html:56
+#: templates/homeid/single-property-6.html:75
 msgid "Search"
 msgstr ""
 
-#: templates/homeid/home-01.html:94
+#: templates/homeid/home-01.html:95
 msgid "Find something..."
 msgstr ""
 
-#: templates/homeid/home-01.html:110
-msgid "Advanced Search"
+#: templates/homeid/home-01.html:111
+msgid "More Filters"
 msgstr ""
 
-#: templates/homeid/home-01.html:130
+#: templates/homeid/home-01.html:131
+#: templates/homeid/listing-full-width-grid-1.html:100
+#: templates/homeid/single-property-6.html:282
+#: templates/homeid/single-property-6.html:350
+#: templates/homeid/single-property-6.html:490
 msgid "Bedrooms"
 msgstr ""
 
-#: templates/homeid/home-01.html:154
-msgid "Bathrooms"
+#: templates/homeid/home-01.html:139 templates/homeid/home-01.html:503
+msgid "All Bedrooms"
 msgstr ""
 
-#: templates/homeid/home-01.html:178
+#: templates/homeid/home-01.html:148 templates/homeid/home-01.html:153
+#: templates/homeid/home-01.html:156
 msgid "All Cities"
 msgstr ""
 
-#: templates/homeid/home-01.html:200
-msgid "All Areas"
-msgstr ""
-
-#: templates/homeid/home-01.html:224
+#: templates/homeid/home-01.html:168 templates/homeid/home-01.html:525
 msgid "Price Range"
 msgstr ""
 
-#: templates/homeid/home-01.html:244
+#: templates/homeid/home-01.html:188 templates/homeid/home-01.html:543
 msgid "Area Size"
 msgstr ""
 
-#: templates/homeid/home-01.html:263
+#: templates/homeid/home-01.html:207
+#: templates/homeid/single-property-6.html:318
 msgid "Property ID"
 msgstr ""
 
-#: templates/homeid/home-01.html:283
-msgid "Other Features"
-msgstr ""
-
-#: templates/homeid/home-01.html:297
+#: templates/homeid/home-01.html:242
 msgid "Air Conditioning"
 msgstr ""
 
-#: templates/homeid/home-01.html:310
+#: templates/homeid/home-01.html:255
 msgid "Laundry"
 msgstr ""
 
-#: templates/homeid/home-01.html:323
+#: templates/homeid/home-01.html:268
 msgid "Washer"
 msgstr ""
 
-#: templates/homeid/home-01.html:336
+#: templates/homeid/home-01.html:281
 msgid "Barbeque"
 msgstr ""
 
-#: templates/homeid/home-01.html:349
+#: templates/homeid/home-01.html:294
 msgid "Lawn"
 msgstr ""
 
-#: templates/homeid/home-01.html:362
+#: templates/homeid/home-01.html:307
 msgid "Sauna"
 msgstr ""
 
-#: templates/homeid/home-01.html:375
+#: templates/homeid/home-01.html:320
 msgid "WiFi"
 msgstr ""
 
-#: templates/homeid/home-01.html:388
+#: templates/homeid/home-01.html:333
 msgid "Dryer"
 msgstr ""
 
-#: templates/homeid/home-01.html:401
+#: templates/homeid/home-01.html:346
 msgid "Microwave"
 msgstr ""
 
-#: templates/homeid/home-01.html:414
+#: templates/homeid/home-01.html:359
 msgid "Swimming Pool"
 msgstr ""
 
-#: templates/homeid/home-01.html:427
+#: templates/homeid/home-01.html:372
 msgid "Window Coverings"
 msgstr ""
 
-#: templates/homeid/home-01.html:440
+#: templates/homeid/home-01.html:385
 msgid "Gym"
 msgstr ""
 
-#: templates/homeid/home-01.html:453
+#: templates/homeid/home-01.html:398
 msgid "Outdoor Shower"
 msgstr ""
 
-#: templates/homeid/home-01.html:466
+#: templates/homeid/home-01.html:411
 msgid "TV Cable"
 msgstr ""
 
-#: templates/homeid/home-01.html:479
+#: templates/homeid/home-01.html:424
 msgid "Refrigerator"
+msgstr ""
+
+#: templates/homeid/home-01.html:478
+msgid "All Status"
+msgstr ""
+
+#: templates/homeid/home-01.html:787
+msgid "Best Properties For Sale"
+msgstr ""
+
+#: templates/homeid/home-01.html:798 templates/homeid/home-01.html:943
+msgid "See all properties"
+msgstr ""
+
+#: templates/homeid/home-01.html:833
+msgid "See Available Properties"
+msgstr ""
+
+#: templates/homeid/home-01.html:932
+msgid "Best Properties For Rent"
+msgstr ""
+
+#: templates/homeid/home-01.html:976
+msgid "Find your neighborhood"
+msgstr ""
+
+#: templates/homeid/home-01.html:985
+msgid "Enter an address, city..."
+msgstr ""
+
+#: templates/homeid/layout.html:138 templates/homeid/layout.html:319
+msgid "Properties"
+msgstr ""
+
+#: templates/homeid/layout.html:151 templates/homeid/layout.html:330
+msgid "About"
+msgstr ""
+
+#: templates/homeid/layout.html:279
+msgid "Popular Searches"
+msgstr ""
+
+#: templates/homeid/layout.html:284
+msgid "Apartments to rent"
+msgstr ""
+
+#: templates/homeid/layout.html:289
+msgid "Apartments to buy"
+msgstr ""
+
+#: templates/homeid/layout.html:294
+msgid "Houses to rent"
+msgstr ""
+
+#: templates/homeid/layout.html:299
+msgid "Houses to buy"
+msgstr ""
+
+#: templates/homeid/layout.html:304
+msgid "Land to buy"
+msgstr ""
+
+#: templates/homeid/layout.html:310
+msgid "Navigation"
+msgstr ""
+
+#: templates/homeid/layout.html:337
+msgid "Search for a property"
+msgstr ""
+
+#: templates/homeid/layout.html:349
+msgid "Search by city..."
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:8
+msgid "Listing"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:16
+msgid "All properties"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:22
+#: templates/homeid/single-property-6.html:37
+#: templates/homeid/single-property-6.html:396
+msgid "City"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:41
+#: templates/homeid/listing-full-width-grid-1.html:50
+msgid "Any Price"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:61
+#: templates/homeid/single-property-6.html:238
+msgid "Type"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:70
+#: templates/homeid/single-property-6.html:27
+#: templates/homeid/single-property-6.html:124
+msgid "Any Type"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:81
+msgid "Deal Type"
+msgstr ""
+
+#: templates/homeid/listing-full-width-grid-1.html:174
+msgid "No properties found"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:19
+msgid "Property Type"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:45
+#: templates/homeid/single-property-6.html:139
+msgid "Any City"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:63
+msgid "Enter an address, city, or property name..."
+msgstr ""
+
+#: templates/homeid/single-property-6.html:100
+msgid "Search..."
+msgstr ""
+
+#: templates/homeid/single-property-6.html:160
+msgid "Listings"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:220
+msgid "Description"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:226
+msgid "Property Details"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:301
+#: templates/homeid/single-property-6.html:342
+#: templates/homeid/single-property-6.html:507
+msgid "Rooms"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:313
+msgid "Additional Details"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:326
+msgid "Price"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:334
+msgid "Property type"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:358
+#: templates/homeid/single-property-6.html:528
+msgid "Area"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:366
+msgid "Offices Amenities"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:377
+msgid "Virtual Tour"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:419
+msgid "Similar Homes You May Like"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:443
+msgid "Featured"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:448
+msgid "For Sale"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:453
+msgid "For Rent"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:537
+msgid "is now available to buy off plan in"
+msgstr ""
+
+#: templates/homeid/single-property-6.html:544
+msgid "Get Sellers Number"
 msgstr ""
