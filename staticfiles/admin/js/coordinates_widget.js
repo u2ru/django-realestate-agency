@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
     return
   }
 
+  const clearButton = document.querySelector('.clear-coordinates')
+  if (!clearButton) {
+    console.error('Clear button not found')
+    return
+  }
+
   console.log('All elements found, initializing map...')
 
   // Initialize map
@@ -103,8 +109,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateCoordinatesDisplay(lng, lat) {
-    coordinatesDisplay.textContent = `Selected coordinates: ${lat.toFixed(
+    coordinatesDisplay.textContent = `Coordinates: ${lng.toFixed(
       6
-    )}, ${lng.toFixed(6)}`
+    )}, ${lat.toFixed(6)}`
   }
+
+  // Function to clear coordinates
+  function clearCoordinates() {
+    coordinatesInput.value = ''
+    coordinatesDisplay.textContent = 'No coordinates set'
+    if (marker) {
+      marker.remove()
+      marker = null
+    }
+  }
+
+  // Handle clear button click
+  clearButton.addEventListener('click', clearCoordinates)
 })

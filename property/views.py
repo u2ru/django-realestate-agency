@@ -147,10 +147,14 @@ def property_detail(request, pk):
             "get_youtube_url": property.get_youtube_url(),  # Add the method
             "get_main_image": property.get_main_image(),  # Add the method
             "get_images": list(property.get_images()),  # Add the method
-            "coordinates": {
-                "lng": str(property.coordinates["lng"]).replace(",", "."),
-                "lat": str(property.coordinates["lat"]).replace(",", "."),
-            },
+            "coordinates": (
+                {
+                    "lng": (str(property.coordinates.get("lng", "")).replace(",", ".")),
+                    "lat": (str(property.coordinates.get("lat", "")).replace(",", ".")),
+                }
+                if property.coordinates
+                else None
+            ),
         }
     )
 
