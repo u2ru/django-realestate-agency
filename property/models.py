@@ -4,7 +4,7 @@ from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 import os
 from .constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE, CITY_CHOICES
-
+from django.utils import translation
 
 # Property specifications
 PROPERTY_TYPE_CHOICES = [
@@ -162,6 +162,20 @@ class Property(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_translation(self, field, language=None):
+        if language is None:
+            language = translation.get_language()
+        try:
+            translation_obj = self.translations.get(language=language)
+            return getattr(translation_obj, field)
+        except PropertyTranslation.DoesNotExist:
+            # fallback to default language
+            try:
+                translation_obj = self.translations.get(language=PRIMARY_LANGUAGE)
+                return getattr(translation_obj, field)
+            except PropertyTranslation.DoesNotExist:
+                return getattr(self, field, "")
 
     @property
     def price_per_area(self):

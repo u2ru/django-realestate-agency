@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-122.486052, 37.830348],
+    center: [41.636237224128195, 41.65211072506244],
     zoom: 14,
     interactive: true,
   })

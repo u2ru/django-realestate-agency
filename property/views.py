@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from django.db.models import Max
+from django.forms.models import model_to_dict
 from .models import (
     Property,
     PROPERTY_TYPE_CHOICES,
@@ -128,7 +129,6 @@ def index(request):
 
 
 def property_detail(request, pk):
-    # translated property object
     property = Property.objects.get(pk=pk)
     similar_properties = Property.objects.filter(property_type=property.property_type)[
         :4
@@ -136,11 +136,25 @@ def property_detail(request, pk):
 
     city_list = CITY_CHOICES
     home_types = PROPERTY_TYPE_CHOICES
+
+    # Convert model to dict and add translations
+    property_dict = model_to_dict(property)
+    property_dict.update(
+        {
+            "name": property.get_translation("name"),
+            "description": property.get_translation("description"),
+            "price_per_area": property.price_per_area,  # Add the property
+            "get_youtube_url": property.get_youtube_url(),  # Add the method
+            "get_main_image": property.get_main_image(),  # Add the method
+            "get_images": list(property.get_images()),  # Add the method
+        }
+    )
+
     return render(
         request,
         "homeid/single-property-6.html",
         {
-            "property": property,
+            "property": property_dict,
             "similar_properties": similar_properties,
             "filter_properties": {
                 "city_list": city_list,
