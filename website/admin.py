@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, forms, JSONField
 from django.utils.html import format_html
 from .models import (
     HomePageContent,
@@ -8,6 +8,7 @@ from .models import (
     AboutUsContentTranslation,
 )
 from property.constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
+from property.admin import CoordinatesWidget
 
 # Get language codes from constant
 SECONDARY_LANGUAGES = [
@@ -173,8 +174,21 @@ class HomePageContentAdmin(admin.ModelAdmin):
         formset.save_m2m()
 
 
+class AboutUsContentAdminForm(ModelForm):
+    office_coordinates = JSONField(
+        required=False,
+        widget=CoordinatesWidget,
+        help_text="Click on the map to set coordinates",
+    )
+
+    class Meta:
+        model = AboutUsContent
+        fields = "__all__"
+
+
 @admin.register(AboutUsContent)
 class AboutUsContentAdmin(admin.ModelAdmin):
+    form = AboutUsContentAdminForm
     inlines = [
         create_translation_inline_class(
             AboutUsContentTranslation,
@@ -199,6 +213,7 @@ class AboutUsContentAdmin(admin.ModelAdmin):
     ]
     fieldsets = (
         ("Hero Section", {"fields": ("hero_title", "hero_image")}),
+        ("Main Content", {"fields": ("main_subtitle", "main_title", "main_content")}),
         (
             "Our Services Section",
             {"fields": ("our_services_title", "our_services_content")},
