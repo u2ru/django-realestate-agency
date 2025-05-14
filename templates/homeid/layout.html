@@ -11,7 +11,7 @@
     <meta name="description" content="Real Estate" />
     <meta name="author" content="" />
     <meta name="generator" content="Jekyll" />
-    <title>Victoria Real Estate</title>
+    <title>{{ footer_content.company_name }}</title>
     <!-- Google fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
@@ -64,7 +64,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@" />
     <meta name="twitter:creator" content="@" />
-    <meta name="twitter:title" content="Victoria Real Estate" />
+    <meta name="twitter:title" content="{{ footer_content.company_name }}" />
     <meta name="twitter:description" content="Real Estate" />
     <meta
       name="twitter:image"
@@ -72,7 +72,7 @@
     />
     <!-- Facebook -->
     <meta property="og:url" content="single-property-6.html" />
-    <meta property="og:title" content="Victoria Real Estate" />
+    <meta property="og:title" content="{{ footer_content.company_name }}" />
     <meta property="og:description" content="Real Estate" />
     <meta property="og:type" content="website" />
     <meta
@@ -129,25 +129,25 @@
                   id="navbar-item-home"
                   class="nav-item py-2 py-lg-5 px-0 px-lg-4"
                 >
-                  <a class="nav-link p-0" href="{% url 'home' %}">Home</a>
+                  <a class="nav-link p-0" href="{% url 'home' %}">{% trans "Home Page" %}</a>
                 </li>
                 <li
                   id="navbar-item-property"
                   class="nav-item py-2 py-lg-5 px-0 px-lg-4"
                 >
-                  <a class="nav-link p-0" href="{% url 'property:index' %}">Properties</a>
+                  <a class="nav-link p-0" href="{% url 'property:index' %}">{% trans "Properties" %}</a>
                 </li>
                 <li
                   id="navbar-item-contact"
                   class="nav-item py-2 py-lg-5 px-0 px-lg-4"
                 >
-                  <a class="nav-link p-0" href="{% url 'contact' %}">Contact Us</a>
+                  <a class="nav-link p-0" href="{% url 'contact' %}">{% trans "Contact Us" %}</a>
                 </li>
                 <li
                   id="navbar-item-about"
                   class="nav-item py-2 py-lg-5 px-0 px-lg-4"
                 >
-                  <a class="nav-link p-0" href="{% url 'about' %}">About</a>
+                  <a class="nav-link p-0" href="{% url 'about' %}">{% trans "About" %}</a>
                 </li>
               </ul>
 
@@ -243,7 +243,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-6 mb-md-0">
-            <a class="d-block mb-2" href="#">
+            <a class="d-block mb-2" href="{% url 'home' %}" style="max-width: fit-content">
               <img
                 src="{% static 'images/logo-white.png' %}"
                 alt="HomeID"
@@ -251,70 +251,81 @@
               />
             </a>
             <div class="lh-26 font-weight-500">
-              <p class="mb-0">58 Howard Street #2 San Francisco</p>
+              <p class="mb-0">{{ footer_content.address }}</p>
+              {% if footer_content.email %}
               <a
                 class="d-block text-muted hover-white"
-                href="mailto:contact@homeid.com"
-                >contact@homeid.com</a
+                href="mailto:{{ footer_content.email }}"
+                >{{ footer_content.email }}</a
               >
+              {% endif %}
+              {% if footer_content.phone %}
               <a
                 class="d-block text-lighter font-weight-bold fs-15 hover-white"
-                href="tel:(+68)122109876"
-                >(+68)1221 09876</a
+                href="tel:{{ footer_content.phone }}"
+                >{{ footer_content.phone }}</a
               >
-              <a class="d-block text-muted hover-white" href="."
-                >www.homeid.com</a
+              {% endif %}
+              {% if footer_content.website %}
+              <a class="d-block text-muted hover-white" href="{{ footer_content.website }}"
+                >{{ footer_content.website }}</a
               >
+              {% endif %}
             </div>
           </div>
           <div class="col-md-6 col-lg-2 mb-6 mb-md-0">
             <h4 class="text-white fs-16 my-4 font-weight-500">
-              Popular Searches
+              {% trans "Popular Searches" %}
             </h4>
             <ul class="list-group list-group-flush list-group-no-border">
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Apartment for Rent</a
+                <a href="{% url 'property:index' %}?deal_type=RENT&type=APARTMENT" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Apartments to rent" %}</a
                 >
               </li>
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Apartment Low to hide</a
+                <a href="{% url 'property:index' %}?deal_type=SALE&type=APARTMENT" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Apartments to buy" %}</a
                 >
               </li>
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Offices for Buy</a
+                <a href="{% url 'property:index' %}?deal_type=RENT&type=HOUSE" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Houses to rent" %}</a
                 >
               </li>
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Offices for Rent</a
+                <a href="{% url 'property:index' %}?deal_type=SALE&type=HOUSE" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Houses to buy" %}</a
+                >
+              </li>
+              <li class="list-group-item bg-transparent p-0">
+                <a href="{% url 'property:index' %}?deal_type=SALE&type=LAND" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Land to buy" %}</a
                 >
               </li>
             </ul>
           </div>
           <div class="col-md-6 col-lg-2 mb-6 mb-md-0">
-            <h4 class="text-white fs-16 my-4 font-weight-500">Quick links</h4>
+            <h4 class="text-white fs-16 my-4 font-weight-500">{% trans "Navigation" %}</h4>
             <ul class="list-group list-group-flush list-group-no-border">
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Terms of Use</a
+                <a href="{% url 'home' %}" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Home Page" %}</a
                 >
               </li>
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Privacy Policy</a
+                <a href="{% url 'property:index' %}" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Properties" %}</a
                 >
               </li>
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
-                  >Contact Support</a
+                <a href="{% url 'contact' %}" class="text-muted lh-26 font-weight-500 hover-white"
+                  >{% trans "Contact Us" %}</a
                 >
               </li>
               <li class="list-group-item bg-transparent p-0">
-                <a href="#" class="text-muted lh-26 hover-white font-weight-500"
-                  >Careers</a
+                <a href="{% url 'about' %}" class="text-muted lh-26 hover-white font-weight-500"
+                  >{% trans "About" %}</a
                 >
               </li>
             </ul>
@@ -324,8 +335,7 @@
               Sign Up for Our Newsletter
             </h4>
             <p class="font-weight-500 text-muted lh-184">
-              Lorem ipsum dolor sit amet, consecte tur cing elit. Suspe ndisse
-              suscipit sagittis
+              {{ footer_content.newsletter_text }}
             </p>
             <form>
               <div class="input-group input-group-lg mb-6">
@@ -344,39 +354,29 @@
               </div>
             </form>
             <ul class="list-inline mb-0">
+              {% if footer_content.instagram_url %}
               <li class="list-inline-item mr-0">
                 <a
-                  href="#"
+                  href="{{ footer_content.instagram_url }}"
                   class="text-white opacity-3 fs-25 px-4 opacity-hover-10"
-                  ><i class="fab fa-twitter"></i
+                  ><i class="fab fa-instagram"></i
                 ></a>
               </li>
+              {% endif %}
+              {% if footer_content.facebook_url %}
               <li class="list-inline-item mr-0">
                 <a
-                  href="#"
+                  href="{{ footer_content.facebook_url }}"
                   class="text-white opacity-3 fs-25 px-4 opacity-hover-10"
                   ><i class="fab fa-facebook-f"></i
                 ></a>
               </li>
-              <li class="list-inline-item mr-0">
-                <a
-                  href="#"
-                  class="text-white opacity-3 fs-25 px-4 opacity-hover-10"
-                  ><i class="fab fa-skype"></i
-                ></a>
-              </li>
-              <li class="list-inline-item mr-0">
-                <a
-                  href="#"
-                  class="text-white opacity-3 fs-25 px-4 opacity-hover-10"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
         <div class="mt-0 mt-md-10 row">
-          <ul class="list-inline mb-0 col-md-6 mr-auto">
+          {% comment %} <ul class="list-inline mb-0 col-md-6 mr-auto">
             <li class="list-inline-item mr-6">
               <a href="#" class="text-muted lh-26 font-weight-500 hover-white"
                 >Terms of Use</a
@@ -387,9 +387,9 @@
                 >Privacy Policy</a
               >
             </li>
-          </ul>
+          </ul> {% endcomment %}
           <p class="col-md-auto mb-0 text-muted">
-            © 2025 Victoria Real Estate. All Rights Reserved
+            © 2025 {{ footer_content.company_name }}. All Rights Reserved
           </p>
         </div>
       </div>

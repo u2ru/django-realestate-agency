@@ -108,6 +108,24 @@ homepage_translation_inlines = [
 class HomePageContentAdmin(admin.ModelAdmin):
     fieldsets = (
         (
+            "Company Information",
+            {
+                "fields": ("company_name",),
+            },
+        ),
+        (
+            "Contact Information",
+            {
+                "fields": ("contact_phone", "contact_email", "contact_address"),
+            },
+        ),
+        (
+            "Social Media",
+            {
+                "fields": ("facebook_url", "instagram_url"),
+            },
+        ),
+        (
             f"Hero Section ({SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]})",
             {
                 "fields": (
@@ -123,24 +141,12 @@ class HomePageContentAdmin(admin.ModelAdmin):
                 "fields": ("about_title", "about_content", "about_image"),
             },
         ),
-        (
-            "Contact Information",
-            {
-                "fields": ("contact_phone", "contact_email", "contact_address"),
-            },
-        ),
-        (
-            "Social Media",
-            {
-                "fields": ("facebook_url", "instagram_url", "twitter_url"),
-            },
-        ),
-        (
-            "Statistics",
-            {
-                "fields": ("properties_count", "years_experience", "happy_customers"),
-            },
-        ),
+        # (
+        #     "Statistics",
+        #     {
+        #         "fields": ("properties_count", "years_experience", "happy_customers"),
+        #     },
+        # ),
     )
     inlines = homepage_translation_inlines
 

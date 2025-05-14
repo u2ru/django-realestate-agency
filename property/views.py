@@ -46,13 +46,7 @@ def index(request):
             properties = filtered_properties
 
     if deal_type:
-        deal_type_formatted = [
-            choice[0]
-            for choice in DEAL_TYPE_CHOICES
-            if choice[1].lower().replace(" ", "-") == deal_type
-        ]
-        if deal_type_formatted:
-            properties = properties.filter(deal_type=deal_type_formatted[0])
+        properties = properties.filter(deal_type=deal_type)
 
     if type:
         properties = properties.filter(property_type=type)

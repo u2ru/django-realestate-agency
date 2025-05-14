@@ -7,6 +7,8 @@ from django.utils import translation
 class HomePageContent(models.Model):
     """Model to store content for the home page"""
 
+    company_name = models.CharField(max_length=200, help_text="Company name")
+
     # Hero section
     hero_title = models.CharField(
         max_length=200,
@@ -42,7 +44,6 @@ class HomePageContent(models.Model):
     # Social media links
     facebook_url = models.URLField(blank=True, help_text="Facebook page URL")
     instagram_url = models.URLField(blank=True, help_text="Instagram profile URL")
-    twitter_url = models.URLField(blank=True, help_text="Twitter profile URL")
 
     # Statistics to display
     properties_count = models.PositiveIntegerField(
