@@ -971,20 +971,16 @@
           </div>
           <div class="col-lg-6 pl-xl-8" data-animate="fadeInRight">
             <h2 class="text-white lh-1625">
-              Find your<br />
-              neighborhood
+              {% trans "Find your neighborhood" %}
             </h2>
             <span class="heading-divider"></span>
-            <p class="mb-6 text-white">
-              Lorem ipsum dolor sit amet, consec tetur cing elit. Suspe ndisse
-            </p>
             <form action="{% url 'property:index' %}" method="get">
               <div class="input-group input-group-lg pr-sm-17">
                 <input
                   type="text"
                   class="form-control fs-13 font-weight-500 text-gray-light rounded-lg rounded-right-0 border-0 shadow-none h-52 bg-white"
                   name="search"
-                  placeholder="{% trans 'Enter an address, neighbourhood' %}"
+                  placeholder="{% trans 'Enter an address, city...' %}"
                 />
                 <button
                   type="submit"

@@ -137,12 +137,12 @@
                 >
                   <a class="nav-link p-0" href="{% url 'property:index' %}">{% trans "Properties" %}</a>
                 </li>
-                <li
+                {% comment %} <li
                   id="navbar-item-contact"
                   class="nav-item py-2 py-lg-5 px-0 px-lg-4"
                 >
                   <a class="nav-link p-0" href="{% url 'contact' %}">{% trans "Contact Us" %}</a>
-                </li>
+                </li> {% endcomment %}
                 <li
                   id="navbar-item-about"
                   class="nav-item py-2 py-lg-5 px-0 px-lg-4"
@@ -318,11 +318,11 @@
                   >{% trans "Properties" %}</a
                 >
               </li>
-              <li class="list-group-item bg-transparent p-0">
+              {% comment %} <li class="list-group-item bg-transparent p-0">
                 <a href="{% url 'contact' %}" class="text-muted lh-26 font-weight-500 hover-white"
                   >{% trans "Contact Us" %}</a
                 >
-              </li>
+              </li> {% endcomment %}
               <li class="list-group-item bg-transparent p-0">
                 <a href="{% url 'about' %}" class="text-muted lh-26 hover-white font-weight-500"
                   >{% trans "About" %}</a

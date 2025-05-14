@@ -84,9 +84,5 @@ def about(request):
     )
 
 
-def contact(request):
-    return render(request, "homeid/contact-us-1.html")
-
-
 def error_404(request):
     return render(request, "homeid/404.html")

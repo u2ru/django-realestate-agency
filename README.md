@@ -60,3 +60,9 @@ python manage.py makemessages -l ru --extension=html --ignore="venv/*"
 ```bash
 python manage.py compilemessages
 ```
+
+# collect static files
+
+```bash
+python manage.py collectstatic
+```
