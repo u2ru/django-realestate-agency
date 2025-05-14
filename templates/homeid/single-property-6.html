@@ -219,12 +219,11 @@
               <section class="mt-2 pb-3 px-6 pt-5 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-6">Facts and Features</h4>
                 <div class="row">
+                  {% if property.property_type %}
                   <div class="col-lg-3 col-sm-4 mb-6">
                     <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-family fs-32 text-primary">
-                          <use xlink:href="#icon-family"></use>
-                        </svg>
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-home" aria-hidden="true"></i>
                       </div>
                       <div class="media-body">
                         <h5
@@ -233,74 +232,42 @@
                           Type
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          Single Family
+                          {{ property.property_type|title }}
                         </p>
                       </div>
                     </div>
                   </div>
+                  {% endif %}
+                  {% if property.area %}
                   <div class="col-lg-3 col-sm-4 mb-6">
                     <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-year fs-32 text-primary">
-                          <use xlink:href="#icon-year"></use>
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 491.541 491.541" xml:space="preserve" style="width:100%; height: 100%;" fill="currentColor">
+                          <g>
+                            <path d="M350.373,116.048H24.445C10.942,116.048,0,126.988,0,140.492V466.42c0,13.503,10.942,24.445,24.445,24.445h325.928   c13.503,0,24.444-10.942,24.444-24.445V140.492C374.817,126.988,363.876,116.048,350.373,116.048z M325.928,441.975H48.889V164.936   h277.039V441.975z"/>
+                            <path d="M486.695,411.913h-26.513V126.63h26.513c1.958,0,3.724-1.178,4.472-2.991c0.756-1.814,0.342-3.892-1.05-5.283   l-42.802-42.802c-1.894-1.894-4.965-1.894-6.858,0l-42.803,42.802c-1.392,1.392-1.806,3.469-1.05,5.283   c0.749,1.813,2.515,2.991,4.473,2.991h26.513v285.283h-26.513c-1.958,0-3.724,1.177-4.473,2.991   c-0.755,1.815-0.342,3.893,1.05,5.285l42.803,42.802c1.893,1.894,4.965,1.894,6.858,0l42.802-42.802   c1.393-1.392,1.807-3.469,1.05-5.285C490.419,413.09,488.654,411.913,486.695,411.913z"/>
+                            <path d="M70.676,94.563c1.392,1.392,3.469,1.806,5.284,1.05c1.814-0.747,2.992-2.514,2.992-4.472V64.628h285.283v26.513   c0,1.958,1.177,3.725,2.991,4.472c1.814,0.756,3.891,0.342,5.284-1.05l42.802-42.802c1.894-1.895,1.894-4.967,0-6.86L372.51,2.1   c-1.393-1.393-3.469-1.807-5.284-1.051c-1.814,0.748-2.991,2.514-2.991,4.472v26.515H78.952V5.521c0-1.957-1.177-3.724-2.992-4.472   c-1.814-0.756-3.892-0.342-5.284,1.051L27.875,44.901c-1.894,1.893-1.894,4.965,0,6.86L70.676,94.563z"/>
+                          </g>
                         </svg>
                       </div>
                       <div class="media-body">
                         <h5
                           class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
                         >
-                          year built
+                          m<sup>2</sup>
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          2020
+                          {{ property.area }}
                         </p>
                       </div>
                     </div>
                   </div>
+                  {% endif %}
+                  {% if property.bedrooms %}
                   <div class="col-lg-3 col-sm-4 mb-6">
                     <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-heating fs-32 text-primary">
-                          <use xlink:href="#icon-heating"></use>
-                        </svg>
-                      </div>
-                      <div class="media-body">
-                        <h5
-                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
-                        >
-                          heating
-                        </h5>
-                        <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          Radiant
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-4 mb-6">
-                    <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-price fs-32 text-primary">
-                          <use xlink:href="#icon-price"></use>
-                        </svg>
-                      </div>
-                      <div class="media-body">
-                        <h5
-                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
-                        >
-                          SQFT
-                        </h5>
-                        <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          979.0
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-4 mb-6">
-                    <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-bedroom fs-32 text-primary">
-                          <use xlink:href="#icon-bedroom"></use>
-                        </svg>
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa fa-bed" aria-hidden="true"></i>
                       </div>
                       <div class="media-body">
                         <h5
@@ -309,151 +276,84 @@
                           Bedrooms
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          3
+                          {{ property.bedrooms }}
                         </p>
                       </div>
                     </div>
                   </div>
+                  {% endif %}
+                  {% if property.total_rooms %}
                   <div class="col-lg-3 col-sm-4 mb-6">
                     <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-sofa fs-32 text-primary">
-                          <use xlink:href="#icon-sofa"></use>
-                        </svg>
+                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-door-open" aria-hidden="true"></i>
                       </div>
                       <div class="media-body">
                         <h5
                           class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
                         >
-                          bathrooms
+                          Rooms
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          2
+                          {{ property.total_rooms }}
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-3 col-sm-4 mb-6">
-                    <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-Garage fs-32 text-primary">
-                          <use xlink:href="#icon-Garage"></use>
-                        </svg>
-                      </div>
-                      <div class="media-body">
-                        <h5
-                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
-                        >
-                          GARAGE
-                        </h5>
-                        <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          1
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-4 mb-6">
-                    <div class="media">
-                      <div class="p-2 shadow-xxs-1 rounded-lg mr-2">
-                        <svg class="icon icon-status fs-32 text-primary">
-                          <use xlink:href="#icon-status"></use>
-                        </svg>
-                      </div>
-                      <div class="media-body">
-                        <h5
-                          class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
-                        >
-                          Status
-                        </h5>
-                        <p class="mb-0 fs-13 font-weight-bold text-heading">
-                          Active
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  {% endif %}
                 </div>
               </section>
               <section class="mt-2 pb-6 px-6 pt-5 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-4">Additional Details</h4>
                 <div class="row">
+                  {% if property.property_id %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
                       Property ID
                     </dt>
-                    <dd>AD-2910</dd>
+                    <dd>{{ property.property_id }}</dd>
                   </dl>
+                  {% endif %}
+                  {% if property.price %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
                       Price
                     </dt>
-                    <dd>$890.000</dd>
+                    <dd>{{ property.price }}</dd>
                   </dl>
+                  {% endif %}
+                  {% if property.property_type %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
                       Property type
                     </dt>
-                    <dd>Apartment, bar, cafe, villa</dd>
+                    <dd>{{ property.property_type|title }}</dd>
                   </dl>
-                  <dl class="col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Property status
-                    </dt>
-                    <dd>For Sale</dd>
-                  </dl>
+                  {% endif %}
+                  {% if property.total_rooms %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
                       Rooms
                     </dt>
-                    <dd>4</dd>
+                    <dd>{{ property.total_rooms }}</dd>
                   </dl>
+                  {% endif %}
+                  {% if property.bedrooms %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
                       Bedrooms
                     </dt>
-                    <dd>3</dd>
+                    <dd>{{ property.bedrooms }}</dd>
                   </dl>
+                  {% endif %}
+                  {% if property.area %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Size
+                      Area
                     </dt>
-                    <dd>900SqFt</dd>
+                    <dd>{{ property.area }}</dd>
                   </dl>
-                  <dl class="col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Bathrooms
-                    </dt>
-                    <dd>2</dd>
-                  </dl>
-                  <dl class="col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Garage
-                    </dt>
-                    <dd>1</dd>
-                  </dl>
-                  <dl class="col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Bathrooms
-                    </dt>
-                    <dd>2000 SqFt</dd>
-                  </dl>
-                  <dl class="col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Garage size
-                    </dt>
-                    <dd>50 SqFt</dd>
-                  </dl>
-                  <dl class="col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Year build
-                    </dt>
-                    <dd>2020</dd>
-                  </dl>
-                  <dl class="offset-sm-6 col-sm-6 mb-0 d-flex">
-                    <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Label
-                    </dt>
-                    <dd>Bestseller</dd>
-                  </dl>
+                  {% endif %}
                 </div>
               </section>
               <section class="mt-2 pb-7 px-6 pt-5 bg-white rounded-lg">
@@ -466,16 +366,18 @@
                   {% endfor %}
                 </ul>
               </section>
+              {% if property.get_youtube_url %}
               <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-6">Virtual Tour</h4>
                 <iframe
                   height="430"
-                  src="https://www.youtube.com/embed/KNUcUBdYT58?autoplay=1&mute=1"
+                  src="{{ property.get_youtube_url }}"
                   allowfullscreen=""
                   class="w-100"
                 >
                 </iframe>
               </section>
+              {% endif %}
               <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-6">Location</h4>
                 <div class="position-relative">
@@ -484,8 +386,8 @@
                       id="map"
                       class="mapbox-gl map-point-animate"
                       data-mapbox-access-token="pk.eyJ1IjoibHVrYWRhdGFjeSIsImEiOiJjbWFtZWs5c3EwZzV5MnBzNGVzdXk0cXNiIn0.tfUSq0hYimUnpRBZCHvJKg"
-                      data-mapbox-options='{"center":[-73.9927227, 40.6741035],"setLngLat":[-73.9927227, 40.6741035]}'
-                      data-mapbox-marker='[{"position":[-73.9927227, 40.6741035],"className":"marker","backgroundImage":"{% static 'images/googlle-market-01.png' %}","backgroundRepeat":"no-repeat","width":"30px","height":"40px"}]'
+                      data-mapbox-options='{"center":[41.636237224128195, 41.65211072506244],"setLngLat":[41.636237224128195, 41.65211072506244]}'
+                      data-mapbox-marker='[{"position":[41.636237224128195, 41.65211072506244],"className":"marker","backgroundImage":"{% static 'images/googlle-market-01.png' %}","backgroundRepeat":"no-repeat","width":"30px","height":"40px"}]'
                     ></div>
                     <p
                       class="mb-0 p-3 bg-white shadow rounded-lg position-absolute pos-fixed-bottom mb-4 ml-4 lh-17 z-index-2"
@@ -565,10 +467,8 @@
                     {% if property.bedrooms %}
                     <div class="col-6 mb-3">
                       <div class="media">
-                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
-                          <svg class="icon icon-bedroom fs-18 text-primary">
-                            <use xlink:href="#icon-bedroom"></use>
-                          </svg>
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
+                          <i class="fa fa-bed" aria-hidden="true"></i>
                         </div>
                         <div class="media-body">
                           <h5 class="fs-13 font-weight-normal mb-0">
@@ -584,10 +484,8 @@
                     {% if property.total_rooms %}
                     <div class="col-6 mb-3">
                       <div class="media">
-                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
-                          <svg class="icon icon-shower fs-18 text-primary">
-                            <use xlink:href="#icon-shower"></use>
-                          </svg>
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
+                          <i class="fas fa-door-open" aria-hidden="true"></i>
                         </div>
                         <div class="media-body">
                           <h5 class="fs-13 font-weight-normal mb-0">
@@ -602,9 +500,13 @@
                     {% endif %}
                     <div class="col-6 mb-3">
                       <div class="media">
-                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1">
-                          <svg class="icon icon-square fs-18 text-primary">
-                            <use xlink:href="#icon-square"></use>
+                        <div class="p-2 shadow-xxs-1 rounded-lg mr-2 lh-1" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 491.541 491.541" xml:space="preserve" style="width:100%; height: 100%;" fill="currentColor">
+                            <g>
+                              <path d="M350.373,116.048H24.445C10.942,116.048,0,126.988,0,140.492V466.42c0,13.503,10.942,24.445,24.445,24.445h325.928   c13.503,0,24.444-10.942,24.444-24.445V140.492C374.817,126.988,363.876,116.048,350.373,116.048z M325.928,441.975H48.889V164.936   h277.039V441.975z"/>
+                              <path d="M486.695,411.913h-26.513V126.63h26.513c1.958,0,3.724-1.178,4.472-2.991c0.756-1.814,0.342-3.892-1.05-5.283   l-42.802-42.802c-1.894-1.894-4.965-1.894-6.858,0l-42.803,42.802c-1.392,1.392-1.806,3.469-1.05,5.283   c0.749,1.813,2.515,2.991,4.473,2.991h26.513v285.283h-26.513c-1.958,0-3.724,1.177-4.473,2.991   c-0.755,1.815-0.342,3.893,1.05,5.285l42.803,42.802c1.893,1.894,4.965,1.894,6.858,0l42.802-42.802   c1.393-1.392,1.807-3.469,1.05-5.285C490.419,413.09,488.654,411.913,486.695,411.913z"/>
+                              <path d="M70.676,94.563c1.392,1.392,3.469,1.806,5.284,1.05c1.814-0.747,2.992-2.514,2.992-4.472V64.628h285.283v26.513   c0,1.958,1.177,3.725,2.991,4.472c1.814,0.756,3.891,0.342,5.284-1.05l42.802-42.802c1.894-1.895,1.894-4.967,0-6.86L372.51,2.1   c-1.393-1.393-3.469-1.807-5.284-1.051c-1.814,0.748-2.991,2.514-2.991,4.472v26.515H78.952V5.521c0-1.957-1.177-3.724-2.992-4.472   c-1.814-0.756-3.892-0.342-5.284,1.051L27.875,44.901c-1.894,1.893-1.894,4.965,0,6.86L70.676,94.563z"/>
+                            </g>
                           </svg>
                         </div>
                         <div class="media-body">
@@ -617,7 +519,7 @@
                     </div>
                   </div>
                   <p class="mb-6 mt-1">
-                    {{ property.property_type|title }} {{ property.name }} is now available to buy off plan in
+                    {{ property.property_type|title }} {{ property.name }} {% trans "is now available to buy off plan in" %}
                     {{ property.city|title }}, {{ property.address }}
                   </p>
                   <div class="mr-xl-2">

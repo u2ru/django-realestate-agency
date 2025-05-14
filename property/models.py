@@ -137,6 +137,12 @@ class Property(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def get_youtube_url(self):
+        if self.youtube_url:
+            get_id = self.youtube_url.split("=")[1][:11]
+            return f"https://www.youtube.com/embed/{get_id}?autoplay=1&mute=1"
+        return None
+
     def get_main_image(self):
         """Returns the main image URL or None if no images exist"""
         main_image = self.images.filter(is_main=True).first()
