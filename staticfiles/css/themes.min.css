@@ -17792,7 +17792,7 @@ a.text-indigo:focus, a.text-indigo:hover {
   transition: all .2s
 }
 
-#map .mapboxgl-canvas, #map:focus, .card:focus, button:focus, form input:focus {
+.map .mapboxgl-canvas, #map:focus, .card:focus, button:focus, form input:focus {
   outline: 0
 }
 
@@ -18405,7 +18405,7 @@ a.text-indigo:focus, a.text-indigo:hover {
   left: unset
 }
 
-#map {
+.map {
   height: 430px
 }
 

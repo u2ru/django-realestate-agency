@@ -20497,11 +20497,11 @@ form input:focus {
   color: #ababab;
 }
 
-#map {
+.map {
   height: 430px;
 }
 
-#map:focus, #map .mapboxgl-canvas {
+.map:focus, .map .mapboxgl-canvas {
   outline: none;
 }
 

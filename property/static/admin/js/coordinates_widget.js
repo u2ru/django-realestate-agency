@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const mapContainer = document.getElementById('map')
+  const mapContainer = document.getElementById('map-admin')
   if (!mapContainer) {
     console.error('Map container not found')
     return
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   mapboxgl.accessToken =
     'pk.eyJ1IjoibHVrYWRhdGFjeSIsImEiOiJjbWFtZWs5c3EwZzV5MnBzNGVzdXk0cXNiIn0.tfUSq0hYimUnpRBZCHvJKg'
   const map = new mapboxgl.Map({
-    container: 'map',
+    container: 'map-admin',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [41.636237224128195, 41.65211072506244],
     zoom: 14,
