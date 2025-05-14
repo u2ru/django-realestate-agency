@@ -1,0 +1,6 @@
+{% load static %}
+<div class="coordinates-widget" style="margin-bottom: 20px; width: 100%;">
+    <input type="hidden" name="{{ widget.name }}" id="{{ widget.attrs.id }}" value="{{ widget.value|default:'' }}">
+    <div id="map" style="width: 100%; height: 400px; margin-top: 10px; border: 1px solid #ccc;"></div>
+    <div id="coordinates-display" style="margin-top: 10px; font-size: 12px; color: #666;"></div>
+</div> 

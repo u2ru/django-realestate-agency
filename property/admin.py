@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.forms import ModelForm, TextInput, Textarea
 from django.utils.html import format_html
 from django import forms
+from django.template import Template, Context
+from django.utils.safestring import mark_safe
+import json
 
 from .models import (
     Property,
@@ -105,11 +108,40 @@ language_inlines = [
 ]
 
 
+class CoordinatesWidget(forms.Widget):
+    template_name = "admin/coordinates_widget.html"
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        context["widget"]["type"] = "hidden"
+        if value:
+            try:
+                # Ensure value is a string if it's a dict
+                if isinstance(value, dict):
+                    value = json.dumps(value)
+                context["widget"]["value"] = value
+            except:
+                pass
+        return context
+
+    class Media:
+        css = {"all": ("https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css",)}
+        js = (
+            "https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js",
+            "admin/js/coordinates_widget.js",
+        )
+
+
 class PropertyAdminForm(forms.ModelForm):
     features = forms.MultipleChoiceField(
         choices=FEATURE_CHOICES,
         required=False,
         widget=forms.CheckboxSelectMultiple,
+    )
+    coordinates = forms.JSONField(
+        required=False,
+        widget=CoordinatesWidget,
+        help_text="Click on the map to set coordinates",
     )
 
     class Meta:
@@ -163,7 +195,7 @@ class PropertyAdmin(admin.ModelAdmin):
             {"fields": ("name", "description", "featured", "published")},
         ),
         ("Price Information", {"fields": ("price", "price_type", "currency")}),
-        ("Location", {"fields": ("address", "city", "property_id")}),
+        ("Location", {"fields": ("address", "city", "property_id", "coordinates")}),
         ("Media", {"fields": ("youtube_url",)}),
         (
             "Property Details",

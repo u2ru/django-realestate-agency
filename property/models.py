@@ -104,6 +104,11 @@ class Property(models.Model):
         max_digits=8, decimal_places=2, help_text="Area in square meters"
     )
     floor = models.PositiveIntegerField(null=True, blank=True)
+    coordinates = models.JSONField(
+        null=True,
+        blank=True,
+        help_text="Property coordinates in format {'lat': float, 'lng': float}",
+    )
 
     STATE_CHOICES = [
         ("NEW", "New"),
