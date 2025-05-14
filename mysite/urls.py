@@ -16,11 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.shortcuts import redirect
+from django.views.static import serve
 
 admin.site.site_title = "Real Estate Admin"
 admin.site.site_header = "Real Estate Admin"
@@ -33,6 +34,9 @@ def redirect_root(request):
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),  # for set_language
     path("", redirect_root),  # Redirect / to /en/ or your default language
+    #
+    re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+    re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
 ]
 
 urlpatterns += i18n_patterns(
