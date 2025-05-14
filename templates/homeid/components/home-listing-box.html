@@ -9,11 +9,11 @@
     <div class="card-img-overlay p-2 d-flex flex-column">
       <div>
         {% if item.featured %}
-        <span class="badge mr-2 badge-orange">featured</span>
+        <span class="badge mr-2 badge-orange">{% trans "featured" %}</span>
         {% endif %} {% if item.deal_type == "SALE" %}
-        <span class="badge mr-2 badge-indigo">for Sale</span>
+        <span class="badge mr-2 badge-indigo">{% trans "for Sale" %}</span>
         {% else %}
-        <span class="badge mr-2 badge-indigo">for Rent</span>
+        <span class="badge mr-2 badge-indigo">{% trans "for Rent" %}</span>
         {% endif %}
       </div>
       <ul class="list-inline mb-0 mt-auto hover-image">
