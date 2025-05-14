@@ -1,7 +1,7 @@
 {% extends 'homeid/layout.html' %} {% load static %} {% load i18n %} {% block content %}
 <main id="content">
   <section
-    style="background-image: url('images/bg-about-us.jpg')"
+    style="background-image: url('{{ about_us_content.hero_image.url }}')"
     class="bg-img-cover-center py-10 pt-md-16 pb-md-17 bg-overlay"
   >
     <div class="container position-relative z-index-2 text-center">
