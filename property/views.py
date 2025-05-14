@@ -128,12 +128,23 @@ def index(request):
 
 
 def property_detail(request, pk):
+    # translated property object
     property = Property.objects.get(pk=pk)
     similar_properties = Property.objects.filter(property_type=property.property_type)[
         :4
     ]
+
+    city_list = CITY_CHOICES
+    home_types = PROPERTY_TYPE_CHOICES
     return render(
         request,
         "homeid/single-property-6.html",
-        {"property": property, "similar_properties": similar_properties},
+        {
+            "property": property,
+            "similar_properties": similar_properties,
+            "filter_properties": {
+                "city_list": city_list,
+                "home_types": home_types,
+            },
+        },
     )

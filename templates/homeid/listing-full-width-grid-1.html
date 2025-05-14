@@ -67,6 +67,7 @@
                 name="type"
                 onchange="updateUrl()"
               >
+                <option value="">{% trans "Any Type" %}</option>
                 {% for home_type in filter_properties.home_types %}
                 <option 
                   {% if values_from_search.type == home_type.0 %}

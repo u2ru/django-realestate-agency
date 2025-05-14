@@ -5,14 +5,18 @@
     <main id="content">
       <section class="bg-secondary py-6 py-lg-0">
         <div class="container">
-          <form class="search-form d-none d-lg-block">
+          <form class="search-form d-none d-lg-block"
+            action="{% url 'property:index' %}"
+            method="get"
+          >
             <div class="row align-items-center">
               <div class="col-lg-5">
                 <div class="row">
+                  {% if filter_properties.home_types %}
                   <div class="col-md-6">
                     <label
                       class="text-uppercase font-weight-500 opacity-7 text-white letter-spacing-093 mb-1"
-                      >Home Type</label
+                      >{% trans "Property Type" %}</label
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-input-opacity-02"
@@ -20,30 +24,28 @@
                       title="Select"
                       data-style="p-0 h-24 lh-17 text-white"
                     >
-                      <option>Condominium</option>
-                      <option>Single-Family Home</option>
-                      <option>Townhouse</option>
-                      <option>Multi-Family Home</option>
+                      <option value="">{% trans "Any Type" %}</option>
+                      {% for home_type in filter_properties.home_types %}
+                        <option value="{{ home_type.0 }}">{{ home_type.1 }}</option>
+                      {% endfor %}
                     </select>
                   </div>
+                  {% endif %}
                   <div class="col-md-6 pl-md-3 pt-md-0 pt-6">
                     <label
                       class="text-uppercase font-weight-500 opacity-7 text-white letter-spacing-093 mb-1"
-                      >Location</label
+                      >{% trans "City" %}</label
                     >
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-input-opacity-02"
-                      name="location"
+                      name="city"
                       title="Select"
                       data-style="p-0 h-24 lh-17 text-white"
                     >
-                      <option>Austin</option>
-                      <option>Boston</option>
-                      <option>Chicago</option>
-                      <option>Denver</option>
-                      <option>Los Angeles</option>
-                      <option>New York</option>
-                      <option>San Francisco</option>
+                      <option value="">{% trans "Any City" %}</option>
+                      {% for city in filter_properties.city_list %}
+                        <option value="{{ city.0 }}">{{ city.1 }}</option>
+                      {% endfor %}
                     </select>
                   </div>
                 </div>
@@ -51,14 +53,14 @@
               <div class="col-12 col-lg-5 pt-lg-0 pt-6">
                 <label
                   class="text-uppercase font-weight-500 opacity-7 text-white letter-spacing-093"
-                  >Search</label
+                  >{% trans "Search" %}</label
                 >
                 <div class="position-relative">
                   <input
                     type="text"
                     name="search"
                     class="form-control bg-transparent shadow-none border-top-0 border-right-0 border-left-0 border-bottom rounded-0 h-24 lh-17 p-0 pr-md-5 text-white placeholder-light font-weight-500 border-input-opacity-02"
-                    placeholder="Enter an address, neighbourhood..."
+                    placeholder="{% trans "Enter an address, city, or property name..." %}"
                   />
                   <i
                     class="far fa-search position-absolute pos-fixed-right-center pr-0 fs-18 text-white pb-2 d-none d-md-block"
@@ -70,12 +72,15 @@
                   type="submit"
                   class="btn bg-white-opacity-01 bg-white-hover-opacity-03 h-lg-100 w-100 shadow-none text-white rounded-0 fs-16 font-weight-600"
                 >
-                  Search
+                  {% trans "Search" %}
                 </button>
               </div>
             </div>
           </form>
-          <form class="property-search property-search-mobile d-lg-none">
+          <form class="property-search property-search-mobile d-lg-none"
+            action="{% url 'property:index' %}"
+            method="get"
+          >
             <div class="row align-items-lg-center" id="accordion-mobile">
               <div class="col-12">
                 <div class="form-group mb-0 position-relative">
@@ -91,8 +96,8 @@
                   <input
                     type="text"
                     class="form-control form-control-lg border-0 shadow-none pr-9 pl-11 bg-white placeholder-muted"
-                    name="key-word"
-                    placeholder="Search..."
+                    name="search"
+                    placeholder="{% trans "Search..." %}"
                   />
                   <button
                     type="submit"
@@ -108,35 +113,36 @@
                 data-parent="#accordion-mobile"
               >
                 <div class="row mx-n2">
+                  {% if filter_properties.home_types %}
                   <div class="col-sm-6 pt-4 px-2">
                     <select
                       class="form-control border-0 shadow-none form-control-lg selectpicker bg-white"
-                      title="Home Types"
+                      title="Property Type"
                       data-style="btn-lg py-2 h-52 bg-white"
                       name="type"
                     >
-                      <option>Condominium</option>
-                      <option>Single-Family Home</option>
-                      <option>Townhouse</option>
-                      <option>Multi-Family Home</option>
+                      <option value="">{% trans "Any Type" %}</option>
+                      {% for home_type in filter_properties.home_types %}
+                        <option value="{{ home_type.0 }}">{{ home_type.1 }}</option>
+                      {% endfor %}
                     </select>
                   </div>
+                  {% endif %}
+                  {% if filter_properties.city_list %}
                   <div class="col-sm-6 pt-4 px-2">
                     <select
                       class="form-control border-0 shadow-none form-control-lg selectpicker bg-white"
-                      name="bedroom"
-                      title="Location"
+                      name="city"
+                      title="City"
                       data-style="btn-lg py-2 h-52 bg-white"
                     >
-                      <option>Austin</option>
-                      <option>Boston</option>
-                      <option>Chicago</option>
-                      <option>Denver</option>
-                      <option>Los Angeles</option>
-                      <option>New York</option>
-                      <option>San Francisco</option>
+                      <option value="">{% trans "Any City" %}</option>
+                      {% for city in filter_properties.city_list %}
+                        <option value="{{ city.0 }}">{{ city.1 }}</option>
+                      {% endfor %}
                     </select>
                   </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -217,7 +223,7 @@
                 </p>
               </section>
               <section class="mt-2 pb-3 px-6 pt-5 bg-white rounded-lg">
-                <h4 class="fs-22 text-heading mb-6">Facts and Features</h4>
+                <h4 class="fs-22 text-heading mb-6">{% trans "Property Details" %}</h4>
                 <div class="row">
                   {% if property.property_type %}
                   <div class="col-lg-3 col-sm-4 mb-6">
@@ -229,7 +235,7 @@
                         <h5
                           class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
                         >
-                          Type
+                          {% trans "Type" %}
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
                           {{ property.property_type|title }}
@@ -273,7 +279,7 @@
                         <h5
                           class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
                         >
-                          Bedrooms
+                          {% trans "Bedrooms" %}
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
                           {{ property.bedrooms }}
@@ -292,7 +298,7 @@
                         <h5
                           class="my-1 fs-14 text-uppercase letter-spacing-093 font-weight-normal"
                         >
-                          Rooms
+                          {% trans "Rooms" %}
                         </h5>
                         <p class="mb-0 fs-13 font-weight-bold text-heading">
                           {{ property.total_rooms }}
@@ -304,12 +310,12 @@
                 </div>
               </section>
               <section class="mt-2 pb-6 px-6 pt-5 bg-white rounded-lg">
-                <h4 class="fs-22 text-heading mb-4">Additional Details</h4>
+                <h4 class="fs-22 text-heading mb-4">{% trans "Additional Details" %}</h4>
                 <div class="row">
                   {% if property.property_id %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Property ID
+                      {% trans "Property ID" %}
                     </dt>
                     <dd>{{ property.property_id }}</dd>
                   </dl>
@@ -317,7 +323,7 @@
                   {% if property.price %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Price
+                      {% trans "Price" %}
                     </dt>
                     <dd>{{ property.price }}</dd>
                   </dl>
@@ -325,7 +331,7 @@
                   {% if property.property_type %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Property type
+                      {% trans "Property type" %}
                     </dt>
                     <dd>{{ property.property_type|title }}</dd>
                   </dl>
@@ -333,7 +339,7 @@
                   {% if property.total_rooms %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Rooms
+                      {% trans "Rooms" %}
                     </dt>
                     <dd>{{ property.total_rooms }}</dd>
                   </dl>
@@ -341,7 +347,7 @@
                   {% if property.bedrooms %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Bedrooms
+                      {% trans "Bedrooms" %}
                     </dt>
                     <dd>{{ property.bedrooms }}</dd>
                   </dl>
@@ -349,7 +355,7 @@
                   {% if property.area %}
                   <dl class="col-sm-6 mb-0 d-flex">
                     <dt class="w-110px fs-14 font-weight-500 text-heading pr-2">
-                      Area
+                      {% trans "Area" %}
                     </dt>
                     <dd>{{ property.area }}</dd>
                   </dl>
@@ -357,7 +363,7 @@
                 </div>
               </section>
               <section class="mt-2 pb-7 px-6 pt-5 bg-white rounded-lg">
-                <h4 class="fs-22 text-heading mb-4">Offices Amenities</h4>
+                <h4 class="fs-22 text-heading mb-4">{% trans "Offices Amenities" %}</h4>
                 <ul class="list-unstyled mb-0 row no-gutters">
                   {% for item in property.features %}
                   <li class="col-sm-3 col-6 mb-2">
@@ -368,19 +374,26 @@
               </section>
               {% if property.get_youtube_url %}
               <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
-                <h4 class="fs-22 text-heading mb-6">Virtual Tour</h4>
+                <h4 class="fs-22 text-heading mb-6">{% trans "Virtual Tour" %}</h4>
                 <iframe
                   height="430"
                   src="{{ property.get_youtube_url }}"
                   allowfullscreen=""
-                  class="w-100"
+                  class="w-100 d-none d-lg-block"
+                >
+                </iframe>
+                <iframe
+                  height="300"
+                  src="{{ property.get_youtube_url }}"
+                  allowfullscreen=""
+                  class="w-100 d-lg-none"
                 >
                 </iframe>
               </section>
               {% endif %}
               {% if property.coordinates %}
               <section class="mt-2 pb-6 px-6 pt-6 bg-white rounded-lg">
-                <h4 class="fs-22 text-heading mb-6">Location</h4>
+                <h4 class="fs-22 text-heading mb-6">{% trans "City" %}</h4>
                 <div class="position-relative">
                   <div class="position-relative">
                     <div
@@ -403,7 +416,7 @@
               {% if similar_properties|length > 0 %}
               <section class="mt-2 pb-7 px-6 pt-6 bg-white rounded-lg">
                 <h4 class="fs-22 text-heading mb-6">
-                  Similar Homes You May Like
+                  {% trans "Similar Homes You May Like" %}
                 </h4>
                 <div
                   class="slick-slider"
@@ -427,17 +440,17 @@
                   <ul class="list-inline d-sm-flex align-items-sm-center mb-2">
                     {% if property.featured %}
                     <li class="list-inline-item badge badge-orange mr-2">
-                      Featured
+                      {% trans "Featured" %}
                     </li>
                     {% endif %}
                     {% if property.deal_type == "SALE" %}
                     <li class="list-inline-item badge badge-primary mr-3">
-                      For Sale
+                      {% trans "For Sale" %}
                     </li>
                     {% endif %}
                     {% if property.deal_type == "RENT" %}
                     <li class="list-inline-item badge badge-primary mr-3">
-                      For Rent
+                      {% trans "For Rent" %}
                     </li>
                     {% endif %}
                   </ul>
@@ -512,7 +525,7 @@
                           </svg>
                         </div>
                         <div class="media-body">
-                          <h5 class="fs-13 font-weight-normal mb-0">Area</h5>
+                          <h5 class="fs-13 font-weight-normal mb-0">{% trans "Area" %}</h5>
                           <p class="mb-0 fs-13 font-weight-bold text-dark">
                             {{ property.area }} m<sup>2</sup>
                           </p>
@@ -528,7 +541,7 @@
                     <a
                       href="tel:{{ property.agent_phone }}"
                       class="btn btn-primary btn-lg btn-block"
-                      >Get Sellers Number</a
+                      >{% trans "Get Sellers Number" %}</a
                     >
                   </div>
                 </div>
@@ -537,7 +550,7 @@
           </div>
         </div>
       </div>
-      <section>
+      {% comment %} <section>
         <div
           class="d-flex bottom-bar-action bottom-bar-action-01 py-2 px-4 bg-gray-01 align-items-center position-fixed fixed-bottom d-sm-none"
         >
@@ -563,6 +576,6 @@
             ></a>
           </div>
         </div>
-      </section>
+      </section> {% endcomment %}
     </main>
 {% endblock %}
