@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-14 21:03+0000\n"
+"POT-Creation-Date: 2025-05-14 21:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,18 @@ msgstr ""
 
 #: templates/homeid/about-us.html:125
 msgid "Call Us At"
+msgstr ""
+
+#: templates/homeid/components/home-listing-box.html:12
+msgid "featured"
+msgstr ""
+
+#: templates/homeid/components/home-listing-box.html:14
+msgid "for Sale"
+msgstr ""
+
+#: templates/homeid/components/home-listing-box.html:16
+msgid "for Rent"
 msgstr ""
 
 #: templates/homeid/components/home-listing-box.html:23
