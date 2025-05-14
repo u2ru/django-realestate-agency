@@ -22,7 +22,7 @@
           class="text-white fs-30 fs-md-42 lh-15 font-weight-normal mt-4 mb-10"
           data-animate="fadeInRight"
         >
-          We believe in design as a powerful force for good.
+          {{ about_us_content.hero_title }}
         </h1>
       </div>
     </div>
@@ -34,26 +34,21 @@
           <p
             class="letter-spacing-263 text-uppercase text-primary mb-6 font-weight-500 text-center"
           >
-            welcome to grandhome
+            {{ about_us_content.main_subtitle }}
           </p>
           <h2 class="text-heading mb-4 fs-22 fs-md-32 text-center lh-16 px-6">
-            We see change as opportunity, not a threat and start with the belief
-            that there is a better way.
+            {{ about_us_content.main_title }}
           </h2>
           <p class="text-center px-lg-11 fs-15 lh-17 mb-11">
-            Over the past 25 years we’ve created more than 5,000 new homes and
-            1.5 million sq ft of workspace in over 60 regeneration projects.
-            Have a look at the short film below to learn more about how we’ve
-            achieved this and what drives us.
+            {{ about_us_content.main_content }}
           </p>
         </div>
       </div>
       <h2 class="text-dark lh-1625 text-center mb-2 fs-22 fs-md-32">
-        Our services
+        {{ about_us_content.our_services_title }}
       </h2>
       <p class="mxw-751 text-center mb-1 px-8">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim
+        {{ about_us_content.our_services_content }}
       </p>
       {% comment %} <div class="row mt-8">
         <div class="col-md-4 mb-6 mb-lg-0">
@@ -80,6 +75,7 @@
       </div> {% endcomment %}
     </div>
   </section>
+  {% if about_us_content.office_coordinates %}
   <section>
     <div>
       <div class="position-relative">
@@ -88,9 +84,10 @@
           class="mapbox-gl map-point-animate map"
           style="height: 550px"
           data-mapbox-access-token="pk.eyJ1IjoibHVrYWRhdGFjeSIsImEiOiJjbWFtZWs5c3EwZzV5MnBzNGVzdXk0cXNiIn0.tfUSq0hYimUnpRBZCHvJKg"
-          data-mapbox-options='{"center":[-73.981566, 40.739011],"setLngLat":[-73.981566, 40.739011]}'
-          data-mapbox-marker='[{"position":[-73.981566, 40.739011],"className":"marker","backgroundImage":"images/googlle-market-01.png","backgroundRepeat":"no-repeat","width":"32px","height":"40px"}]'
+          data-mapbox-options='{"center":[{{ about_us_content.office_coordinates.lng }}, {{ about_us_content.office_coordinates.lat }}], "setLngLat":[{{ about_us_content.office_coordinates.lng }}, {{ about_us_content.office_coordinates.lat }}]}'
+          data-mapbox-marker='[{"position":[{{ about_us_content.office_coordinates.lng }}, {{ about_us_content.office_coordinates.lat }}],"className":"marker","backgroundImage":"images/googlle-market-01.png","backgroundRepeat":"no-repeat","width":"32px","height":"40px"}]'
         ></div>
+        {% if about_us_content.office_location_address %}
         <div class="container">
           <div class="map-info position-absolute">
             <div class="card border-0 shadow-xs-4">
@@ -99,28 +96,32 @@
                   {% trans "Visit our office at" %}
                 </h5>
                 <p class="mb-0">
-                  {% comment %} {{ about_us_content.office_location_address }} {% endcomment %}
+                  {{ about_us_content.office_location_address }}
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
   </section>
+  {% endif %}
   <section class="pt-12 pb-10">
     <div class="container">
       <h2 class="text-heading mb-4 fs-22 fs-md-32 text-center lh-16 px-md-13">
-        GrandHome is an estate agency that helps people live in more thoughtful
-        and beautiful ways.
+        {{ about_us_content.bottom_section_title }}
       </h2>
       <p class="text-center px-md-17 fs-15 lh-17 mb-8">
-        Our home is at the heart of the design, allowing us to engage with our
-        community through talks and events, and uphold our company culture with
-        film screenings, yoga classes and team lunches.
+        {{ about_us_content.bottom_section_content }}
       </p>
       <div class="text-center">
-        <a href="#" class="btn btn-lg btn-primary">Join our team</a>
+        <a
+          href="tel:{{ about_us_content.contact_phone }}"
+          class="btn btn-lg btn-primary"
+        >
+          {% trans "Call Us At" %} {{ about_us_content.contact_phone }}
+        </a>
       </div>
     </div>
   </section>

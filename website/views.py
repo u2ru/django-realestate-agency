@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import HomePageContent
+from .models import HomePageContent, AboutUsContent
 from property.models import Property, PROPERTY_TYPE_CHOICES, DEAL_TYPE_CHOICES
 from property.constants import CITY_CHOICES
 from django.db.models import Max
@@ -47,7 +47,43 @@ def index(request):
 
 
 def about(request):
-    return render(request, "homeid/about-us.html")
+    about_us_content = AboutUsContent.objects.first()
+    contact_phone = HomePageContent.objects.first().contact_phone
+    return render(
+        request,
+        "homeid/about-us.html",
+        {
+            "about_us_content": {
+                "hero_title": about_us_content.get_translation("hero_title"),
+                "hero_image": about_us_content.hero_image,
+                "main_subtitle": about_us_content.get_translation("main_subtitle"),
+                "main_title": about_us_content.get_translation("main_title"),
+                "main_content": about_us_content.get_translation("main_content"),
+                "our_services_title": about_us_content.get_translation(
+                    "our_services_title"
+                ),
+                "our_services_content": about_us_content.get_translation(
+                    "our_services_content"
+                ),
+                "office_location_address": about_us_content.office_location_address,
+                "office_coordinates": {
+                    "lat": str(about_us_content.office_coordinates["lat"]).replace(
+                        ",", "."
+                    ),
+                    "lng": str(about_us_content.office_coordinates["lng"]).replace(
+                        ",", "."
+                    ),
+                },
+                "bottom_section_title": about_us_content.get_translation(
+                    "bottom_section_title"
+                ),
+                "bottom_section_content": about_us_content.get_translation(
+                    "bottom_section_content"
+                ),
+                "contact_phone": contact_phone,
+            }
+        },
+    )
 
 
 def contact(request):
