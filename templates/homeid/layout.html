@@ -332,23 +332,23 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-6 mb-md-0">
             <h4 class="text-white fs-16 my-4 font-weight-500">
-              Sign Up for Our Newsletter
+              {% trans "Search for a property" %}
             </h4>
             <p class="font-weight-500 text-muted lh-184">
               {{ footer_content.newsletter_text }}
             </p>
-            <form>
+            <form action="{% url 'property:index' %}" method="get">
               <div class="input-group input-group-lg mb-6">
                 <input
                   type="text"
-                  name="email"
+                  name="search"
                   required
                   class="form-control bg-white shadow-none border-0 z-index-1"
-                  placeholder="Your email"
+                  placeholder="{% trans 'Enter an city...' %}"
                 />
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit">
-                    Subscribe
+                  <button class="btn btn-primary px-6 fs-18 py-0" type="submit">
+                    <i class="far fa-search"></i>
                   </button>
                 </div>
               </div>
