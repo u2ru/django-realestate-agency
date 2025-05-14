@@ -4,6 +4,8 @@ from django.utils.html import format_html
 from .models import (
     HomePageContent,
     HomePageContentTranslation,
+    AboutUsContent,
+    AboutUsContentTranslation,
 )
 from property.constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE
 
@@ -30,7 +32,17 @@ def create_translation_form_class(model_class, language_code, field_names):
                         }
                     )
                     if field
-                    not in ["about_content", "meta_description", "content", "subtitle"]
+                    not in [
+                        "middle_section_content",
+                        "properties_for_sale_subtitle",
+                        "properties_for_rent_subtitle",
+                        "main_content",
+                        "our_services_content",
+                        "bottom_section_content",
+                        "meta_description",
+                        "content",
+                        "subtitle",
+                    ]
                     else Textarea(
                         attrs={
                             "placeholder": f"{language_name} {field.replace('_', ' ').title()}"
@@ -96,8 +108,15 @@ homepage_translation_inlines = [
         [
             "hero_title",
             "hero_subtitle",
-            "about_title",
-            "about_content",
+            # separate section for middle section
+            "middle_section_title",
+            "middle_section_content",
+            # separate section for properties for sale
+            "properties_for_sale_title",
+            "properties_for_sale_subtitle",
+            # separate section for properties for rent
+            "properties_for_rent_title",
+            "properties_for_rent_subtitle",
         ],
     )
     for lang in SECONDARY_LANGUAGES
@@ -106,49 +125,32 @@ homepage_translation_inlines = [
 
 @admin.register(HomePageContent)
 class HomePageContentAdmin(admin.ModelAdmin):
+    inlines = homepage_translation_inlines
     fieldsets = (
+        ("Company Information", {"fields": ("company_name",)}),
+        ("Hero Section", {"fields": ("hero_title", "hero_subtitle", "hero_image")}),
         (
-            "Company Information",
-            {
-                "fields": ("company_name",),
-            },
+            "Properties for Sale Section",
+            {"fields": ("properties_for_sale_title", "properties_for_sale_subtitle")},
+        ),
+        (
+            "Middle Section",
+            {"fields": ("middle_section_title", "middle_section_content")},
+        ),
+        (
+            "Properties for Rent Section",
+            {"fields": ("properties_for_rent_title", "properties_for_rent_subtitle")},
         ),
         (
             "Contact Information",
-            {
-                "fields": ("contact_phone", "contact_email", "contact_address"),
-            },
+            {"fields": ("contact_phone", "contact_email", "contact_address")},
         ),
+        ("Social Media", {"fields": ("facebook_url", "instagram_url")}),
         (
-            "Social Media",
-            {
-                "fields": ("facebook_url", "instagram_url"),
-            },
+            "Statistics",
+            {"fields": ("properties_count", "years_experience", "happy_customers")},
         ),
-        (
-            f"Hero Section ({SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]})",
-            {
-                "fields": (
-                    "hero_title",
-                    "hero_subtitle",
-                    "hero_image",
-                ),
-            },
-        ),
-        (
-            f"About Section ({SUPPORTED_LANGUAGES[PRIMARY_LANGUAGE]})",
-            {
-                "fields": ("about_title", "about_content", "about_image"),
-            },
-        ),
-        # (
-        #     "Statistics",
-        #     {
-        #         "fields": ("properties_count", "years_experience", "happy_customers"),
-        #     },
-        # ),
     )
-    inlines = homepage_translation_inlines
 
     def has_add_permission(self, request):
         # Only allow one instance
@@ -169,3 +171,44 @@ class HomePageContentAdmin(admin.ModelAdmin):
                         instance.language = lang_code
             instance.save()
         formset.save_m2m()
+
+
+@admin.register(AboutUsContent)
+class AboutUsContentAdmin(admin.ModelAdmin):
+    inlines = [
+        create_translation_inline_class(
+            AboutUsContentTranslation,
+            "about_us",
+            lang,
+            [
+                "hero_title",
+                "hero_subtitle",
+                #
+                "main_subtitle",
+                "main_title",
+                "main_content",
+                #
+                "our_services_title",
+                "our_services_content",
+                #
+                "bottom_section_title",
+                "bottom_section_content",
+            ],
+        )
+        for lang in SECONDARY_LANGUAGES
+    ]
+    fieldsets = (
+        ("Hero Section", {"fields": ("hero_title", "hero_image")}),
+        (
+            "Our Services Section",
+            {"fields": ("our_services_title", "our_services_content")},
+        ),
+        (
+            "Office Location",
+            {"fields": ("office_location_address", "office_coordinates")},
+        ),
+        (
+            "Bottom Section",
+            {"fields": ("bottom_section_title", "bottom_section_content")},
+        ),
+    )
