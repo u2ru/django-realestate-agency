@@ -15,6 +15,9 @@ from .constants import CITY_CHOICES
 def index(request):
     properties = Property.objects.all()
 
+    # Get the active currency from session or default to USD
+    current_currency = request.session.get("currency", "USD")
+
     # Get search parameters from request
     deal_type = request.GET.get("deal_type", "")
     type = request.GET.get("type", "")
@@ -57,14 +60,6 @@ def index(request):
     if city:
         properties = properties.filter(city=city)
 
-    # print(price)
-    # if price:
-    #     price_range = [value.strip() for value in price.split(" to ")]
-    #     if len(price_range) == 2:
-    #         min_price = int(price_range[0])
-    #         max_price = int(price_range[1])
-    #         properties = properties.filter(price__range=(min_price, max_price))
-
     if price_type:
         properties = properties.filter(price_type=price_type)
 
@@ -77,6 +72,21 @@ def index(request):
 
     if property_id:
         properties = properties.filter(property_id=property_id)
+
+    if price:
+        price_range = [
+            value.strip() for value in price.replace("GEL\xa0", "#").split(" to ")
+        ]
+        if len(price_range) == 2:
+            min_price = int(price_range[0][1:].replace(",", ""))
+            max_price = int(price_range[1][1:].replace(",", ""))
+
+            filtered_properties = []
+            for property in properties:
+                converted_price = property.convert_price(current_currency)
+                if min_price <= converted_price <= max_price:
+                    filtered_properties.append(property)
+            properties = filtered_properties
 
     # filter properties
     city_list = CITY_CHOICES
@@ -91,9 +101,6 @@ def index(request):
     price_range_max = Property.objects.aggregate(Max("price"))["price__max"]
     status_list = DEAL_TYPE_CHOICES
     features_list = FEATURE_CHOICES
-
-    # Get the active currency from session or default to USD
-    current_currency = request.session.get("currency", "USD")
 
     # Convert properties to list of dictionaries with converted prices
     properties_list = []
@@ -121,8 +128,6 @@ def index(request):
             "bedrooms": bedrooms,
             "city": city,
             "price_type": price_type,
-            # "price": price,
-            # "area": area,
             "property_id": property_id,
         },
         "filter_properties": {

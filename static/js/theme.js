@@ -69,11 +69,12 @@
         values: [0, 2000],
       }
       var $slider = $('[data-slider="true"]')
+      var currency = $('[data-currency]').data('currency')
       $slider.each(function () {
         var $this = $(this)
         var format = new Intl.NumberFormat('en-US', {
           style: 'currency',
-          currency: 'USD',
+          currency: currency,
           minimumFractionDigits: 0,
         })
         var options = $this.data('slider-options')
