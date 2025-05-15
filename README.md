@@ -12,6 +12,12 @@ For Windows:
 .\venv\Scripts\activate
 ```
 
+For PythonAnywhere:
+
+```bash
+workon venv
+```
+
 Install Requirements:
 
 ```bash
