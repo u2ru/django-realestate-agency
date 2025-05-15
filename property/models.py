@@ -5,6 +5,23 @@ from django.dispatch import receiver
 import os
 from .constants import SUPPORTED_LANGUAGES, PRIMARY_LANGUAGE, CITY_CHOICES
 from django.utils import translation
+from decimal import Decimal
+
+# Exchange rates (you can move these to settings.py or fetch from an API)
+EXCHANGE_RATES = {
+    "USD": {
+        "GEL": Decimal("2.7"),
+        "EUR": Decimal("0.92"),
+    },
+    "EUR": {
+        "USD": Decimal("1.09"),
+        "GEL": Decimal("2.93"),
+    },
+    "GEL": {
+        "USD": Decimal("0.37"),
+        "EUR": Decimal("0.34"),
+    },
+}
 
 # Property specifications
 PROPERTY_TYPE_CHOICES = [
@@ -182,6 +199,25 @@ class Property(models.Model):
         if self.area:
             return f"{round(self.price / self.area, 2)} {self.currency}/m²"
         return None
+
+    def convert_price(self, target_currency, price=None):
+        """
+        Convert the property price to the target currency.
+
+        Args:
+            target_currency (str): The target currency code
+
+        Returns:
+            Decimal: The converted price
+        """
+        if self.currency == target_currency:
+            return price if price else self.price
+
+        try:
+            rate = EXCHANGE_RATES[self.currency][target_currency]
+            return price * rate if price else self.price * rate
+        except KeyError:
+            return price if price else self.price
 
 
 class PropertyImage(models.Model):

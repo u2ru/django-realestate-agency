@@ -3,6 +3,7 @@ from .models import HomePageContent, AboutUsContent
 from property.models import Property, PROPERTY_TYPE_CHOICES, DEAL_TYPE_CHOICES
 from property.constants import CITY_CHOICES
 from django.db.models import Max
+from django.forms.models import model_to_dict
 
 
 # Create your views here.
@@ -23,6 +24,40 @@ def index(request):
     price_range_max = Property.objects.aggregate(Max("price"))["price__max"]
     status_list = DEAL_TYPE_CHOICES
 
+    # Get the active currency from session or default to USD
+    current_currency = request.session.get("currency", "USD")
+
+    # Convert similar properties to list of dictionaries with converted prices
+    featured_properties_for_sale_list = []
+    for featured_property in featured_properties_for_sale:
+        featured_dict = model_to_dict(featured_property)
+        featured_dict.update(
+            {
+                "name": featured_property.get_translation("name"),
+                "description": featured_property.get_translation("description"),
+                "converted_price": featured_property.convert_price(current_currency),
+                "price_per_area_converted": f"{featured_property.convert_price(current_currency, round(featured_property.price / featured_property.area, 2))} {current_currency}/m²",
+                "get_main_image": featured_property.get_main_image(),
+                "get_images": list(featured_property.get_images()),
+            }
+        )
+        featured_properties_for_sale_list.append(featured_dict)
+
+    featured_properties_for_rent_list = []
+    for featured_property in featured_properties_for_rent:
+        featured_dict = model_to_dict(featured_property)
+        featured_dict.update(
+            {
+                "name": featured_property.get_translation("name"),
+                "description": featured_property.get_translation("description"),
+                "converted_price": featured_property.convert_price(current_currency),
+                "price_per_area_converted": f"{featured_property.convert_price(current_currency, round(featured_property.price / featured_property.area, 2))} {current_currency}/m²",
+                "get_main_image": featured_property.get_main_image(),
+                "get_images": list(featured_property.get_images()),
+            }
+        )
+        featured_properties_for_rent_list.append(featured_dict)
+
     return render(
         request,
         "homeid/home-01.html",
@@ -32,8 +67,8 @@ def index(request):
                 "hero_subtitle": home_page_content.get_translation("hero_subtitle"),
                 "hero_image": home_page_content.hero_image,
             },
-            "featured_properties_for_sale": featured_properties_for_sale,
-            "featured_properties_for_rent": featured_properties_for_rent,
+            "featured_properties_for_sale": featured_properties_for_sale_list,
+            "featured_properties_for_rent": featured_properties_for_rent_list,
             "filter_properties": {
                 "city_list": city_list,
                 "home_types": home_types,

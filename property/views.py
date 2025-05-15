@@ -92,9 +92,28 @@ def index(request):
     status_list = DEAL_TYPE_CHOICES
     features_list = FEATURE_CHOICES
 
+    # Get the active currency from session or default to USD
+    current_currency = request.session.get("currency", "USD")
+
+    # Convert properties to list of dictionaries with converted prices
+    properties_list = []
+    for property in properties:
+        property_dict = model_to_dict(property)
+        property_dict.update(
+            {
+                "name": property.get_translation("name"),
+                "description": property.get_translation("description"),
+                "converted_price": property.convert_price(current_currency),
+                "price_per_area_converted": f"{property.convert_price(current_currency, round(property.price / property.area, 2))} {current_currency}/m²",
+                "get_main_image": property.get_main_image(),
+                "get_images": list(property.get_images()),
+            }
+        )
+        properties_list.append(property_dict)
+
     # Add search parameters to context to maintain them in the form
     context = {
-        "properties": properties,
+        "properties": properties_list,
         "search_params": {
             "deal_type": deal_type,
             "type": type,
@@ -137,6 +156,25 @@ def property_detail(request, pk):
         :4
     ]
 
+    # Get the active currency from session or default to USD
+    current_currency = request.session.get("currency", "USD")
+
+    # Convert similar properties to list of dictionaries with converted prices
+    similar_properties_list = []
+    for similar_property in similar_properties:
+        similar_dict = model_to_dict(similar_property)
+        similar_dict.update(
+            {
+                "name": similar_property.get_translation("name"),
+                "description": similar_property.get_translation("description"),
+                "converted_price": similar_property.convert_price(current_currency),
+                "price_per_area_converted": f"{similar_property.convert_price(current_currency, round(similar_property.price / similar_property.area, 2))} {current_currency}/m²",
+                "get_main_image": similar_property.get_main_image(),
+                "get_images": list(similar_property.get_images()),
+            }
+        )
+        similar_properties_list.append(similar_dict)
+
     city_list = CITY_CHOICES
     home_types = PROPERTY_TYPE_CHOICES
 
@@ -146,10 +184,11 @@ def property_detail(request, pk):
         {
             "name": property.get_translation("name"),
             "description": property.get_translation("description"),
-            "price_per_area": property.price_per_area,  # Add the property
-            "get_youtube_url": property.get_youtube_url(),  # Add the method
-            "get_main_image": property.get_main_image(),  # Add the method
-            "get_images": list(property.get_images()),  # Add the method
+            "price_per_area_converted": f"{property.convert_price(current_currency, round(property.price / property.area, 2))} {current_currency}/m²",
+            "get_youtube_url": property.get_youtube_url(),
+            "get_main_image": property.get_main_image(),
+            "get_images": list(property.get_images()),
+            "converted_price": property.convert_price(current_currency),
             "coordinates": (
                 {
                     "lng": (str(property.coordinates.get("lng", "")).replace(",", ".")),
@@ -166,7 +205,7 @@ def property_detail(request, pk):
         "homeid/single-property-6.html",
         {
             "property": property_dict,
-            "similar_properties": similar_properties,
+            "similar_properties": similar_properties_list,
             "filter_properties": {
                 "city_list": city_list,
                 "home_types": home_types,

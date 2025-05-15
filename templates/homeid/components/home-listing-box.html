@@ -86,12 +86,20 @@
   >
     {% if item.deal_type == "SALE" %}
       <p class="fs-17 font-weight-bold text-heading mb-0">
-        {{ CURRENCY }}{{ item.price }}
+        {% for currency in CURRENCIES %}
+          {% if currency.is_active %}
+            {{ currency.symbol }} {{ item.converted_price|floatformat:2 }}
+          {% endif %}
+        {% endfor %}
       </p>
     {% else %}
       <p class="fs-17 font-weight-bold text-heading mb-0">
-        {{ CURRENCY }}{{ item.price }}<span class="text-gray-light font-weight-500 fs-14">
-          / {{ item.rent_period }}
+        {% for currency in CURRENCIES %}
+          {% if currency.is_active %}
+            {{ currency.symbol }} {{ item.converted_price|floatformat:2 }}
+          {% endif %}
+        {% endfor %}<span class="text-gray-light font-weight-500 fs-14">
+          / {{ item.rent_period|slice:":1" }}
         </span>
       </p>
     {% endif %}
