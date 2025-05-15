@@ -33,6 +33,14 @@ LANGUAGES = [
     ("en", "English"),
 ]
 
+# Currency
+CURRENCY = "USD"
+CURRENCIES = [
+    ("USD", "$"),
+    ("EUR", "€"),
+    ("GEL", "₾"),
+]
+
 LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
@@ -77,6 +85,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "website.context_processors.common_context",
+                "website.context_processors.currency",
             ],
         },
     },

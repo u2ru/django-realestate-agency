@@ -24,8 +24,8 @@ def index(request):
         bedrooms = int(bedrooms)
     city = request.GET.get("city", "")
     price_type = request.GET.get("price_type", "")
-    # price = request.GET.get("price", "")
-    # area = request.GET.get("area", "")
+    price = request.GET.get("price", "")
+    area = request.GET.get("area", "")
     property_id = request.GET.get("property_id", "")
     features = set(request.GET.getlist("features"))
 
@@ -57,14 +57,23 @@ def index(request):
     if city:
         properties = properties.filter(city=city)
 
+    # print(price)
     # if price:
-    #     properties = properties.filter(price__range=price)
+    #     price_range = [value.strip() for value in price.split(" to ")]
+    #     if len(price_range) == 2:
+    #         min_price = int(price_range[0])
+    #         max_price = int(price_range[1])
+    #         properties = properties.filter(price__range=(min_price, max_price))
 
     if price_type:
         properties = properties.filter(price_type=price_type)
 
-    # if area:
-    #     properties = properties.filter(area__range=area)
+    if area:
+        area_range = [value.replace("m2", "").strip() for value in area.split(" to ")]
+        if len(area_range) == 2:
+            min_area = int(area_range[0])
+            max_area = int(area_range[1])
+            properties = properties.filter(area__range=(min_area, max_area))
 
     if property_id:
         properties = properties.filter(property_id=property_id)

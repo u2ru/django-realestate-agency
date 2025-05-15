@@ -1,4 +1,5 @@
 from .models import HomePageContent
+from django.conf import settings
 
 
 def common_context(request):
@@ -32,3 +33,18 @@ def common_context(request):
             ),
         },
     }
+
+
+def currency(request):
+    """
+    Context processor that provides currency information to all templates.
+    Returns the current currency and available currencies.
+    """
+    current_currency = request.session.get("currency", settings.CURRENCY)
+    currencies = []
+    for code, symbol in settings.CURRENCIES:
+        currencies.append(
+            {"code": code, "symbol": symbol, "is_active": code == current_currency}
+        )
+
+    return {"CURRENCY": current_currency, "CURRENCIES": currencies}

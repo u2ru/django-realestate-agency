@@ -86,11 +86,11 @@
   >
     {% if item.deal_type == "SALE" %}
       <p class="fs-17 font-weight-bold text-heading mb-0">
-        ${{ item.price }}
+        {{ CURRENCY }}{{ item.price }}
       </p>
     {% else %}
       <p class="fs-17 font-weight-bold text-heading mb-0">
-        {{ item.price }}<span class="text-gray-light font-weight-500 fs-14">
+        {{ CURRENCY }}{{ item.price }}<span class="text-gray-light font-weight-500 fs-14">
           / {{ item.rent_period }}
         </span>
       </p>

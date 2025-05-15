@@ -192,6 +192,47 @@
                   </li>
                 </ul>
               </div>
+              <div class="d-block d-lg-none">
+                <ul
+                  class="navbar-nav flex-row justify-content-lg-end d-flex flex-wrap py-2"
+                >
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle mr-md-2 pr-2 pl-0 pl-lg-2"
+                      href="#"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {{ CURRENCY|upper }}
+                    </a>
+                    <div class="dropdown-menu dropdown-sm dropdown-menu-left">
+                      <form
+                        action="{% url 'set_currency' %}"
+                        method="post"
+                        class="language-form"
+                      >
+                        {% csrf_token %}
+                        <input
+                          name="next"
+                          type="hidden"
+                          value="{{ request.get_full_path }}"
+                        />
+                        {% for currency in CURRENCIES %}
+                        <button
+                          type="submit"
+                          name="currency"
+                          value="{{ currency.code }}"
+                          class="dropdown-item {% if currency.is_active %}active{% endif %}"
+                        >
+                          {{ currency.symbol }} - {{ currency.code }}
+                        </button>
+                        {% endfor %}
+                      </form>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="d-none d-lg-block">
               <ul
@@ -227,6 +268,48 @@
                         class="dropdown-item {% if code == LANGUAGE_CODE %}active{% endif %}"
                       >
                         {{ name }}
+                      </button>
+                      {% endfor %}
+                    </form>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            {% comment %} Currency {% endcomment %}
+            <div class="d-none d-lg-block">
+              <ul
+                class="navbar-nav flex-row justify-content-lg-end d-flex flex-wrap text-body py-2"
+              >
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle mr-md-2 pr-2 pl-0 pl-lg-2"
+                    href="#"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {{ CURRENCY|upper }}
+                  </a>
+                  <div class="dropdown-menu dropdown-sm dropdown-menu-right">
+                    <form
+                      action="{% url 'set_currency' %}"
+                      method="post"
+                      class="language-form"
+                    >
+                      {% csrf_token %}
+                      <input
+                        name="next"
+                        type="hidden"
+                        value="{{ request.get_full_path }}"
+                      />
+                      {% for currency in CURRENCIES %}
+                      <button
+                        type="submit"
+                        name="currency"
+                        value="{{ currency.code }}"
+                        class="dropdown-item {% if currency.is_active %}active{% endif %}"
+                      >
+                        {{ currency.symbol }} - {{ currency.code }}
                       </button>
                       {% endfor %}
                     </form>
