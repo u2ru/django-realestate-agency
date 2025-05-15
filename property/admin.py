@@ -1,4 +1,5 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from django.forms import ModelForm, TextInput, Textarea
 from django.utils.html import format_html
 from django import forms
@@ -87,6 +88,7 @@ def create_translation_inline_class(language_code):
         max_num = 1
         min_num = 1
         can_delete = False  # Prevent translation deletion
+        ordering_field = "language"
 
         def get_queryset(self, request):
             qs = super().get_queryset(request)
@@ -98,7 +100,7 @@ def create_translation_inline_class(language_code):
             return True
 
     # Give the class a unique name
-    TranslationInline.__name__ = f"{language_code}TranslationInline"
+    TranslationInline.__name__ = f"PropertyTranslation_{language_code}TranslationInline"
     return TranslationInline
 
 
@@ -171,7 +173,7 @@ class PropertyAdminForm(forms.ModelForm):
 
 
 @admin.register(Property)
-class PropertyAdmin(admin.ModelAdmin):
+class PropertyAdmin(ModelAdmin):
     form = PropertyAdminForm
     list_display = (
         "name",

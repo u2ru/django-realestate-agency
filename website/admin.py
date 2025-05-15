@@ -1,4 +1,5 @@
 from django.contrib import admin
+from unfold.admin import ModelAdmin
 from django.forms import ModelForm, TextInput, Textarea, forms, JSONField
 from django.utils.html import format_html
 from .models import (
@@ -83,6 +84,7 @@ def create_translation_inline_class(model_class, parent_field, language_code, fi
         extra = 1
         max_num = 1
         can_delete = False  # Prevent translation deletion
+        ordering_field = "language"
 
         def get_queryset(self, request):
             qs = super().get_queryset(request)
@@ -125,7 +127,7 @@ homepage_translation_inlines = [
 
 
 @admin.register(HomePageContent)
-class HomePageContentAdmin(admin.ModelAdmin):
+class HomePageContentAdmin(ModelAdmin):
     inlines = homepage_translation_inlines
     readonly_fields = ("logo_preview", "logo_white_preview")
     fieldsets = (
@@ -215,7 +217,7 @@ class AboutUsContentAdminForm(ModelForm):
 
 
 @admin.register(AboutUsContent)
-class AboutUsContentAdmin(admin.ModelAdmin):
+class AboutUsContentAdmin(ModelAdmin):
     form = AboutUsContentAdminForm
     inlines = [
         create_translation_inline_class(
