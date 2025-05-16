@@ -93,7 +93,7 @@ msgstr "Найти что-нибудь..."
 
 #: templates/homeid/home-01.html:111
 msgid "More Filters"
-msgstr "Больше фильтров"
+msgstr "Фильтры"
 
 #: templates/homeid/home-01.html:131
 #: templates/homeid/listing-full-width-grid-1.html:100

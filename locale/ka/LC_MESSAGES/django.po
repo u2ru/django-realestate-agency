@@ -93,7 +93,7 @@ msgstr "მოძებნეთ რაიმე..."
 
 #: templates/homeid/home-01.html:111
 msgid "More Filters"
-msgstr "მეტი ფილტრი"
+msgstr "ფილტრი"
 
 #: templates/homeid/home-01.html:131
 #: templates/homeid/listing-full-width-grid-1.html:100
