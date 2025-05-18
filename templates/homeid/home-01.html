@@ -74,7 +74,7 @@
                 >
                 <select
                   class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
-                  title="Select"
+                  title="{% trans "Select" %}"
                   data-style="p-0 h-24 lh-17 text-dark"
                   name="type"
                 >
@@ -133,7 +133,7 @@
                     <select
                       class="form-control selectpicker bg-transparent border-bottom rounded-0 border-color-input"
                       name="bedrooms"
-                      title="All Bedrooms"
+                      title="{% trans "All Bedrooms" %}"
                       data-style="p-0 h-24 lh-17 text-dark"
                     >
                       <option value="">{% trans "All Bedrooms" %}</option>
@@ -211,7 +211,7 @@
                       type="text"
                       name="property_id"
                       class="form-control bg-transparent shadow-none border-top-0 border-right-0 border-left-0 border-bottom rounded-0 h-24 lh-17 p-0 font-weight-600 border-color-input"
-                      placeholder="Enter ID..."
+                      placeholder="{% trans "Enter ID..." %}"
                     />
                   </div>
                   {% comment %} <div class="col-12 pt-6 pb-2">
@@ -471,7 +471,7 @@
                 <div class="col-sm-6 pt-4 px-2">
                   <select
                     class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
-                    title="Select"
+                    title="{% trans "Select" %}"
                     data-style="btn-lg py-2 h-52 bg-transparent"
                     name="type"
                   >
@@ -484,7 +484,7 @@
                 <div class="col-sm-6 pt-4 px-2">
                   <select
                     class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
-                    title="All Types"
+                    title="{% trans "All Types" %}"
                     data-style="btn-lg py-2 h-52 bg-transparent"
                     name="type"
                   >
@@ -497,7 +497,7 @@
                   <select
                     class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
                     name="bedrooms"
-                    title="Bedrooms"
+                    title="{% trans "Bedrooms" %}"
                     data-style="btn-lg py-2 h-52 bg-transparent"
                   >
                     <option value="">{% trans "All Bedrooms" %}</option>
@@ -509,7 +509,7 @@
                 <div class="col-sm-6 pt-4 px-2">
                   <select
                     class="form-control border shadow-none form-control-lg selectpicker bg-transparent"
-                    title="All Cities"
+                    title="{% trans "All Cities" %}"
                     data-style="btn-lg py-2 h-52 bg-transparent"
                     name="city"
                   >
@@ -819,14 +819,9 @@
         <div class="row">
           <div class="col-lg-4 pr-xl-13" data-animate="fadeInLeft">
             <h2 class="text-heading lh-1625">
-              Explore <br />
-              by Property Type
+              {% trans "Explore by Property Type" %}
             </h2>
             <span class="heading-divider"></span>
-            <p class="mb-6">
-              Lorem ipsum dolor sit amet, consec tetur cing elit. Suspe ndisse
-              suscipit
-            </p>
             <a
               href="{% url 'property:index' %}"
               class="btn btn-lg text-secondary btn-accent"
@@ -851,7 +846,7 @@
                   />
                   <div class="card-body px-0 pt-5 pb-0">
                     <h4 class="card-title fs-16 lh-2 text-dark mb-0">
-                      Apartment
+                      {% trans "Apartment" %}
                     </h4>
                   </div>
                 </a>
@@ -867,7 +862,7 @@
                     alt="House"
                   />
                   <div class="card-body px-0 pt-5 pb-0">
-                    <h4 class="card-title fs-16 lh-2 text-dark mb-0">House</h4>
+                    <h4 class="card-title fs-16 lh-2 text-dark mb-0">{% trans "House" %}</h4>
                   </div>
                 </a>
               </div>
@@ -882,7 +877,7 @@
                     alt="Office"
                   />
                   <div class="card-body px-0 pt-5 pb-0">
-                    <h4 class="card-title fs-16 lh-2 text-dark mb-0">Office</h4>
+                    <h4 class="card-title fs-16 lh-2 text-dark mb-0">{% trans "Office" %}</h4>
                   </div>
                 </a>
               </div>
@@ -897,7 +892,7 @@
                     alt="Villa"
                   />
                   <div class="card-body px-0 pt-5 pb-0">
-                    <h4 class="card-title fs-16 lh-2 text-dark mb-0">Villa</h4>
+                    <h4 class="card-title fs-16 lh-2 text-dark mb-0">{% trans "Villa" %}</h4>
                   </div>
                 </a>
               </div>
@@ -913,7 +908,7 @@
                   />
                   <div class="card-body px-0 pt-5 pb-0">
                     <h4 class="card-title fs-16 lh-2 text-dark mb-0">
-                      Apartment
+                      {% trans "Apartment" %}
                     </h4>
                   </div>
                 </a>

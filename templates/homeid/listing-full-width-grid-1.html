@@ -9,7 +9,7 @@
         </ol>
         {% if search_params.deal_type or search_params.type or search_params.city or search_params.price_type or search_params.bedrooms %}
         <h1 class="fs-30 lh-1 mb-0 text-heading font-weight-600">
-          {{ properties|length }} {{ properties|length|pluralize:"property,properties" }} found
+          {{ properties|length }} {% if properties|length == 1 %} {% trans "property was found" %} {% else %} {% trans "properties were found" %} {% endif %}
         </h1>
         {% else %}
         <h1 class="fs-30 lh-1 mb-0 text-heading font-weight-600">
@@ -22,7 +22,7 @@
               <label for="city" class="sr-only">{% trans "City" %}</label>
               <select
                 class="form-control border-0 shadow-xxs-1 bg-transparent font-weight-600 selectpicker"
-                title="City"
+                title="{% trans "City" %}"
                 data-style="bg-white"
                 id="city"
                 name="city"
@@ -41,7 +41,7 @@
               <label for="any-price" class="sr-only">{% trans "Any Price" %}</label>
               <select
                 class="form-control border-0 shadow-xxs-1 bg-transparent font-weight-600 selectpicker"
-                title="Any Price"
+                title="{% trans "Any Price" %}"
                 data-style="bg-white"
                 id="any-price"
                 name="price_type"
@@ -61,7 +61,7 @@
               <label for="type" class="sr-only">{% trans "Type" %}</label>
               <select
                 class="form-control border-0 shadow-xxs-1 bg-transparent font-weight-600 selectpicker"
-                title="Type"
+                title="{% trans "Type" %}"
                 data-style="bg-white"
                 id="type"
                 name="type"
@@ -81,7 +81,7 @@
               <label for="deal_type" class="sr-only">{% trans "Deal Type" %}</label>
               <select
                 class="form-control border-0 shadow-xxs-1 bg-transparent font-weight-600 selectpicker"
-                title="Deal Type"
+                title="{% trans "Deal Type" %}"
                 data-style="bg-white"
                 id="deal_type"
                 name="deal_type"
@@ -100,7 +100,7 @@
               <label for="room" class="sr-only">{% trans "Bedrooms" %}</label>
               <select
                 class="form-control border-0 shadow-xxs-1 bg-transparent font-weight-600 selectpicker"
-                title="Bedrooms"
+                title="{% trans "Bedrooms" %}"
                 data-style="bg-white"
                 id="bedrooms"
                 name="bedrooms"
@@ -126,7 +126,7 @@
                 aria-expanded="true"
                 aria-controls="advanced-search-filters-5"
               >
-                <span>More</span>
+                <span>{% trans "More" %}</span>
                 <span class="ml-auto">...</span>
               </a>
             </div>
