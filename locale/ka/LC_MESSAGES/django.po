@@ -295,7 +295,7 @@ msgstr "ძიება ქალაქის მიხედვით..."
 
 #: templates/homeid/listing-full-width-grid-1.html:8
 msgid "Listing"
-msgstr "სია"
+msgstr "ჩამონათვალი"
 
 #: templates/homeid/listing-full-width-grid-1.html:12
 #, fuzzy

@@ -4,13 +4,13 @@ from property.models import Property, PROPERTY_TYPE_CHOICES, DEAL_TYPE_CHOICES
 from property.constants import CITY_CHOICES
 from django.db.models import Max
 from django.forms.models import model_to_dict
+from django.utils.translation import get_language
 
 
 # Create your views here.
 def index(request):
 
-    # Get the active language from session or default to ka
-    current_language = request.session.get("language", "ka")
+    current_language = get_language() or "ka"
 
     home_page_content = HomePageContent.objects.first()
     featured_properties_for_sale = Property.objects.filter(

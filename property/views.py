@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.db.models import Max
 from django.forms.models import model_to_dict
+from django.utils.translation import get_language
 from .models import (
     Property,
     PROPERTY_TYPE_CHOICES,
@@ -18,8 +19,8 @@ def index(request):
     # Get the active currency from session or default to USD
     current_currency = request.session.get("currency", "USD")
 
-    # Get the active language from session or default to ka
-    current_language = request.session.get("language", "ka")
+    # Get the active language using Django's translation system
+    current_language = get_language() or "ka"
 
     # Get search parameters from request
     deal_type = request.GET.get("deal_type", "")
@@ -169,8 +170,8 @@ def property_detail(request, pk):
     # Get the active currency from session or default to USD
     current_currency = request.session.get("currency", "USD")
 
-    # Get the active language from session or default to ka
-    current_language = request.session.get("language", "ka")
+    # Get the active language using Django's translation system
+    current_language = get_language() or "ka"
 
     # Convert similar properties to list of dictionaries with converted prices
     similar_properties_list = []

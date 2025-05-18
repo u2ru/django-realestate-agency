@@ -1,5 +1,6 @@
 from .models import HomePageContent
 from django.conf import settings
+from django.utils.translation import get_language
 
 
 def common_context(request):
@@ -48,3 +49,11 @@ def currency(request):
         )
 
     return {"CURRENCY": current_currency, "CURRENCIES": currencies}
+
+
+def language(request):
+    """
+    Context processor that provides language information to all templates.
+    """
+    current_language = get_language() or settings.LANGUAGE_CODE
+    return {"LANGUAGE": current_language}
