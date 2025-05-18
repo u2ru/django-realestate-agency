@@ -420,7 +420,7 @@
                       data-mapbox-marker='[{"position":[{{ property.coordinates.lng }}, {{ property.coordinates.lat }}],"className":"marker","backgroundImage":"{% static 'images/googlle-market-01.png' %}","backgroundRepeat":"no-repeat","width":"30px","height":"40px"}]'
                     ></div>
                     <p
-                      class="mb-0 p-3 bg-white shadow rounded-lg position-absolute pos-fixed-bottom mb-4 ml-4 lh-17 z-index-2"
+                      class="p-3 bg-white shadow rounded-lg position-absolute pos-fixed-bottom mb-4 ml-4 lh-17 z-index-2"
                     >
                       {{ property.city }} <br />
                       {{ property.address }}
@@ -556,9 +556,9 @@
                   </p>
                   <div class="mr-xl-2">
                     <a
-                      href="tel:{{ property.agent_phone }}"
-                      class="btn btn-primary btn-lg btn-block"
-                      >{% trans "Get Sellers Number" %}</a
+                      data-phone="{{ property.agent_phone }}"
+                      class="btn btn-primary btn-lg btn-block call-agent text-white"
+                      >{{ property.agent_phone|slice:":4" }}*********</a
                     >
                   </div>
                 </div>
@@ -595,4 +595,22 @@
         </div>
       </section> {% endcomment %}
     </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const callButtons = document.querySelectorAll('.call-agent');
+        
+        callButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const phone = this.dataset.phone;
+            
+            if (this.textContent === phone) {
+              window.location.href = `tel:${phone}`;
+            } else {
+              this.textContent = phone;
+            }
+          });
+        });
+      });
+    </script>
 {% endblock %}
