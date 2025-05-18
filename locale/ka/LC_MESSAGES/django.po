@@ -196,10 +196,8 @@ msgid "All Status"
 msgstr "ყველა სტატუსი"
 
 #: templates/homeid/home-01.html:488
-#, fuzzy
-#| msgid "Any Type"
 msgid "All Types"
-msgstr "ნებისმიერი ტიპი"
+msgstr "ყველა ტიპი"
 
 #: templates/homeid/home-01.html:789
 msgid "Best Properties For Sale"
@@ -210,20 +208,16 @@ msgid "See all properties"
 msgstr "ყველა ობიექტის ნახვა"
 
 #: templates/homeid/home-01.html:824
-#, fuzzy
-#| msgid "Property Type"
-msgid "Explore by Property Type"
-msgstr "ობიექტის ტიპი"
+msgid "Explore by Property Types"
+msgstr "ობიექტის ტიპების ძიება"
 
 #: templates/homeid/home-01.html:830
 msgid "See Available Properties"
 msgstr "ხელმისაწვდომი ობიექტები"
 
 #: templates/homeid/home-01.html:851 templates/homeid/home-01.html:913
-#, fuzzy
-#| msgid "Apartments to buy"
 msgid "Apartment"
-msgstr "ბინები გაყიდვით"
+msgstr "ბინა"
 
 #: templates/homeid/home-01.html:867
 msgid "House"
@@ -298,14 +292,10 @@ msgid "Listing"
 msgstr "ჩამონათვალი"
 
 #: templates/homeid/listing-full-width-grid-1.html:12
-#, fuzzy
-#| msgid "No properties found"
 msgid "property was found"
 msgstr "ობიექტები ვერ მოიძებნა"
 
 #: templates/homeid/listing-full-width-grid-1.html:12
-#, fuzzy
-#| msgid "No properties found"
 msgid "properties were found"
 msgstr "ობიექტები ვერ მოიძებნა"
 

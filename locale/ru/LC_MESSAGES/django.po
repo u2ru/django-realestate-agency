@@ -197,8 +197,6 @@ msgid "All Status"
 msgstr "Все статусы"
 
 #: templates/homeid/home-01.html:488
-#, fuzzy
-#| msgid "Any Type"
 msgid "All Types"
 msgstr "Любой тип"
 
@@ -211,18 +209,14 @@ msgid "See all properties"
 msgstr "Все объекты"
 
 #: templates/homeid/home-01.html:824
-#, fuzzy
-#| msgid "Property Type"
-msgid "Explore by Property Type"
-msgstr "Тип объекта"
+msgid "Explore by Property Types"
+msgstr "Поиск по типам объектов"
 
 #: templates/homeid/home-01.html:830
 msgid "See Available Properties"
 msgstr "Доступные объекты"
 
 #: templates/homeid/home-01.html:851 templates/homeid/home-01.html:913
-#, fuzzy
-#| msgid "Apartments to buy"
 msgid "Apartment"
 msgstr "Покупка квартир"
 
@@ -299,14 +293,10 @@ msgid "Listing"
 msgstr "Список"
 
 #: templates/homeid/listing-full-width-grid-1.html:12
-#, fuzzy
-#| msgid "No properties found"
 msgid "property was found"
 msgstr "Объекты не найдены"
 
 #: templates/homeid/listing-full-width-grid-1.html:12
-#, fuzzy
-#| msgid "No properties found"
 msgid "properties were found"
 msgstr "Объекты не найдены"
 
