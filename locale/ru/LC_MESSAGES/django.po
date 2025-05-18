@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-15 18:40+0000\n"
+"POT-Creation-Date: 2025-05-18 09:06+0000\n"
 "PO-Revision-Date: 2025-05-17 18:40+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian <LL@li.org>\n"
@@ -16,7 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: property/templates/admin/coordinates_widget.html:4
 msgid "Clear"
@@ -40,10 +41,6 @@ msgstr "Главная страница"
 #: templates/homeid/about-us.html:98
 msgid "Visit our office at"
 msgstr "Посетите наш офис по адресу"
-
-#: templates/homeid/about-us.html:125
-msgid "Call Us At"
-msgstr "Позвоните нам"
 
 #: templates/homeid/components/home-listing-box.html:12
 msgid "featured"
@@ -81,6 +78,10 @@ msgstr "аренда"
 msgid "Home Type"
 msgstr "Тип жилья"
 
+#: templates/homeid/home-01.html:77 templates/homeid/home-01.html:475
+msgid "Select"
+msgstr "Выбрать"
+
 #: templates/homeid/home-01.html:88 templates/homeid/home-01.html:119
 #: templates/homeid/single-property-6.html:56
 #: templates/homeid/single-property-6.html:75
@@ -95,20 +96,22 @@ msgstr "Найти что-нибудь..."
 msgid "More Filters"
 msgstr "Фильтры"
 
-#: templates/homeid/home-01.html:131
+#: templates/homeid/home-01.html:131 templates/homeid/home-01.html:501
 #: templates/homeid/listing-full-width-grid-1.html:100
+#: templates/homeid/listing-full-width-grid-1.html:103
 #: templates/homeid/single-property-6.html:282
 #: templates/homeid/single-property-6.html:366
 #: templates/homeid/single-property-6.html:507
 msgid "Bedrooms"
 msgstr "Спальни"
 
-#: templates/homeid/home-01.html:139 templates/homeid/home-01.html:504
+#: templates/homeid/home-01.html:136 templates/homeid/home-01.html:139
+#: templates/homeid/home-01.html:504
 msgid "All Bedrooms"
 msgstr "Все спальни"
 
 #: templates/homeid/home-01.html:148 templates/homeid/home-01.html:153
-#: templates/homeid/home-01.html:156
+#: templates/homeid/home-01.html:156 templates/homeid/home-01.html:513
 msgid "All Cities"
 msgstr "Все города"
 
@@ -124,6 +127,10 @@ msgstr "Площадь"
 #: templates/homeid/single-property-6.html:318
 msgid "Property ID"
 msgstr "ID объекта"
+
+#: templates/homeid/home-01.html:214
+msgid "Enter ID..."
+msgstr "Введите ID..."
 
 #: templates/homeid/home-01.html:243
 msgid "Air Conditioning"
@@ -189,27 +196,57 @@ msgstr "Холодильник"
 msgid "All Status"
 msgstr "Все статусы"
 
+#: templates/homeid/home-01.html:488
+#, fuzzy
+#| msgid "Any Type"
+msgid "All Types"
+msgstr "Любой тип"
+
 #: templates/homeid/home-01.html:789
 msgid "Best Properties For Sale"
 msgstr "Лучшие объекты на продажу"
 
-#: templates/homeid/home-01.html:800 templates/homeid/home-01.html:945
+#: templates/homeid/home-01.html:800 templates/homeid/home-01.html:940
 msgid "See all properties"
 msgstr "Все объекты"
 
-#: templates/homeid/home-01.html:835
+#: templates/homeid/home-01.html:824
+#, fuzzy
+#| msgid "Property Type"
+msgid "Explore by Property Type"
+msgstr "Тип объекта"
+
+#: templates/homeid/home-01.html:830
 msgid "See Available Properties"
 msgstr "Доступные объекты"
 
-#: templates/homeid/home-01.html:934
+#: templates/homeid/home-01.html:851 templates/homeid/home-01.html:913
+#, fuzzy
+#| msgid "Apartments to buy"
+msgid "Apartment"
+msgstr "Покупка квартир"
+
+#: templates/homeid/home-01.html:867
+msgid "House"
+msgstr "Дом"
+
+#: templates/homeid/home-01.html:882
+msgid "Office"
+msgstr "Офис"
+
+#: templates/homeid/home-01.html:897
+msgid "Villa"
+msgstr "Вилла"
+
+#: templates/homeid/home-01.html:929
 msgid "Best Properties For Rent"
 msgstr "Лучшие объекты в аренду"
 
-#: templates/homeid/home-01.html:978
+#: templates/homeid/home-01.html:973
 msgid "Find your neighborhood"
 msgstr "Найдите свой район"
 
-#: templates/homeid/home-01.html:987
+#: templates/homeid/home-01.html:982
 msgid "Enter an address, city..."
 msgstr "Введите адрес, город..."
 
@@ -261,22 +298,37 @@ msgstr "Поиск по городу..."
 msgid "Listing"
 msgstr "Список"
 
+#: templates/homeid/listing-full-width-grid-1.html:12
+#, fuzzy
+#| msgid "No properties found"
+msgid "property was found"
+msgstr "Объекты не найдены"
+
+#: templates/homeid/listing-full-width-grid-1.html:12
+#, fuzzy
+#| msgid "No properties found"
+msgid "properties were found"
+msgstr "Объекты не найдены"
+
 #: templates/homeid/listing-full-width-grid-1.html:16
 msgid "All properties"
 msgstr "Все объекты"
 
 #: templates/homeid/listing-full-width-grid-1.html:22
+#: templates/homeid/listing-full-width-grid-1.html:25
 #: templates/homeid/single-property-6.html:37
 #: templates/homeid/single-property-6.html:412
 msgid "City"
 msgstr "Город"
 
 #: templates/homeid/listing-full-width-grid-1.html:41
+#: templates/homeid/listing-full-width-grid-1.html:44
 #: templates/homeid/listing-full-width-grid-1.html:50
 msgid "Any Price"
 msgstr "Любая цена"
 
 #: templates/homeid/listing-full-width-grid-1.html:61
+#: templates/homeid/listing-full-width-grid-1.html:64
 #: templates/homeid/single-property-6.html:238
 msgid "Type"
 msgstr "Тип"
@@ -288,8 +340,13 @@ msgid "Any Type"
 msgstr "Любой тип"
 
 #: templates/homeid/listing-full-width-grid-1.html:81
+#: templates/homeid/listing-full-width-grid-1.html:84
 msgid "Deal Type"
 msgstr "Тип сделки"
+
+#: templates/homeid/listing-full-width-grid-1.html:129
+msgid "More"
+msgstr "Больше"
 
 #: templates/homeid/listing-full-width-grid-1.html:174
 msgid "No properties found"
@@ -375,6 +432,8 @@ msgstr "Аренда"
 msgid "is now available to buy off plan in"
 msgstr "доступно для покупки по плану в"
 
-#: templates/homeid/single-property-6.html:561
-msgid "Get Sellers Number"
-msgstr "Получить номер продавца"
+#~ msgid "Call Us At"
+#~ msgstr "Позвоните нам"
+
+#~ msgid "Get Sellers Number"
+#~ msgstr "Получить номер продавца"
