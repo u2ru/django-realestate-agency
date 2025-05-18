@@ -24,31 +24,122 @@ EXCHANGE_RATES = {
 }
 
 # Property specifications
-PROPERTY_TYPE_CHOICES = [
-    ("APARTMENT", "Apartment"),
-    ("HOUSE", "House"),
-    ("COMMERCIAL", "Commercial"),
-    ("LAND", "Land"),
-]
+PROPERTY_TYPE_CHOICES = {
+    "ka": [
+        ("APARTMENT", "ბინა"),
+        ("HOUSE", "სახლი"),
+        ("COMMERCIAL", "კომერციული"),
+        ("LAND", "მიწა"),
+    ],
+    "en": [
+        ("APARTMENT", "Apartment"),
+        ("HOUSE", "House"),
+        ("COMMERCIAL", "Commercial"),
+        ("LAND", "Land"),
+    ],
+    "ru": [
+        ("APARTMENT", "Квартира"),
+        ("HOUSE", "Дом"),
+        ("COMMERCIAL", "Коммерческая"),
+        ("LAND", "Земля"),
+    ],
+}
 
-PRICE_TYPE_CHOICES = [
-    ("HIGH", "High"),
-    ("LOW", "Low"),
-    ("MEDIUM", "Medium"),
-]
+PRICE_TYPE_CHOICES = {
+    "ka": [
+        ("HIGH", "მაღალი"),
+        ("LOW", "დაბალი"),
+        ("MEDIUM", "საშუალო"),
+    ],
+    "en": [
+        ("HIGH", "High"),
+        ("LOW", "Low"),
+        ("MEDIUM", "Medium"),
+    ],
+    "ru": [
+        ("HIGH", "Высокая"),
+        ("LOW", "Низкая"),
+        ("MEDIUM", "Средняя"),
+    ],
+}
 
-DEAL_TYPE_CHOICES = [
-    ("SALE", "For Sale"),
-    ("RENT", "For Rent"),
-]
+DEAL_TYPE_CHOICES = {
+    "ka": [
+        ("SALE", "იყიდება"),
+        ("RENT", "ქირავდება"),
+    ],
+    "en": [
+        ("SALE", "For Sale"),
+        ("RENT", "For Rent"),
+    ],
+    "ru": [
+        ("SALE", "Продажа"),
+        ("RENT", "Аренда"),
+    ],
+}
 
-FEATURE_CHOICES = [
-    ("balcony", "Balcony"),
-    ("parking", "Parking"),
-    ("elevator", "Elevator"),
-    ("furniture", "Furniture"),
-    ("central_heating", "Central Heating"),
-]
+FEATURE_CHOICES = {
+    "ka": [
+        ("balcony", "აივანი"),
+        ("parking", "პარკინგი"),
+        ("elevator", "ლიფტი"),
+        ("furniture", "ავეჯი"),
+        ("central_heating", "ცენტრალური გათბობა"),
+    ],
+    "en": [
+        ("balcony", "Balcony"),
+        ("parking", "Parking"),
+        ("elevator", "Elevator"),
+        ("furniture", "Furniture"),
+        ("central_heating", "Central Heating"),
+    ],
+    "ru": [
+        ("balcony", "Балкон"),
+        ("parking", "Паркинг"),
+        ("elevator", "Лифт"),
+        ("furniture", "Мебель"),
+        ("central_heating", "Центральное отопление"),
+    ],
+}
+
+STATE_CHOICES = {
+    "ka": [
+        ("NEW", "ახალი"),
+        ("RENOVATED", "გარემონტებული"),
+        ("REQUIRES_RENOVATION", "საჭიროებს გარემონტებას"),
+        ("UNDER_CONSTRUCTION", "მიმდინარე რემონტი"),
+    ],
+    "en": [
+        ("NEW", "New"),
+        ("RENOVATED", "Renovated"),
+        ("REQUIRES_RENOVATION", "Requires Renovation"),
+        ("UNDER_CONSTRUCTION", "Under Construction"),
+    ],
+    "ru": [
+        ("NEW", "Новое"),
+        ("RENOVATED", "Ремонтированное"),
+        ("REQUIRES_RENOVATION", "Требует ремонта"),
+        ("UNDER_CONSTRUCTION", "В строительстве"),
+    ],
+}
+
+RENT_PERIOD_CHOICES = {
+    "ka": [
+        ("month", "თვე"),
+        ("week", "კვირა"),
+        ("day", "დღე"),
+    ],
+    "en": [
+        ("month", "Month"),
+        ("week", "Week"),
+        ("day", "Day"),
+    ],
+    "ru": [
+        ("month", "Месяц"),
+        ("week", "Неделя"),
+        ("day", "День"),
+    ],
+}
 
 
 # Create your models here.
@@ -80,13 +171,15 @@ class Property(models.Model):
     ]
     price = models.DecimalField(max_digits=10, decimal_places=2)
     price_type = models.CharField(
-        max_length=10, choices=PRICE_TYPE_CHOICES, default="LOW"
+        max_length=10,
+        choices=PRICE_TYPE_CHOICES[PRIMARY_LANGUAGE],
+        default="LOW",
     )
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default="USD")
 
     # Location details
     address = models.CharField(max_length=255)
-    city = models.CharField(max_length=20, choices=CITY_CHOICES)
+    city = models.CharField(max_length=20, choices=CITY_CHOICES[PRIMARY_LANGUAGE])
     property_id = models.CharField(max_length=100)
 
     # Media
@@ -97,18 +190,17 @@ class Property(models.Model):
         help_text="YouTube video URL for property showcase",
     )
 
-    property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
+    property_type = models.CharField(
+        max_length=20, choices=PROPERTY_TYPE_CHOICES[PRIMARY_LANGUAGE]
+    )
 
-    deal_type = models.CharField(max_length=10, choices=DEAL_TYPE_CHOICES)
+    deal_type = models.CharField(
+        max_length=10, choices=DEAL_TYPE_CHOICES[PRIMARY_LANGUAGE]
+    )
 
-    RENT_PERIOD_CHOICES = [
-        ("month", "Month"),
-        ("week", "Week"),
-        ("day", "Day"),
-    ]
     rent_period = models.CharField(
         max_length=10,
-        choices=RENT_PERIOD_CHOICES,
+        choices=RENT_PERIOD_CHOICES[PRIMARY_LANGUAGE],
         blank=True,
         null=True,
         default="month",
@@ -127,14 +219,8 @@ class Property(models.Model):
         help_text="Property coordinates in format {'lat': float, 'lng': float}",
     )
 
-    STATE_CHOICES = [
-        ("NEW", "New"),
-        ("RENOVATED", "Renovated"),
-        ("REQUIRES_RENOVATION", "Requires Renovation"),
-        ("UNDER_CONSTRUCTION", "Under Construction"),
-    ]
     state = models.CharField(
-        max_length=20, choices=STATE_CHOICES, null=True, blank=True
+        max_length=20, choices=STATE_CHOICES[PRIMARY_LANGUAGE], null=True, blank=True
     )
 
     # Additional features as checkboxes

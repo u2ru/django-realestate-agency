@@ -18,6 +18,9 @@ def index(request):
     # Get the active currency from session or default to USD
     current_currency = request.session.get("currency", "USD")
 
+    # Get the active language from session or default to ka
+    current_language = request.session.get("language", "ka")
+
     # Get search parameters from request
     deal_type = request.GET.get("deal_type", "")
     type = request.GET.get("type", "")
@@ -89,8 +92,8 @@ def index(request):
             properties = filtered_properties
 
     # filter properties
-    city_list = CITY_CHOICES
-    home_types = PROPERTY_TYPE_CHOICES
+    city_list = CITY_CHOICES[current_language]
+    home_types = PROPERTY_TYPE_CHOICES[current_language]
     max_bedrooms = (
         Property.objects.aggregate(Max("bedrooms"))["bedrooms__max"]
         if Property.objects.aggregate(Max("bedrooms"))["bedrooms__max"] > 6
@@ -99,8 +102,8 @@ def index(request):
     bedroom_list = [(i, str(i)) for i in range(1, max_bedrooms + 1)]
     area_range_max = Property.objects.aggregate(Max("area"))["area__max"]
     price_range_max = Property.objects.aggregate(Max("price"))["price__max"]
-    status_list = DEAL_TYPE_CHOICES
-    features_list = FEATURE_CHOICES
+    status_list = DEAL_TYPE_CHOICES[current_language]
+    features_list = FEATURE_CHOICES[current_language]
 
     # Convert properties to list of dictionaries with converted prices
     properties_list = []
@@ -136,7 +139,7 @@ def index(request):
             "bedroom_list": bedroom_list,
             "area_range_max": area_range_max,
             "price_range_max": price_range_max,
-            "price_type_list": PRICE_TYPE_CHOICES,
+            "price_type_list": PRICE_TYPE_CHOICES[current_language],
             "status_list": status_list,
             "features_list": features_list,
         },
@@ -145,7 +148,9 @@ def index(request):
             "price_type": price_type,
             "type": type,
             "deal_type": [
-                choice[0] for choice in DEAL_TYPE_CHOICES if choice[0] == deal_type
+                choice[0]
+                for choice in DEAL_TYPE_CHOICES[current_language]
+                if choice[0] == deal_type
             ],
             "bedrooms": bedrooms,
             "features": features,
@@ -164,6 +169,9 @@ def property_detail(request, pk):
     # Get the active currency from session or default to USD
     current_currency = request.session.get("currency", "USD")
 
+    # Get the active language from session or default to ka
+    current_language = request.session.get("language", "ka")
+
     # Convert similar properties to list of dictionaries with converted prices
     similar_properties_list = []
     for similar_property in similar_properties:
@@ -180,8 +188,8 @@ def property_detail(request, pk):
         )
         similar_properties_list.append(similar_dict)
 
-    city_list = CITY_CHOICES
-    home_types = PROPERTY_TYPE_CHOICES
+    city_list = CITY_CHOICES[current_language]
+    home_types = PROPERTY_TYPE_CHOICES[current_language]
 
     # Convert model to dict and add translations
     property_dict = model_to_dict(property)

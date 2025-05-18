@@ -136,7 +136,7 @@ class CoordinatesWidget(forms.Widget):
 
 class PropertyAdminForm(forms.ModelForm):
     features = forms.MultipleChoiceField(
-        choices=FEATURE_CHOICES,
+        choices=FEATURE_CHOICES[PRIMARY_LANGUAGE],
         required=False,
         widget=forms.CheckboxSelectMultiple,
     )
@@ -297,7 +297,7 @@ class PropertyAdmin(ModelAdmin):
         ]
 
         # Add city filter with reasonable choices
-        if len(CITY_CHOICES) > 20:
+        if len(CITY_CHOICES[PRIMARY_LANGUAGE]) > 20:
             # Create a custom filter with major cities when we have many options
             filters.append(("city", admin.AllValuesFieldListFilter))
         else:

@@ -8,6 +8,10 @@ from django.forms.models import model_to_dict
 
 # Create your views here.
 def index(request):
+
+    # Get the active language from session or default to ka
+    current_language = request.session.get("language", "ka")
+
     home_page_content = HomePageContent.objects.first()
     featured_properties_for_sale = Property.objects.filter(
         featured=True, deal_type="SALE"
@@ -16,13 +20,13 @@ def index(request):
         featured=True, deal_type="RENT"
     )[:5]
     # filter properties
-    city_list = CITY_CHOICES
-    home_types = PROPERTY_TYPE_CHOICES
+    city_list = CITY_CHOICES[current_language]
+    home_types = PROPERTY_TYPE_CHOICES[current_language]
     max_bedrooms = Property.objects.aggregate(Max("bedrooms"))["bedrooms__max"]
     bedroom_list = [(i, str(i)) for i in range(1, max_bedrooms + 1)]
     area_range_max = Property.objects.aggregate(Max("area"))["area__max"]
     price_range_max = Property.objects.aggregate(Max("price"))["price__max"]
-    status_list = DEAL_TYPE_CHOICES
+    status_list = DEAL_TYPE_CHOICES[current_language]
 
     # Get the active currency from session or default to USD
     current_currency = request.session.get("currency", "USD")
