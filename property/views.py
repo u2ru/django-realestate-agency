@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 from django.utils.translation import get_language
 from .models import (
     Property,
+    PropertyView,
     PROPERTY_TYPE_CHOICES,
     PRICE_TYPE_CHOICES,
     DEAL_TYPE_CHOICES,
@@ -163,6 +164,15 @@ def index(request):
 
 def property_detail(request, pk):
     property = Property.objects.get(pk=pk)
+
+    # Track unique view
+    visitor_uuid = getattr(request, "visitor_uuid", None)
+    if visitor_uuid:
+        PropertyView.objects.get_or_create(property=property, visitor_uuid=visitor_uuid)
+        # Update the view count
+        property.views = property.property_views.count()
+        property.save()
+
     similar_properties = Property.objects.filter(property_type=property.property_type)[
         :4
     ]

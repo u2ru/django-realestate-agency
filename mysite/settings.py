@@ -77,6 +77,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "mysite.middleware.LanguagePrefixRedirectMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "property.middleware.VisitorUUIDMiddleware",
 ]
 
 ROOT_URLCONF = "mysite.urls"

@@ -364,3 +364,18 @@ def auto_delete_image_file_on_change(sender, instance, **kwargs):
     if old_instance.image and old_instance.image != instance.image:
         if os.path.isfile(old_instance.image.path):
             os.remove(old_instance.image.path)
+
+
+class PropertyView(models.Model):
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, related_name="property_views"
+    )
+    visitor_uuid = models.CharField(max_length=36)
+    viewed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("property", "visitor_uuid")
+        ordering = ["-viewed_at"]
+
+    def __str__(self):
+        return f"{self.property.name} - {self.visitor_uuid}"
